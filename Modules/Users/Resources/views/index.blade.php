@@ -25,32 +25,14 @@ Users
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#filters-container">
           <div class="p-3 accordion-body">
             <div class="row">
-              <div class="col-md-4 form-group">
+              <div class="col-md-6 form-group">
                 <label for="">Name</label>
                 <input type="text" class="form-control filters" name="name" placeholder="Name">
               </div>
-              <div class="col-md-4 form-group">
-                <label for="">CNIC</label>
-                <input type="text" class="form-control filters" name="cnic" placeholder="CNIC">
-              </div>
-              <div class="col-md-4 form-group">
-                <label for="">Phone</label>
-                <input type="text" class="form-control filters" name="phone" placeholder="Phone">
-              </div>
               <div class="col-md-6 form-group">
-                <label for="">Employee Code</label>
-                <input type="text" class="form-control filters" name="emp_code" placeholder="Employee Code">
+                <label for="">Email</label>
+                <input type="text" class="form-control filters" name="email" placeholder="Email">
               </div>
-             <!--  <div class="col-md-6 form-group">
-                <label for="">Branch</label>
-                <select name="branch_id" class="form-control filters select2">
-                  <option value="">Select</option>
-                  @foreach(AllBranches() as $branch)
-                    <option value="{{$branch->mis_sync_id}}">{{$branch->name}}</option>
-                  @endforeach
-                </select>
-
-              </div> -->
             </div>
           </div>
         </div>
@@ -64,7 +46,6 @@ Users
           <h4 class="col-md-6">Users</h4>
           <div class="col-md-6 text-end">
             <a href="{{url('users/create')}}" class="btn btn-success">+</a>
-            <a href="{{url('users/import')}}" class="btn btn-info"><i class="fas fa-cloud-upload-alt"></i></a>
           </div>
         </div>
       </div>
@@ -74,15 +55,9 @@ Users
             <thead class="text-center bg-primary text-white">
               <tr>
                 <th>Name</th>
+                <th>Email</th>
                 <th>Role</th>
-                <th>Father Name</th>
-                <th>CNIC</th>
-                <th>Phone</th>
-                <th>Employee Code</th>
-                <th>Role Name</th>
                 <th>Status</th>
-                <th>Branch</th>
-                <th>Access Level</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -111,15 +86,9 @@ $(document).ready( function(){
       buttons:[],
       columns: [
             {data: 'name', name: 'name'},
-            {data: 'role', name: 'role'},
-            {data: 'father_name', name: 'father_name'},
-            {data: 'cnic', name: 'cnic'},
-            {data: 'phone', name: 'phone'},
-            {data: 'emp_code', name: 'emp_code'},
-            {data: 'role_name', name: 'role_name'},
+            {data: 'email', name: 'email'},
+            {data: 'role', name: 'role', class:"text-center"},
             {data: 'status', name: 'status', class:'text-center'},
-            {data: 'branch_id', name: 'branch_id'},
-            {data: 'access_level', name: 'access_level',class:'text-center'},
             {data: 'action', name: 'action', orderable: false, class:"d-flex justify-content-center w-auto", searchable: false},
       ]
   });

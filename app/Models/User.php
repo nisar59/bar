@@ -10,7 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
-use Modules\Desks\Entities\Desk;
 use App\Traits\Loggable;
 class User extends Authenticatable implements JWTSubject
 {
@@ -21,7 +20,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name','email','father_name','cnic','phone','otp','password','pin','lock_screen_token','emp_code','role_name','status','is_block','access_level','branch_id','area_id','region_id'];
+    protected $fillable = ['name','email','image','password','lock_screen_token','status'];
 
     /**
      * The attributes that should be hidden for serialization.

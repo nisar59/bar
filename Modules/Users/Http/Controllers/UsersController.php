@@ -13,8 +13,6 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\UsersSampleExport;
-use App\Imports\UsersImport;
 use Auth;
 use Throwable;
 class UsersController extends Controller
@@ -37,20 +35,9 @@ class UsersController extends Controller
         $users->where('name','LIKE','%'.$req->name.'%');
       }
 
-      if ($req->cnic != null) {
-        $users->where('cnic', $req->cnic);
+      if ($req->email != null) {
+        $users->where('email', $req->email);
       }
-      if ($req->phone != null) {
-        $users->where('phone', $req->phone);
-      }    
-      if ($req->emp_code != null) {
-        $users->where('emp_code', $req->emp_code);
-      }
-      if ($req->branch_id != null) {
-        $users->where('branch_id', $req->branch_id);
-      }
-
-
 
         $total = $users->count();
         $users   = $users->offset($strt)->limit($length)->get();
@@ -79,11 +66,6 @@ class UsersController extends Controller
                 if(Auth::user()->can('users.delete')){
                 $action.='<a class="btn btn-danger m-1 btn-sm" href="'.url('users/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                     }
-                if(Auth::user()->can('users.edit')){
-                $action.='<a class="btn btn-success m-1 btn-sm" href="'.url('desks/create/'.$row->id).'"><i class="fas fa-tv"></i></a>';
-                }
-
-
 
                 }
                 return $action;
@@ -92,27 +74,12 @@ class UsersController extends Controller
                 ->editColumn('name', function ($row) {
                     return $row->name;
                 })
+                ->editColumn('email', function ($row) {
+                    return $row->email;
+                })                
                 ->editColumn('role', function ($row) {
                     return count($row->roles)>0 ? $row->roles[0]->name : '';
                 }) 
-                ->editColumn('father_name', function ($row) {
-                    return $row->father_name;
-                })
-
-                ->editColumn('cnic', function ($row) {
-                    return $row->cnic;
-                })
-                ->editColumn('phone', function ($row) {
-                    return $row->phone;
-                })
-
-                ->editColumn('role_name', function ($row) {
-                    return $row->role_name;
-                })
-
-                ->editColumn('emp_code', function ($row) {
-                    return $row->emp_code;
-                })
 
                 ->editColumn('status', function ($row) {
                     if($row->status==1){
@@ -123,13 +90,6 @@ class UsersController extends Controller
                     }
                 })
 
-                ->editColumn('branch_id', function ($row) {
-                    return BranchDetail($row->branch_id)!=null ? BranchDetail($row->branch_id)->name: '';
-                })
-
-                ->editColumn('access_level', function ($row) {
-                    return $row->access_level;
-                })
                 ->rawColumns(['action','role','status'])
                 ->make(true);
     }
@@ -149,62 +109,6 @@ class UsersController extends Controller
     }
 
 
-
-    public function import()
-    {
-        return view('users::import');
-    }
-
-    public function exportsample()
-    {
-         return Excel::download(new UsersSampleExport, 'users-sample.xlsx');
-    }
-
-
-    public function importstore(Request $req)
-    {
-        $req->validate([
-        'file' => 'required|mimes:csv,xlsx'
-        ]);
-
-        $error_index=0;
-        DB::beginTransaction();
-        try {
-            $existing_users=[];
-            $collection = Excel::toArray(new UsersImport, $req->file('file'));
-            foreach($collection[0] as $key => $row){
-                $error_index=$key+1;
-
-                if(User::where('cnic',$row['cnic'])->orWhere('phone',$row['phone'])->orWhere('emp_code',$row['emp_code'])->count()<1){
-                User::updateOrCreate(['cnic'=>$row['cnic'], 'phone'=>$row['phone'], 'emp_code'=>$row['emp_code']],$row);
-                }
-                else{
-                    $existing_users[]=$row['cnic']."\n";
-                }
-
-            }
-            DB::commit();
-            return redirect('users')->with('success', 'Users successfully imported except: '.implode(',', $existing_users));
-
-        } catch (Exception $e) {
-            DB::rollback();
-            return redirect()->back()->withInput()->with('error', 'Something went wrong at index '.$error_index.' with this error: '.$e->getMessage());
-        }
-        catch(Throwable $e){
-            DB::rollback();
-            return redirect()->back()->withInput()->with('error', 'Something went wrong at index '.$error_index.' with this error: '.$e->getMessage());
-        }
-
-
-    }
-
-
-
-
-
-
-
-
     /**
      * Store a newly created resource in storage.
      * @param Request $request
@@ -215,27 +119,18 @@ class UsersController extends Controller
 
         $req->validate([
         'name'=>'required',
-        'father_name'=>'required',
-        'cnic'=>['required', 'max:15', 'unique:users'],
-        'phone'=>['required', 'max:12', 'unique:users'],
-        'emp_code'=>['required', 'max:7', 'unique:users'],
-        'role_name'=>['required', 'max:2'],
-        'access_level'=>['required', 'max:15'],
-        'branch_id'=>['required', 'max:7'],
+        'email'=>['required','unique:users'],
         'password' => ['required', 'string', 'min:8'],
+        'role'=>['required'],
+
         ]);
 
         DB::beginTransaction();
         try {
-            $branch=BranchDetail($req->branch_id);
             $inputs=$req->except('_token','role');
             $inputs['password']=Hash::make($req->password);
             $inputs['image']='dummy.png';
             $inputs['status']=1;
-            $inputs['is_block']=0;
-            $inputs['area_id']=$branch->area_id;
-            $inputs['region_id']=$branch->region_id;
-
             $user=User::create($inputs);
             $user->assignRole($req->role);
             DB::commit();
@@ -290,26 +185,19 @@ class UsersController extends Controller
     {
         $req->validate([
         'name'=>'required',
-        'father_name'=>'required',
-        'cnic'=>['required', 'max:15', 'unique:users,cnic,'.$id],
-        'phone'=>['required', 'max:12', 'unique:users,phone,'.$id],
-        'emp_code'=>['required', 'max:7', 'unique:users,emp_code,'.$id],
-        'role_name'=>['required', 'max:2'],
-        'access_level'=>['required', 'max:15'],
-        'branch_id'=>['required', 'max:7'],
+        'email'=>['required', 'unique:users,email,'.$id],
+        'role'=>['required'],
          ]);
 
        
 
         DB::beginTransaction();
         try {
-            $branch=BranchDetail($req->branch_id);
+
             $inputs=$req->except('_token','role');
             if($req->password!=null){
             $inputs['password']=Hash::make($req->password);
             }
-            $inputs['area_id']=$branch->area_id;
-            $inputs['region_id']=$branch->region_id;
 
             $user=User::find($id);
             $user->update($inputs);
