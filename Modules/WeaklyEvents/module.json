@@ -1,0 +1,11 @@
+{
+    "name": "WeaklyEvents",
+    "alias": "weaklyevents",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WeaklyEvents\\Providers\\WeaklyEventsServiceProvider"
+    ],
+    "files": []
+}

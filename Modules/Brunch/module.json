@@ -1,0 +1,11 @@
+{
+    "name": "Brunch",
+    "alias": "brunch",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Brunch\\Providers\\BrunchServiceProvider"
+    ],
+    "files": []
+}
