@@ -10,5 +10,6 @@
     "Brunch": true,
     "WeaklyEvents": true,
     "Events": true,
-    "Faqs": true
+    "Faqs": true,
+    "Blocks": true
 }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Pages\Entities\Pages;
 use Yajra\DataTables\Facades\DataTables;
-
+use Throwable;
 class PagesController extends Controller
 {
     /**
@@ -21,7 +21,7 @@ class PagesController extends Controller
            return DataTables::of($pages)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-success btn-sm" href="'.url('pages/block/'.$row->id).'"><i class="fa-solid fa-bars" ></i> </a>';
+               $action.='<a class="btn btn-success btn-sm" href="'.url('pages/blocks/'.$row->id).'"><i class="fa fa-bars" ></i> </a>';
                $action.='<a class="btn btn-primary btn-sm" href="'.url('pages/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
                $action.='<a class="btn btn-danger btn-sm" href="'.url('pages/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                return $action;
@@ -68,12 +68,6 @@ class PagesController extends Controller
     public function show($id)
     {
         return view('pages::show');
-    }
-
-
-    public function block($id)
-    {
-       return view('pages::block');
     }
 
     /**

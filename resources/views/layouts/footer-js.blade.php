@@ -47,12 +47,19 @@
 
 
 <script src="{{asset('assets/libs/chart.js/Chart.bundle.min.js')}}"></script>
+<script src="{{asset('assets/libs/jquery-ui/jquery-ui.min.js')}}"></script>
 
+<!-- ///////////////////////sortable/////////////////////////////////////////// -->
+<script src="{{asset('assets/libs/jquery-ui/ui/Sortable.min.js')}}"></script>
+<script src="{{asset('assets/libs/jquery-ui/ui/jquery-sortable.js')}}"></script>
+
+<script src="{{asset('assets/js/functions.js')}}"></script>
+
+<!-- ///////////////////////sortable////////////////////////////////////////////// -->
 <script src="{{asset('assets/context-menu/jquery.contextMenu.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('assets/context-menu/jquery.ui.position.min.js')}}" type="text/javascript"></script>
 
-<script src="{{asset('assets/js/functions.js')}}"></script>
 
 
         <!--tinymce js-->
@@ -143,7 +150,7 @@ $(document).on('click', '#maintenance',function (e) {
 });
 
 
-        $.contextMenu({
+        /*$.contextMenu({
             selector: 'body',
             autoHide: true,
             zIndex: 11111,
@@ -199,7 +206,7 @@ $(document).on('click', '#maintenance',function (e) {
                 settings: {name: "Settings", url_link:'{{url("settings")}}', icon: 'fas fa-cog',}
                 @endcan
             }
-        }); 
+        }); */
  
 
 
