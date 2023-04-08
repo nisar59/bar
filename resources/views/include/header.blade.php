@@ -87,11 +87,14 @@
                 </li>
               </ul>
             </nav>
+
             <div class="site-social site-social--bordered">
               <ul class="social-accounts">
+
                 <li>
                   <a href="https://www.facebook.com/dantenewyorkcity" target="_blank" rel="noopener" data-bb-track="button" data-bb-track-on="click" data-bb-track-category="Social Icons" data-bb-track-action="Click" data-bb-track-label="Facebook, Header">
                     <span class="fa fa-facebook" aria-hidden="true"></span>
+                    
                     <span class="sr-only">Facebook</span>
                   </a>
                 </li>
