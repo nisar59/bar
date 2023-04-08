@@ -16,7 +16,6 @@ Dashboard
 </div>
 <!-- end page title -->
 <div class="row">
-
 </div>
 @endsection
 @section('js')
