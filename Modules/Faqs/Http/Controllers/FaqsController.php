@@ -20,8 +20,8 @@ class FaqsController extends Controller
            return DataTables::of($faqs)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-primary btn-sm" href="'.url('faqs/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
-               $action.='<a class="btn btn-danger btn-sm" href="'.url('faqs/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('faqs/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('faqs/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                return $action;
            })
            ->rawColumns(['action'])

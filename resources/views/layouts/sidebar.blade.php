@@ -34,6 +34,7 @@ $type = Request()->type;
                 </li>
                 @endcan
                 <!-- CMS -->
+                @canany(['cms.view','permissions.view'])
             <li class="menu-title">CMS</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -41,13 +42,26 @@ $type = Request()->type;
                         <span>CMS</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @can('pages.view')
                         <li><a href="{{url('pages')}}">Pages</a></li>
+                        @endcan
+                        @can('menu.view')
                         <li><a href="{{url('menu')}}">Menu</a></li>
-                        <li><a href="#">Blocks</a></li>
+                        @endcan
+                        @can('banner.view')
+                        <li><a href="{{url('banner')}}">Banner</a></li>
+                        @endcan
+                        @can('slider.view')
+                        <li><a href="{{url('slider')}}">Slider</a></li>
+                        @endcan
+                        @can('productshowcase.view')
+                        <li><a href="{{url('productshowcase')}}">Product Showcase</a></li>
+                        @endcan
                     </ul>
                 </li>
+                @endcan
                 <!-- Caffe Menu -->
-
+                 @canany(['caffe.view','permissions.view'])
                  <li class="menu-title">Caffe Menu</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -55,21 +69,29 @@ $type = Request()->type;
                         <span>Caffe Menu</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @can('caffe.view')
                         <li><a href="{{url('caffe')}}">Caffe Menu</a></li>
+                        @endcan
                     </ul>
                 </li>
+                @endcan
                 <!-- BOTTOMLESS BRUNCH -->
-                <li class="menu-title">Bottomless-Brunch</li>
+                @canany(['brunch.view','permissions.view'])
+                <li class="menu-title">Bottomless Brunch</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fa fa-bars"></i>
-                        <span>Bottomless-Brunch</span>
+                        <span>Bottomless Brunch</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{url('brunch')}}">Bottomless-Brunch</a></li>
+                        @can('brunch.view')
+                        <li><a href="{{url('brunch')}}">Bottomless Brunch</a></li>
+                        @endcan
                     </ul>
                 </li>
+                @endcan
                 <!-- Weakly Events -->
+                @canany(['weaklyevents.view','permissions.view'])
                 <li class="menu-title">Weekly Events</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -77,10 +99,14 @@ $type = Request()->type;
                         <span>Weekly Events</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @can('weaklyevents.view')
                         <li><a href="{{url('weaklyevents')}}">Weekly Events</a></li>
+                        @endcan
                     </ul>
                 </li>
-                <!-- Events -->              
+                @endcan
+                <!-- Events --> 
+                @canany(['events.view','permissions.view'])             
                 <li class="menu-title"> Events</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -88,10 +114,15 @@ $type = Request()->type;
                         <span> Events</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @can('events.view')
                         <li><a href="{{url('events')}}"> Events</a></li>
+                        @endcan
+
                     </ul>
                 </li>
+                @endcan
                 <!-- FAQs -->
+                @canany(['faqs.view','permissions.view'])   
                 <li class="menu-title"> FAQs</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -99,9 +130,12 @@ $type = Request()->type;
                         <span> FAQs</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        @can('faqs.view')
                         <li><a href="{{url('faqs')}}"> FAQs</a></li>
+                        @endcan
                     </ul>
                 </li>
+                @endcan
                 <!--  -->
 
                 @can('settings')

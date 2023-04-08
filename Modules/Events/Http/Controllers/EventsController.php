@@ -20,8 +20,8 @@ class EventsController extends Controller
            return DataTables::of($events)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-primary btn-sm" href="'.url('events/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
-               $action.='<a class="btn btn-danger btn-sm" href="'.url('events/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('events/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('events/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                return $action;
            })
            ->addColumn('image', function ($row) {

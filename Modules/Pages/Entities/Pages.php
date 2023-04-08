@@ -10,7 +10,7 @@ class Pages extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['title','slug','description','status'];
     protected $table='pages';
     protected static function newFactory()
     {

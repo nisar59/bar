@@ -26,8 +26,12 @@ Pages
         </div>
         <div class="card-body">
           <div class="form-group">
-            <label>Tile</label>
-            <input type="text" class="form-control" name="title" placeholder="Enter Title">
+            <label>Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">
+          </div>
+          <div class="form-group">
+            <label>Slug</label>
+            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter Slug">
           </div>
           <div class="form-group">
             <label>Description</label>
@@ -42,4 +46,18 @@ Pages
     </div>
   </div>
 </form>
+@endsection
+@section('js')
+<script>
+  $(document).ready(function () {
+  
+  $("#title").keyup(function() {
+  var Text = $(this).val();
+  Text = Text.toLowerCase();
+  Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+  $("#slug").val(Text);        
+});  
+
+});
+</script>
 @endsection

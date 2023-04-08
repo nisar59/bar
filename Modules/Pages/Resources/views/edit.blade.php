@@ -3,7 +3,6 @@
 Pages
 @endsection
 @section('content')
-
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
@@ -25,15 +24,26 @@ Pages
           <h4>Pages</h4>
         </div>
         <div class="card-body">
-          <div class="form-group">
-            <label>Tile</label>
-            <input type="text" class="form-control" value="{{$pages->title}}" name="title" placeholder="Enter Title">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" id="title" value="{{$pages->title}}" name="title" placeholder="Enter Title">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Slug</label>
+                <input type="text" class="form-control" id="slug" value="{{$pages->slug}}" name="slug" placeholder="Enter Slug">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5">{{$pages->description}}</textarea>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Description</label>
-            <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5">{{$pages->description}}</textarea>
-          </div>
-          
         </div>
         <div class="card-footer text-end">
           <button class="btn btn-primary mr-1" type="submit">Submit</button>
@@ -42,4 +52,17 @@ Pages
     </div>
   </div>
 </form>
+@endsection
+@section('js')
+<script>
+$(document).ready(function () {
+
+$("#title").keyup(function() {
+var Text = $(this).val();
+Text = Text.toLowerCase();
+Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+$("#slug").val(Text);
+});
+});
+</script>
 @endsection

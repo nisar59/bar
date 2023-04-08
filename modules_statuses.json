@@ -11,5 +11,8 @@
     "WeaklyEvents": true,
     "Events": true,
     "Faqs": true,
-    "Blocks": true
+    "Blocks": true,
+    "Banner": true,
+    "Slider": true,
+    "ProductShowcase": true
 }

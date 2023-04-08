@@ -28,13 +28,35 @@ Menu
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
+                <label>Type</label>
+                <select name="type" id="" class="form-control">
+                  <option value="" class="form-control">Please Select One</option>
+                  <option value="header"{{$menu->type== "header" ? 'selected': ''}}>Header</option>
+                  <option value="footer"{{$menu->type== "footer" ? 'selected': ''}}>Footer</option>
+                  <option value="footer">Footer</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control" value="{{$menu->name}}" name="name" placeholder="Enter Name">
+            <input type="text" class="form-control" value="{{$menu->name}}" id="name" name="name" placeholder="Enter Name">
           </div>
+            </div>
+            <div class="col-md-6 mt-2">
+              <div class="form-group">
+                <label>Pages</label>
+                <select name="page_slug" class="form-control">
+                  <option value=""></option>
+                @foreach($pages as $page)
+                <option value="{{$page->slug}}"@if($page->slug==$menu->page_slug) selected @endif>{{$page->slug}}</option>
+                @endforeach
+              </select>
+              </div>
             </div>
             <div class="col-md-6">
                <div class="form-group">
-            <label>Url</label>
+            <label>URL</label>
             <input type="url" class="form-control" value="{{$menu->url}}" name="url" placeholder="Enter Url">
           </div>
             </div>
@@ -47,4 +69,14 @@ Menu
     </div>
   </div>
 </form>
+@endsection
+@section('js')
+<script>
+  $("#name").keyup(function() {
+  var Text = $(this).val();
+  Text = Text.toLowerCase();
+  Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+  $("#slug").val(Text);        
+});
+</script>
 @endsection

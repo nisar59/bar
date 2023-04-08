@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Pages\Entities\Pages;
 use Yajra\DataTables\Facades\DataTables;
+use DB;
+use Str;
+use Auth;
 use Throwable;
 class PagesController extends Controller
 {
@@ -21,12 +24,29 @@ class PagesController extends Controller
            return DataTables::of($pages)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-success btn-sm" href="'.url('pages/blocks/'.$row->id).'"><i class="fa fa-bars" ></i> </a>';
-               $action.='<a class="btn btn-primary btn-sm" href="'.url('pages/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
-               $action.='<a class="btn btn-danger btn-sm" href="'.url('pages/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               
+               if(Auth::user()->can('pages.edit')){
+               $action.='<a class="btn btn-success btn-sm m-1" href="'.url('pages/blocks/'.$row->id).'"><i class="fa fa-bars" ></i> </a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('pages/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+                    }
+                if(Auth::user()->can('pages.delete')){
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('pages/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                }
                return $action;
            })
-           ->rawColumns(['action'])
+
+           ->addColumn('status',function ($row){
+               $status='';
+               if($row->status==1){
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('pages/status/'.$row->id).'">Active</a>';
+                }else{
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('pages/status/'.$row->id).'">Deactive</a>';                
+           }
+               return $status;
+           })
+
+
+           ->rawColumns(['status','action'])
            ->make(true);
         }
         return view('pages::index');
@@ -48,16 +68,25 @@ class PagesController extends Controller
      */
     public function store(Request $req)
     {
+        $req['slug']=Str::slug($req->slug);
         $req->validate([
         'title'=>'required',
-        'description'=>'required',
+        'slug'=>['required','unique:pages'],        
         ]);
-        $page=new Pages;
-        $page->title=$req->title;
-        $page->description=$req->description;
-        if($page->save()){
-         return redirect('pages')->with('success','Pages successfully created');
-         } 
+        $req['status']=1;
+    DB::beginTransaction();
+        try{
+        Pages::create($req->except('_token'));
+        DB::commit();
+         return redirect('pages')->with('success','Page successfully created');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**
@@ -89,17 +118,59 @@ class PagesController extends Controller
      */
     public function update(Request $req, $id)
     {
+        $req['slug']=Str::slug($req->slug);
         $req->validate([
         'title'=>'required',
-        'description'=>'required',
+        'slug'=>['required','unique:pages,slug,'.$id],        
         ]);
-        $page=Pages::find($id);
-        $page->title=$req->title;
-        $page->description=$req->description;
-        if($page->save()){
-         return redirect('pages')->with('success','Pages successfully Updated');
+
+    DB::beginTransaction();
+        try{
+        Pages::find($id)->update($req->except('_token'));
+        DB::commit();
+         return redirect('pages')->with('success','Page successfully created');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
          }
     }
+
+
+    /**
+     * Update status.
+     * @param int $id
+     * @return Renderable
+     */
+    public function status($id)
+    {
+        DB::beginTransaction();
+        try{
+        $page=Pages::find($id);
+
+        if($page->status==1){
+            $page->status=0;
+        }
+        else{
+            $page->status=1;
+        }
+        $page->save();
+        DB::commit();
+         return redirect('pages')->with('success','Page status successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -108,9 +179,18 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-         $page=Pages::find($id);
-         if($page->delete()){
-         return redirect('pages')->with('success','Pages successfully Deleted');
+        DB::beginTransaction();
+        try{
+        Pages::find($id)->delete();
+        DB::commit();
+         return redirect('pages')->with('success','Page successfully deleted');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
          }
     }
 }

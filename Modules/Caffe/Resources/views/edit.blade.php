@@ -40,7 +40,8 @@ Edit Caffe Menu
           </div>
           <div class="form-group">
             <label>File /Upload Pdf File</label>
-            <input type="file" class="form-control" value="{{$caffe->file}}" name="file" placeholder="Enter Image">
+            <input type="file" class="form-control mb-2"  name="file" placeholder="Enter Image">
+            <span ><b>{{$caffe->file}}</b></span>
           </div>
           
         </div>

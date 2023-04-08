@@ -31,8 +31,11 @@ Menu
           <table class="table table-sm table-hover table-bordered" id="menu" style="width:100%;">
             <thead class="text-center bg-primary text-white">
               <tr>
+                <th>Type</th>
                 <th>Name</th>
-                <th>Url</th>
+                <th>Page</th>
+                <th>URL</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -55,8 +58,11 @@ Menu
               ajax: "{{url('menu')}}",
               buttons:[],
               columns: [
+                {data: 'type', name: 'type',class:'text-center'},
                 {data: 'name', name: 'name',class:'text-center'},
+                {data: 'page_slug', name: 'page_slug',class:'text-center'},
                 {data: 'url', name: 'url',class:'text-center'},
+                {data: 'status', name: 'status', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });

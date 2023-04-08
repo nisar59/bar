@@ -1,0 +1,11 @@
+{
+    "name": "ProductShowcase",
+    "alias": "productshowcase",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ProductShowcase\\Providers\\ProductShowcaseServiceProvider"
+    ],
+    "files": []
+}

@@ -3,7 +3,6 @@
 Menu
 @endsection
 @section('content')
-
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
@@ -25,18 +24,42 @@ Menu
           <h4>Menu</h4>
         </div>
         <div class="card-body">
+          
+          
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name">
-          </div>
+                <label>Type</label>
+                <select name="type" id="" class="form-control">
+                  <option value="" class="form-control">Please Select One</option>
+                  <option value="header" class="form-control">Header</option>
+                  <option value="footer" class="form-control">Footer</option>
+                </select>
+              </div>
             </div>
-            <div class="col-md-6">
-               <div class="form-group">
-            <label>Url</label>
-            <input type="url" class="form-control" name="url" placeholder="Enter Url">
-          </div>
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+              </div>
+            </div>
+
+            <div class="col-md-6 mt-2">
+              <div class="form-group">
+                <label>Pages</label>
+                <select name="page_slug" class="form-control">
+                 <option value=""></option>
+                @foreach($pages as $page)
+                <option value="{{$page->slug}}">{{$page->slug}}</option>
+                @endforeach
+              </select>
+              </div>
+            </div>
+            <div class="col-md-6 mt-2">
+              <div class="form-group">
+                <label>URL</label>
+                <input type="url" class="form-control" name="url" placeholder="Enter Url">
+              </div>
             </div>
           </div>
         </div>

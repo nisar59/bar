@@ -22,6 +22,7 @@ Route::group(['prefix'=>'pages','middleware' => ['permission:pages.add']],functi
 Route::group(['prefix'=>'pages','middleware' => ['permission:pages.edit']],function(){
     Route::get('edit/{id}', 'PagesController@edit');
     Route::post('update/{id}', 'PagesController@update');
+    Route::get('status/{id}', 'PagesController@status');
 
 });
 Route::group(['prefix'=>'pages','middleware' => ['permission:pages.delete']],function(){
