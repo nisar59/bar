@@ -31,9 +31,8 @@ Product Showcase
           <table class="table table-sm table-hover table-bordered" id="product" style="width:100%;">
             <thead class="text-center bg-primary text-white">
               <tr>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>Description</th>
+                <th>Name</th>
+                <th>Image</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -49,23 +48,22 @@ Product Showcase
 </div>
 @endsection
 @section('js')
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     //Roles table
     $(document).ready( function(){
   var roles_table = $('#product').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('')}}",
+              ajax: "{{url('productshowcase')}}",
               buttons:[],
               columns: [
-                {data: 'title', name: 'title',class:'text-center'},
-                {data: 'slug', name: 'slug',class:'text-center'},
-                {data: 'description', name: 'description',class:'text-center'},
+                {data: 'name', name: 'name',class:'text-center'},
+                {data: 'image', name: 'image', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'status', name: 'status', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });
       });
 </script>
-@endsection -->
+@endsection
 

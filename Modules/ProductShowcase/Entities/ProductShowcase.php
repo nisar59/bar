@@ -9,7 +9,8 @@ class ProductShowcase extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['name','image'];
+    protected $table="product_show";
     
     protected static function newFactory()
     {

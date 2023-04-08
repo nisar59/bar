@@ -16,7 +16,7 @@ Product Showcase
     </div>
   </div>
 </div>
-<form action="{{url('pages/store')}}" method="post">
+<form action="{{url('productshowcase/store')}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">
@@ -25,20 +25,35 @@ Product Showcase
           <h4>Product Showcase</h4>
         </div>
         <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
           <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">
+            <input type="text" class="form-control" name="name" placeholder="Enter Title">
           </div>
-          <div class="form-group">
-            <label>Slug</label>
-            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter Slug">
           </div>
-          <div class="form-group">
-            <label>Description</label>
-            <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5"></textarea>
-          </div>
-          
         </div>
+        <div class="row">
+           <div class="col-md-12 mt-3 mb-4">
+             <label for="">Multipel Images</label>
+            <div class="input-group control-group increment" >
+             
+          <input type="file" name="image[]" class="form-control">
+          <div class="input-group-btn"> 
+            <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+          </div>
+        </div>
+        <div class="clone hide">
+          <div class="control-group input-group mb-4" style="margin-top:10px">
+            <input type="file" name="image[]" class="form-control">
+            <div class="input-group-btn"> 
+              <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        
         <div class="card-footer text-end">
           <button class="btn btn-primary mr-1" type="submit">Submit</button>
         </div>
@@ -46,5 +61,18 @@ Product Showcase
     </div>
   </div>
 </form>
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {
+      $(".btn-success").click(function(){ 
+          var html = $(".clone").html();
+          $(".increment").after(html);
+      });
+      $("body").on("click",".btn-danger",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
+</script>
 @endsection
 
