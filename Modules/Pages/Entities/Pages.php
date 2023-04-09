@@ -10,7 +10,7 @@ class Pages extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','slug','description','status'];
+    protected $fillable = ['slider_banner_type','slider_banner_id','title','slug','description','status'];
     protected $table='pages';
     protected static function newFactory()
     {

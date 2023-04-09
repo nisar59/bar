@@ -73,9 +73,7 @@ class BannerController extends Controller
     public function store(Request $req)
     {
         $req->validate([
-        'heading'=>'required',
-        'sub_heading'=>'required',
-        'link'=>'required',
+        'background_image'=>'required',
         'type'=>'required',
         ]);
          DB::beginTransaction();
@@ -172,9 +170,6 @@ class BannerController extends Controller
     public function update(Request $req, $id)
     {
         $req->validate([
-        'heading'=>'required',
-        'sub_heading'=>'required',
-        'link'=>'required',
         'type'=>'required',
         ]);
            DB::beginTransaction();
@@ -215,7 +210,7 @@ class BannerController extends Controller
         try{
         Banner::find($id)->delete();
         DB::commit();
-         return redirect('menu')->with('success','Menu successfully deleted');
+         return redirect('banner')->with('success','Banner successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();

@@ -138,12 +138,14 @@ class SliderController extends Controller
         Slider::find($id)->update($req->except('_token'));
 
         $path=public_path('images/slider');
+        if($req->image!=null){
         foreach ($req->image as $key => $image) {
             if($image!=null){
             SliderImages::create([
                 'slider_id'=>$id,
                 'image'=>FileUpload($image, $path)
             ]);
+                }
             }
         }
         DB::commit();

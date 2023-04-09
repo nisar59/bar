@@ -129,18 +129,18 @@ class ProductShowcaseController extends Controller
      */
     public function update(Request $req, $id)
     {
-
         DB::beginTransaction();
         try{
-        Slider::find($id)->update($req->except('_token'));
-
+        ProductShowcase::find($id)->update($req->except('_token','image'));
         $path=public_path('images/product-showcase');
+        if($req->image!=null){
         foreach ($req->image as $key => $image) {
             if($image!=null){
-            SliderImages::create([
-                'slider_id'=>$id,
+            ProductShowcaseImages::create([
+                'product_showcase_id'=>$id,
                 'image'=>FileUpload($image, $path)
             ]);
+                }
             }
         }
         DB::commit();

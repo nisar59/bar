@@ -25,6 +25,37 @@ Pages
         </div>
         <div class="card-body">
           <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">Slider/Banner</label>
+                <select name="slider_banner_type" id="slider_banner_type" class="form-control select2">
+                  <option value="">Select</option>
+                  <option value="slider" @if($pages->slider_banner_type=="slider") selected @endif>Slider</option>
+                  <option value="banner" @if($pages->slider_banner_type=="banner") selected @endif>Banner</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12" id="slider-banner">
+              @if($pages->slider_banner_type=="slider")
+              <div class="form-group">
+                <label for="">Slider</label>
+                <select name="slider_banner_id" class="form-control select2">
+                  @foreach($sliders as $slider)
+                  <option value="{{$slider->id}}" @if($slider->id==$pages->slider_banner_id) selected @endif>{{$slider->name}}</option>
+                  @endforeach
+                </select>
+              </div>    
+              @elseif($pages->slider_banner_type=="banner")
+              <div class="form-group"><label for="">Banner</label>
+              <select name="slider_banner_id" class="form-control select2">
+                @foreach($banners as $banner)
+                <option value="{{$banner->id}}" @if($banner->id==$pages->slider_banner_id) selected @endif>{{$banner->heading}}</option>
+                @endforeach
+              </select></div>
+              @else
+
+              @endif
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Title</label>
@@ -56,12 +87,40 @@ Pages
 @section('js')
 <script>
 $(document).ready(function () {
-
-$("#title").keyup(function() {
+$(document).on('keyup', '#title',function() {
 var Text = $(this).val();
 Text = Text.toLowerCase();
 Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
 $("#slug").val(Text);
+});
+$(document).on("change",'#slider_banner_type', function() {
+var type=$(this).val();
+var slider_html=`<div class="form-group">
+                <label for="">Slider</label>
+                <select name="slider_banner_id" class="form-control select2">
+                  @foreach($sliders as $slider)
+                  <option value="{{$slider->id}}" @if($slider->id==$pages->slider_banner_id) selected @endif>{{$slider->name}}</option>
+                  @endforeach
+                </select>
+              </div>`;
+
+var banner_html=`<div class="form-group"><label for="">Banner</label>
+<select name="slider_banner_id" class="form-control select2">
+  @foreach($banners as $banner)
+  <option value="{{$banner->id}}" @if($banner->id==$pages->slider_banner_id) selected @endif>{{$banner->heading}}</option>
+  @endforeach
+</select></div>`;
+if(type=="slider"){
+$("#slider-banner").html(slider_html);
+}
+else if(type=="banner"){
+$("#slider-banner").html(banner_html);
+}
+else{
+  $("#slider-banner").html('');
+
+}
+$(".select2").select2();
 });
 });
 </script>

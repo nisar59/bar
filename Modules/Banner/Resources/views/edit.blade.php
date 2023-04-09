@@ -27,22 +27,22 @@ Banner
           <div class="row">
             <div class="col-md-6 form-group">
               <div class="form-group">
-                <label>Heading</label>
-                <input type="text" class="form-control" value="{{$banner->heading}}" name="heading" placeholder="Enter Heading">
+                <label>Heading (optional)</label>
+                <input type="text" class="form-control" value="{{$banner->heading}}" name="heading" placeholder="Enter heading (optional)">
               </div>
             </div>
             <div class="col-md-6 ">
               <div class="form-group">
-                <label>Sub Heading</label>
-                <input type="text" class="form-control" value="{{$banner->sub_heading}}" name="sub_heading" placeholder="Enter Sub Heading">
+                <label>Sub heading (optional)</label>
+                <input type="text" class="form-control" value="{{$banner->sub_heading}}" name="sub_heading" placeholder="Enter sub heading (optional)">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6  mt-1">
               <div class="form-group">
-                <label>Link</label>
-                <input type="url" class="form-control"  name="link" value="{{$banner->link}}" placeholder="Enter Link">
+                <label>Link (optional)</label>
+                <input type="url" class="form-control"  name="link" value="{{$banner->link}}" placeholder="Enter Link (optional)">
               </div>
             </div>
             <div class="col-md-6">

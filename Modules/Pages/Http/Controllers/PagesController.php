@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Pages\Entities\Pages;
+use Modules\Slider\Entities\Slider;
+use Modules\Banner\Entities\Banner;
 use Yajra\DataTables\Facades\DataTables;
 use DB;
 use Str;
@@ -58,7 +60,9 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view('pages::create');
+        $sliders=Slider::where('status',1)->get();
+        $banners=Banner::where('status',1)->get();
+        return view('pages::create')->withSliders($sliders)->withBanners($banners);
     }
 
     /**
@@ -107,7 +111,11 @@ class PagesController extends Controller
     public function edit($id)
     {
         $pages=Pages::find($id);
-        return view('pages::edit',compact('pages'));
+
+        $sliders=Slider::where('status',1)->get();
+        $banners=Banner::where('status',1)->get();
+
+        return view('pages::edit',compact('pages'))->withSliders($sliders)->withBanners($banners);
     }
 
     /**
@@ -126,7 +134,9 @@ class PagesController extends Controller
 
     DB::beginTransaction();
         try{
-        Pages::find($id)->update($req->except('_token'));
+            $inputs=$req->except('_token');
+            $inputs['slider_banner_id']=$req->slider_banner_id;
+        Pages::find($id)->update($inputs);
         DB::commit();
          return redirect('pages')->with('success','Page successfully created');
          

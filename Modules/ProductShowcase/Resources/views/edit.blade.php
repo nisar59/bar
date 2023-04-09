@@ -1,40 +1,40 @@
 @extends('layouts.template')
 @section('title')
-Slider
+Product Showcase
 @endsection
 @section('content')
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Slider</h6>
+      <h6 class="page-title">Product Showcase</h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">CMS</li>
-        <li class="breadcrumb-item active">Slider</li>
+        <li class="breadcrumb-item active">Product Showcase</li>
       </ol>
     </div>
   </div>
 </div>
-<form action="{{url('slider/update/'.$slider->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('product-showcase/update/'.$productshowcase->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">
       <div class="card card-primary">
         <div class="card-header bg-white">
-          <h4>Slider</h4>
+          <h4>Product Showcase</h4>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
               <label for="">Name</label>
-              <input type="text" class="form-control" name="name" value="{{$slider->name}}" placeholder="Enter Name">
+              <input type="text" class="form-control" name="name" value="{{$productshowcase->name}}" placeholder="Enter Name">
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label>Description</label>
-                <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5">{{$slider->description}}</textarea>
+                <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5">{{$productshowcase->description}}</textarea>
               </div>
             </div>
             <div class="col-md-12 text-end mt-1">
