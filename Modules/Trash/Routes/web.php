@@ -11,14 +11,14 @@
 |
 */
 
-Route::group(['prefix'=>'trash','middleware' => ['permission:trash.view']],function(){
+Route::group(['prefix'=>'admin/trash','middleware' => ['permission:trash.view']],function(){
     Route::get('/', 'TrashController@index');
     Route::get('/show/{module}', 'TrashController@show');
 });
 
-Route::group(['prefix'=>'trash','middleware' => ['permission:trash.edit']],function(){
+Route::group(['prefix'=>'admin/trash','middleware' => ['permission:trash.edit']],function(){
     Route::get('/restore/{module}/{id}', 'TrashController@restore');
 });
-Route::group(['prefix'=>'trash','middleware' => ['permission:trash.delete']],function(){
+Route::group(['prefix'=>'admin/trash','middleware' => ['permission:trash.delete']],function(){
     Route::get('/destroy/{module}/{id}', 'TrashController@destroy');
 });

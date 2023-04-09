@@ -16,7 +16,7 @@ Edit Weakly-Events
     </div>
   </div>
 </div>
-<form action="{{url('weaklyevents/update/'.$events->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/weaklyevents/update/'.$events->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

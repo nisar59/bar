@@ -22,7 +22,7 @@ Caffe Menu
         <div class="row">
           <h4 class="col-md-6">Menu</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('caffe/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/caffe/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ Caffe Menu
   var roles_table = $('#caffe').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('caffe')}}",
+              ajax: "{{url('admin/caffe')}}",
               buttons:[],
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},

@@ -22,7 +22,7 @@ Weakly-Events
         <div class="row">
           <h4 class="col-md-6">Weakly-Events </h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('weaklyevents/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/weaklyevents/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ Weakly-Events
   var roles_table = $('#weaklyevents').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('weaklyevents')}}",
+              ajax: "{{url('admin/weaklyevents')}}",
               buttons:[],
               columns: [
                 {data: 'image', name: 'image',class:'text-center', orderable: false, searchable: false ,class:'text-center'},

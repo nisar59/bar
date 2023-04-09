@@ -16,7 +16,7 @@ Trash
 </div>
 <div class="row">
   @foreach(TrashModules() as $module)
-  <div ondblclick="window.location.href='{{url('trash/show/'.$module['model'])}}'" class="col-md-3 col-sm-3 col-xl-3 text-center position-relative mb-4">
+  <div ondblclick="window.location.href='{{url('admin/trash/show/'.$module['model'])}}'" class="col-md-3 col-sm-3 col-xl-3 text-center position-relative mb-4">
     <img class="w-50" src="{{asset('img/folder.png')}}" alt="">
     <div style="margin-top:-20px"><strong class="">{{$module['name']}}</strong></div>
   </div>
@@ -30,7 +30,7 @@ $(document).ready( function(){
 var regions_table = $('#regions').DataTable({
 processing: true,
 serverSide: true,
-ajax: "{{url('regions')}}",
+ajax: "{{url('admin/regions')}}",
 buttons:[],
 columns: [
 {data: 'name', name: 'name'},

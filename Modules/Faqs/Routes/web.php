@@ -12,19 +12,19 @@
 */
 
 
-Route::group(['prefix'=>'faqs','middleware' => ['permission:faqs.view']],function(){
+Route::group(['prefix'=>'admin/faqs','middleware' => ['permission:faqs.view']],function(){
    Route::get('/', 'FaqsController@index');
 });
 
-Route::group(['prefix'=>'faqs','middleware' => ['permission:faqs.add']],function(){
+Route::group(['prefix'=>'admin/faqs','middleware' => ['permission:faqs.add']],function(){
      Route::get('create', 'FaqsController@create');
     Route::post('store', 'FaqsController@store');
 
 });
-Route::group(['prefix'=>'faqs','middleware' => ['permission:faqs.edit']],function(){
+Route::group(['prefix'=>'admin/faqs','middleware' => ['permission:faqs.edit']],function(){
     Route::get('edit/{id}', 'FaqsController@edit');
     Route::post('update/{id}', 'FaqsController@update');
 });
-Route::group(['prefix'=>'faqs','middleware' => ['permission:faqs.delete']],function(){
+Route::group(['prefix'=>'admin/faqs','middleware' => ['permission:faqs.delete']],function(){
     Route::get('destroy/{id}', 'FaqsController@destroy');
 });

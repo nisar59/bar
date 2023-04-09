@@ -15,7 +15,7 @@ Product Showcase
     </div>
   </div>
 </div>
-<form action="{{url('product-showcase/update/'.$productshowcase->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/product-showcase/update/'.$productshowcase->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

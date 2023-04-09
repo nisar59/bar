@@ -11,18 +11,18 @@
 |
 */
 
-Route::group(['prefix'=>'logs','middleware' => ['permission:logs.view']],function(){
+Route::group(['prefix'=>'admin/logs','middleware' => ['permission:logs.view']],function(){
     Route::get('/', 'LogsController@index');
     Route::get('/show/{id}', 'LogsController@show');
 });
 
-Route::group(['prefix'=>'logs','middleware' => ['permission:logs.delete']],function(){
+Route::group(['prefix'=>'admin/logs','middleware' => ['permission:logs.delete']],function(){
     Route::get('/destroy/{id}', 'LogsController@destroy');
     Route::get('/truncate', 'LogsController@truncate');
 });
 
 
-Route::group(['prefix'=>'system-logs','middleware' => ['permission:logs.delete']],function(){
+Route::group(['prefix'=>'admin/system-logs','middleware' => ['permission:logs.delete']],function(){
     Route::get('/', 'LogsController@systemlogs');
     Route::get('/destroy/{id}', 'LogsController@systemlogsdestroy');
     Route::get('/truncate', 'LogsController@systemlogstruncate');

@@ -22,7 +22,7 @@ Slider
         <div class="row">
           <h4 class="col-md-6">Slider</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('slider/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/slider/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ $(document).ready( function(){
 var roles_table = $('#slider').DataTable({
 processing: true,
 serverSide: true,
-ajax: "{{url('slider')}}",
+ajax: "{{url('admin/slider')}}",
 buttons:[],
 columns: [
 {data: 'name', name: 'name',class:'text-center'},
@@ -88,7 +88,7 @@ var html='';
 $.each(images_data,function(indx, vlu) {
         var img=vlu.image;
         html+=`<div class="row"><div class="col-md-12 m-1">
-        <a class="btn btn-danger btn-sm position-absolute end-0" href="{{url('slider/image/destroy/')}}/`+vlu.id+`">x</a>
+        <a class="btn btn-danger btn-sm position-absolute end-0" href="{{url('admin/slider/image/destroy/')}}/`+vlu.id+`">x</a>
         <img src="{{asset('images/slider/')}}/`+img+`" class="w-100 border border-primary" />
         </div>
         </div>`      

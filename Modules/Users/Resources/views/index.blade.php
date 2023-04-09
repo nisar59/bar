@@ -45,7 +45,7 @@ Users
         <div class="row">
           <h4 class="col-md-6">Users</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('users/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/users/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ $(document).ready( function(){
       processing: true,
       serverSide: true,
       ajax: {
-        url:"{{url('users')}}",
+        url:"{{url('admin/users')}}",
         data:data,
         },
       buttons:[],

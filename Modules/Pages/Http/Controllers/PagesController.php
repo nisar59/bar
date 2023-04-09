@@ -15,6 +15,15 @@ use Auth;
 use Throwable;
 class PagesController extends Controller
 {
+
+    public function __construct()
+    { 
+        Pages::firstOrCreate([
+            'slug'=>'landing',            
+        ],['title'=>'Landing','slug'=>'landing','status'=>1]);
+    }
+
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -28,11 +37,11 @@ class PagesController extends Controller
                $action='';
                
                if(Auth::user()->can('pages.edit')){
-               $action.='<a class="btn btn-success btn-sm m-1" href="'.url('pages/blocks/'.$row->id).'"><i class="fa fa-bars" ></i> </a>';
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('pages/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               $action.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/pages/blocks/'.$row->id).'"><i class="fa fa-bars" ></i> </a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/pages/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
                     }
                 if(Auth::user()->can('pages.delete')){
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('pages/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/pages/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                 }
                return $action;
            })
@@ -40,9 +49,9 @@ class PagesController extends Controller
            ->addColumn('status',function ($row){
                $status='';
                if($row->status==1){
-               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('pages/status/'.$row->id).'">Active</a>';
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/pages/status/'.$row->id).'">Active</a>';
                 }else{
-               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('pages/status/'.$row->id).'">Deactive</a>';                
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/pages/status/'.$row->id).'">Deactive</a>';                
            }
                return $status;
            })
@@ -82,7 +91,7 @@ class PagesController extends Controller
         try{
         Pages::create($req->except('_token'));
         DB::commit();
-         return redirect('pages')->with('success','Page successfully created');
+         return redirect('admin/pages')->with('success','Page successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -138,7 +147,7 @@ class PagesController extends Controller
             $inputs['slider_banner_id']=$req->slider_banner_id;
         Pages::find($id)->update($inputs);
         DB::commit();
-         return redirect('pages')->with('success','Page successfully created');
+         return redirect('admin/pages')->with('success','Page successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -169,7 +178,7 @@ class PagesController extends Controller
         }
         $page->save();
         DB::commit();
-         return redirect('pages')->with('success','Page status successfully updated');
+         return redirect('admin/pages')->with('success','Page status successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -193,7 +202,7 @@ class PagesController extends Controller
         try{
         Pages::find($id)->delete();
         DB::commit();
-         return redirect('pages')->with('success','Page successfully deleted');
+         return redirect('admin/pages')->with('success','Page successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();

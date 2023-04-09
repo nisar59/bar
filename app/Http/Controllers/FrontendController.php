@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Pages\Entities\Pages;
 
 class FrontendController extends Controller
 {
@@ -12,9 +13,15 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug=null)
     {
-          return view('frontend/index');
+        if($slug==null){
+            $slug='landing';
+        }          
+    $page=Pages::where('slug',$slug)->first();
+
+    return view('frontend.index')->withPage($page);
+
     }
 
     /**

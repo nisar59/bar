@@ -15,7 +15,7 @@ Slider
     </div>
   </div>
 </div>
-<form action="{{url('slider/update/'.$slider->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/slider/update/'.$slider->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

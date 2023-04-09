@@ -9,7 +9,7 @@ class banner extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['heading','sub_heading','link','type','image','background_image','video'];
+    protected $fillable = ['name','heading','sub_heading','link','type','image','background_image','video'];
     protected $table='banner';
     
     protected static function newFactory()

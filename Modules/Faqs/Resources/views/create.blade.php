@@ -15,7 +15,7 @@ Enter FAQs
     </div>
   </div>
 </div>
-<form action="{{url('faqs/store')}}" method="post">
+<form action="{{url('admin/faqs/store')}}" method="post">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

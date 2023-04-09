@@ -22,7 +22,7 @@ FAQs
         <div class="row">
           <h4 class="col-md-6">FAQs</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('faqs/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/faqs/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ FAQs
   var roles_table = $('#faqs').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('faqs')}}",
+              ajax: "{{url('admin/faqs')}}",
               buttons:[],
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},

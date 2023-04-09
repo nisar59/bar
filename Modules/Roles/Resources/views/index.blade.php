@@ -22,7 +22,7 @@ Roles & Permissions
         <div class="row">
           <h4 class="col-md-6">Roles & Permissions</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('roles/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/roles/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@ $(document).ready( function(){
 var roles_table = $('#roles').DataTable({
 processing: true,
 serverSide: true,
-ajax: "{{url('roles')}}",
+ajax: "{{url('admin/roles')}}",
 buttons:[],
 columnDefs: [ {
 "targets": 1,

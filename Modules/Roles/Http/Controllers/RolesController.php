@@ -44,10 +44,10 @@ class RolesController extends Controller
                     else{
                         $action='';
                     if(Auth::user()->can('permissions.edit')){
-                        $action.='<a class="btn m-1 btn-primary btn-sm" href="'.url('roles/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+                        $action.='<a class="btn m-1 btn-primary btn-sm" href="'.url('admin/roles/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
                     }
                     if(Auth::user()->can('permissions.edit')){
-                        $action.='<a class="btn m-1 btn-danger btn-sm" href="'.url('roles/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                        $action.='<a class="btn m-1 btn-danger btn-sm" href="'.url('admin/roles/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                     }
                         return $action;
                     }
@@ -94,7 +94,7 @@ class RolesController extends Controller
     if (!empty($permissions)) {
         $role->syncPermissions($permissions);
     }
-        return redirect('roles')->with('success','Role successfully created');
+        return redirect('admin/roles')->with('success','Role successfully created');
     }
 
     /**
@@ -140,7 +140,7 @@ class RolesController extends Controller
         $role->name = $request->input('role');
         $role->save();
         $role->syncPermissions($request->input('permissions'));
-        return redirect('roles')->with('success','Role successfully updated');
+        return redirect('admin/roles')->with('success','Role successfully updated');
     }
 
     /**
@@ -153,7 +153,7 @@ class RolesController extends Controller
         $role = Role::find($id);
       $role->syncPermissions([]);
       Role::find($id)->delete();
-    return redirect('roles')->with('success','Role successfully deleted');
+    return redirect('admin/roles')->with('success','Role successfully deleted');
     }
 
     private function __createPermissionIfNotExists($permissions)

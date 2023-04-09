@@ -134,7 +134,7 @@ class UsersController extends Controller
             $user=User::create($inputs);
             $user->assignRole($req->role);
             DB::commit();
-            return redirect('users')->with('success', 'User successfully created');
+            return redirect('admin/users')->with('success', 'User successfully created');
 
         } catch (Exception $e) {
             DB::rollback();
@@ -204,7 +204,7 @@ class UsersController extends Controller
             $user->roles()->detach();
             $user->assignRole($req->role);
             DB::commit();
-            return redirect('users')->with('success', 'User successfully updated');
+            return redirect('admin/users')->with('success', 'User successfully updated');
 
         } catch (Exception $e) {
             DB::rollback();
@@ -232,7 +232,7 @@ class UsersController extends Controller
             }
             $user->save();
             DB::commit();
-            return redirect('users')->with('success', 'User status updated successfully');
+            return redirect('admin/users')->with('success', 'User status updated successfully');
 
         } catch (Exception $e) {
             DB::rollback();
@@ -260,7 +260,7 @@ class UsersController extends Controller
             $user->roles()->detach();
             $user->delete();
             DB::commit();
-            return redirect('users')->with('success', 'User successfully deleted');
+            return redirect('admin/users')->with('success', 'User successfully deleted');
 
         } catch (Exception $e) {
             DB::rollback();

@@ -36,7 +36,7 @@ Logs
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane active p-3" id="home" role="tabpanel">
-            <a href="{{url('logs/truncate')}}" class="btn btn-danger" style="position: absolute;right: 8px;top: 8px;"><i class="fas fa-trash-alt"></i></a>
+            <a href="{{url('admin/logs/truncate')}}" class="btn btn-danger" style="position: absolute;right: 8px;top: 8px;"><i class="fas fa-trash-alt"></i></a>
             <div class="table-responsive">
               <table class="table table-sm table-hover table-bordered" id="logs" style="width:100%;">
                 <thead class="text-center bg-primary text-white">
@@ -54,7 +54,7 @@ Logs
             </div>
           </div>
           <div class="tab-pane p-3" id="profile" role="tabpanel">
-            <a href="{{url('system-logs/truncate')}}" class="btn btn-danger" style="position: absolute;right: 8px;top: 8px;"><i class="fas fa-trash-alt"></i></a>
+            <a href="{{url('admin/system-logs/truncate')}}" class="btn btn-danger" style="position: absolute;right: 8px;top: 8px;"><i class="fas fa-trash-alt"></i></a>
             <div class="table-responsive">
               <table class="table table-sm table-hover table-bordered" id="system-logs" style="width:100%;">
                 <thead class="text-center bg-primary text-white">
@@ -85,7 +85,7 @@ $(document).ready( function(){
 var regions_table = $('#logs').DataTable({
 processing: true,
 serverSide: true,
-ajax: "{{url('logs')}}",
+ajax: "{{url('admin/logs')}}",
 buttons:[],
 columns: [
 {data: 'user_id', name: 'user_id', orderable:false},
@@ -100,7 +100,7 @@ columns: [
 var regions_table = $('#system-logs').DataTable({
 processing: true,
 serverSide: true,
-ajax: "{{url('system-logs')}}",
+ajax: "{{url('admin/system-logs')}}",
 buttons:[],
 columns: [
 {data: 'model', name: 'model', class:'text-center', orderable:false},

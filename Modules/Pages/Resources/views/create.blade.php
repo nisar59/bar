@@ -15,7 +15,7 @@ Pages
     </div>
   </div>
 </div>
-<form action="{{url('pages/store')}}" method="post">
+<form action="{{url('admin/pages/store')}}" method="post">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">
@@ -88,7 +88,7 @@ var slider_html=`<div class="form-group">
 var banner_html=`<div class="form-group"><label for="">Banner</label>
 <select name="slider_banner_id" class="form-control select2">
   @foreach($banners as $banner)
-  <option value="{{$banner->id}}">{{$banner->heading}}</option>
+  <option value="{{$banner->id}}">{{$banner->name}}</option>
   @endforeach
 </select></div>`;
 if(type=="slider"){

@@ -15,7 +15,7 @@ Menu
     </div>
   </div>
 </div>
-<form action="{{url('menu/store')}}" method="post">
+<form action="{{url('admin/menu/store')}}" method="post">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

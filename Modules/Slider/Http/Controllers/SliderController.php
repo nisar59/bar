@@ -27,11 +27,11 @@ class SliderController extends Controller
                if(Auth::user()->can('slider.edit')){
                  $action.="<a class='btn btn-success btn-sm m-1 slider-show' data-images='".json_encode($row->images)."' href='javascript:void(0)'><i class='fas fa-eye'></i></a>";
 
-                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('slider/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/slider/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
 
                 }
                 if(Auth::user()->can('slider.delete')){
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('slider/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/slider/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                 }
                return $action;
            })
@@ -39,9 +39,9 @@ class SliderController extends Controller
            ->addColumn('status',function ($row){
                $action='';
                if($row->status==1){
-                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('slider/status/'.$row->id).'">Active</a>';
+                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/slider/status/'.$row->id).'">Active</a>';
                 }else{
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('slider/status/'.$row->id).'">Deactive</a>';
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/slider/status/'.$row->id).'">Deactive</a>';
                 }
                return $action;
            })
@@ -89,7 +89,7 @@ class SliderController extends Controller
         }
 
         DB::commit();
-         return redirect('slider')->with('success','Slider successfully created');
+         return redirect('admin/slider')->with('success','Slider successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -149,7 +149,7 @@ class SliderController extends Controller
             }
         }
         DB::commit();
-         return redirect('slider')->with('success','Slider successfully updated');
+         return redirect('admin/slider')->with('success','Slider successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -180,7 +180,7 @@ class SliderController extends Controller
         }
         $page->save();
         DB::commit();
-         return redirect('slider')->with('success','Slider status successfully updated');
+         return redirect('admin/slider')->with('success','Slider status successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -197,7 +197,7 @@ class SliderController extends Controller
         try{
         Slider::find($id)->delete();
         DB::commit();
-         return redirect('slider')->with('success','Slider successfully deleted');
+         return redirect('admin/slider')->with('success','Slider successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();
@@ -215,7 +215,7 @@ class SliderController extends Controller
         try{
         SliderImages::find($id)->delete();
         DB::commit();
-         return redirect('slider')->with('success','Slider image successfully deleted');
+         return redirect('admin/slider')->with('success','Slider image successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();

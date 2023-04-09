@@ -15,7 +15,7 @@ Users
     </div>
   </div>
 </div>
-<form action="{{url('users/update/'.$data['user']->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/users/update/'.$data['user']->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

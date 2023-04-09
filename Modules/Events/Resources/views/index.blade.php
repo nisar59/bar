@@ -22,7 +22,7 @@ Events
         <div class="row">
           <h4 class="col-md-6">Events</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('events/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/events/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ Events
   var roles_table = $('#events').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('events')}}",
+              ajax: "{{url('admin/events')}}",
               buttons:[],
               columns: [
                 {data: 'events', name: 'events',class:'text-center'},

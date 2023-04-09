@@ -16,7 +16,7 @@ Enter FAQs
     </div>
   </div>
 </div>
-<form action="{{url('faqs/update/'.$faq->id)}}" method="post">
+<form action="{{url('admin/faqs/update/'.$faq->id)}}" method="post">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

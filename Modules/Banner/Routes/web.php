@@ -11,22 +11,22 @@
 |
 */
 
-Route::group(['prefix'=>'banner','middleware' => ['permission:banner.view']],function(){
+Route::group(['prefix'=>'admin/banner','middleware' => ['permission:banner.view']],function(){
    Route::get('/', 'BannerController@index');
 });
 
-Route::group(['prefix'=>'banner','middleware' => ['permission:banner.add']],function(){
+Route::group(['prefix'=>'admin/banner','middleware' => ['permission:banner.add']],function(){
      Route::get('create', 'BannerController@create');
     Route::post('store', 'BannerController@store');
 
 });
-Route::group(['prefix'=>'banner','middleware' => ['permission:banner.edit']],function(){
+Route::group(['prefix'=>'admin/banner','middleware' => ['permission:banner.edit']],function(){
     Route::get('edit/{id}', 'BannerController@edit');
     Route::get('show/{id}', 'BannerController@show');
     Route::post('update/{id}', 'BannerController@update');
     Route::get('status/{id}', 'BannerController@status');
 
 });
-Route::group(['prefix'=>'banner','middleware' => ['permission:banner.delete']],function(){
+Route::group(['prefix'=>'admin/banner','middleware' => ['permission:banner.delete']],function(){
     Route::get('destroy/{id}', 'BannerController@destroy');
 });

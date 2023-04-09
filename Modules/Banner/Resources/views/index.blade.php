@@ -22,7 +22,7 @@ Banner
         <div class="row">
           <h4 class="col-md-6">Banner</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('banner/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/banner/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -31,6 +31,7 @@ Banner
           <table class="table table-sm table-hover table-bordered" id="banner" style="width:100%;">
             <thead class="text-center bg-primary text-white">
               <tr>
+                <th>Name</th>
                 <th>Heading</th>
                 <th>Sub Heading</th>
                 <th>Link</th>
@@ -73,9 +74,10 @@ Banner
   var roles_table = $('#banner').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('banner')}}",
+              ajax: "{{url('admin/banner')}}",
               buttons:[],
               columns: [
+                {data: 'name', name: 'name',class:'text-center'},
                 {data: 'heading', name: 'heading',class:'text-center'},
                 {data: 'sub_heading', name: 'sub_heading',class:'text-center'},
                 {data: 'link', name: 'link',class:'text-center'},

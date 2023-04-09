@@ -15,7 +15,7 @@ Pages
     </div>
   </div>
 </div>
-<form action="{{url('pages/update/'.$pages->id)}}" method="post">
+<form action="{{url('admin/pages/update/'.$pages->id)}}" method="post">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">
@@ -49,7 +49,7 @@ Pages
               <div class="form-group"><label for="">Banner</label>
               <select name="slider_banner_id" class="form-control select2">
                 @foreach($banners as $banner)
-                <option value="{{$banner->id}}" @if($banner->id==$pages->slider_banner_id) selected @endif>{{$banner->heading}}</option>
+                <option value="{{$banner->id}}" @if($banner->id==$pages->slider_banner_id) selected @endif>{{$banner->name}}</option>
                 @endforeach
               </select></div>
               @else
@@ -107,7 +107,7 @@ var slider_html=`<div class="form-group">
 var banner_html=`<div class="form-group"><label for="">Banner</label>
 <select name="slider_banner_id" class="form-control select2">
   @foreach($banners as $banner)
-  <option value="{{$banner->id}}" @if($banner->id==$pages->slider_banner_id) selected @endif>{{$banner->heading}}</option>
+  <option value="{{$banner->id}}" @if($banner->id==$pages->slider_banner_id) selected @endif>{{$banner->name}}</option>
   @endforeach
 </select></div>`;
 if(type=="slider"){

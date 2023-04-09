@@ -2,19 +2,6 @@
 
 return (object) $blocks = [
   //index sections files
-  'banner' => [
-    'title'=>'Banner',
-    'name' => 'banner.blade.php',
-    'data' => [
-      'heading'=>['name'=>'heading','type'=>'text'],
-      'sub_heading'=>['name'=>'sub_heading','type'=>'text'],
-      'link'=>['name'=>'link','type'=>'url'],
-      'background_image'=>['name'=>'background_image','type'=>'file'],
-      'image'=>['name'=>'image','type'=>'file'],
-      ],
-  ],
-
-
 
   'ranking' => [
     'title'=>'Ranking',
@@ -88,14 +75,6 @@ return (object) $blocks = [
 
 
   //welcome sections files 
-  'video_banner' => [
-    'name' => 'welcome-video.blade.php',
-    'data' => [
-      'video'=>['name'=>'video','type'=>'file'],
-    ],
-  ],
-
-
 
 
   'qoute_without_heading' => [
@@ -129,13 +108,6 @@ return (object) $blocks = [
 
 
   //our story sections files
-  'slider' => [
-    'name' => 'story-slider.blade.php',
-    'data' => [
-      'images'=>['name'=>'slider','type'=>'table'],
-    ],
-  ],
-
 
 
   'our_story_text1' => [

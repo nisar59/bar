@@ -27,11 +27,11 @@ class ProductShowcaseController extends Controller
                if(Auth::user()->can('product-showcase.edit')){
                  $action.="<a class='btn btn-success btn-sm m-1 product-showcase-show' data-images='".json_encode($row->images)."' href='javascript:void(0)'><i class='fas fa-eye'></i></a>";
 
-                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('product-showcase/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/product-showcase/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
 
                 }
                 if(Auth::user()->can('product-showcase.delete')){
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('product-showcase/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/product-showcase/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                 }
                return $action;
            })
@@ -39,9 +39,9 @@ class ProductShowcaseController extends Controller
            ->addColumn('status',function ($row){
                $action='';
                if($row->status==1){
-                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('product-showcase/status/'.$row->id).'">Active</a>';
+                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/product-showcase/status/'.$row->id).'">Active</a>';
                 }else{
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('product-showcase/status/'.$row->id).'">Deactive</a>';
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/product-showcase/status/'.$row->id).'">Deactive</a>';
                 }
                return $action;
            })
@@ -89,7 +89,7 @@ class ProductShowcaseController extends Controller
         }
 
         DB::commit();
-         return redirect('product-showcase')->with('success','Product Showcase successfully created');
+         return redirect('admin/product-showcase')->with('success','Product Showcase successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -144,7 +144,7 @@ class ProductShowcaseController extends Controller
             }
         }
         DB::commit();
-         return redirect('product-showcase')->with('success','Product Showcase successfully updated');
+         return redirect('admin/product-showcase')->with('success','Product Showcase successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -175,7 +175,7 @@ class ProductShowcaseController extends Controller
         }
         $page->save();
         DB::commit();
-         return redirect('product-showcase')->with('success','Product Showcase status successfully updated');
+         return redirect('admin/product-showcase')->with('success','Product Showcase status successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -192,7 +192,7 @@ class ProductShowcaseController extends Controller
         try{
         ProductShowcase::find($id)->delete();
         DB::commit();
-         return redirect('product-showcase')->with('success','Product Showcase successfully deleted');
+         return redirect('admin/product-showcase')->with('success','Product Showcase successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();
@@ -210,7 +210,7 @@ class ProductShowcaseController extends Controller
         try{
         ProductShowcaseImages::find($id)->delete();
         DB::commit();
-         return redirect('product-showcase')->with('success','Product Showcase image successfully deleted');
+         return redirect('admin/product-showcase')->with('success','Product Showcase image successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();

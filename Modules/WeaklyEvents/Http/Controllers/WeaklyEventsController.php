@@ -20,8 +20,8 @@ class WeaklyEventsController extends Controller
            return DataTables::of($weaklyevents)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('weaklyevents/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('weaklyevents/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/weaklyevents/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/weaklyevents/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                return $action;
            })
            ->addColumn('image', function ($row) {
@@ -68,7 +68,7 @@ class WeaklyEventsController extends Controller
            'description'=> $req->description,
         ]);
         if($weaklyevents->save()){
-            return redirect('weaklyevents')->with('success', 'Weakly-Events successfully created');
+            return redirect('admin/weaklyevents')->with('success', 'Weakly-Events successfully created');
         }
     }
 
@@ -113,7 +113,7 @@ class WeaklyEventsController extends Controller
         }
         $events->description=$req->description;
         if($events->save()){
-         return redirect('weaklyevents')->with('success','WeaklyEvents successfully Updated');
+         return redirect('admin/weaklyevents')->with('success','WeaklyEvents successfully Updated');
          }
     }
 
@@ -126,7 +126,7 @@ class WeaklyEventsController extends Controller
     {
         $events=WeaklyEvents::find($id);
         if($events->delete()){
-         return redirect('weaklyevents')->with('success','WeaklyEvents successfully Deleted');
+         return redirect('admin/weaklyevents')->with('success','WeaklyEvents successfully Deleted');
 
         }
     }

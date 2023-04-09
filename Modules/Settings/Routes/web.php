@@ -11,21 +11,21 @@
 |
 */
 
-Route::group(['prefix'=>'settings','middleware' => ['permission:settings.view']],function(){
+Route::group(['prefix'=>'admin/settings','middleware' => ['permission:settings.view']],function(){
     Route::get('/', 'SettingsController@index');
 });
 
-Route::group(['prefix'=>'settings','middleware' => ['permission:settings.add']],function(){
+Route::group(['prefix'=>'admin/settings','middleware' => ['permission:settings.add']],function(){
     Route::POST('/store', 'SettingsController@store');
 
 });
 
-Route::group(['prefix'=>'settings','middleware' => ['permission:settings.add']],function(){
+Route::group(['prefix'=>'admin/settings','middleware' => ['permission:settings.add']],function(){
     Route::POST('/theme', 'SettingsController@theme');
 
 });
 
-Route::group(['prefix'=>'settings','middleware' => ['permission:settings.add']],function(){
+Route::group(['prefix'=>'admin/settings','middleware' => ['permission:settings.add']],function(){
     Route::POST('/restorydefault', 'SettingsController@restorydefault');
 
 });

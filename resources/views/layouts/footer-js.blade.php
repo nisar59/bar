@@ -78,11 +78,11 @@
 
   setInterval(function() {
       $.ajax({
-          url:"{{url('check-auth')}}",
+          url:"{{url('admin/check-auth')}}",
           success:function(res){
             console.log(res);
             if(!res){
-              window.location="{{url('lock-screen')}}?id="+user_id;
+              window.location="{{url('admin/lock-screen')}}?id="+user_id;
             }
           },
           error:function() {
@@ -123,7 +123,7 @@ $(document).on('click', '#maintenance',function (e) {
               confirmButtonText: 'Yes',
             }).then((result) => {
               if (result.isConfirmed) {
-                window.location.href="{{url('artisan/up')}}";
+                window.location.href="{{url('admin/artisan/up')}}";
                 $(this).prop("checked", true);
               }else{
                 $(this).prop("checked", false);
@@ -138,7 +138,7 @@ $(document).on('click', '#maintenance',function (e) {
               confirmButtonText: 'Yes',
             }).then((result) => {
               if (result.isConfirmed) {
-                window.location.href="{{url('artisan/down')}}";
+                window.location.href="{{url('admin/artisan/down')}}";
                 $(this).prop("checked", false);
               }else{
                 $(this).prop("checked", true);

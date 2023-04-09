@@ -22,7 +22,7 @@ Pages
         <div class="row">
           <h4 class="col-md-6">Pages</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('pages/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/pages/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ Pages
   var roles_table = $('#pages').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('pages')}}",
+              ajax: "{{url('admin/pages')}}",
               buttons:[],
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},

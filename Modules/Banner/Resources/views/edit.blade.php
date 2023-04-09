@@ -15,7 +15,7 @@ Banner
     </div>
   </div>
 </div>
-<form action="{{url('banner/update/'.$banner->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/banner/update/'.$banner->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">
@@ -25,13 +25,19 @@ Banner
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-6 form-group">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" value="{{$banner->name}}" name="name" placeholder="Enter name">
+              </div>
+            </div>
+            <div class="col-md-4">
               <div class="form-group">
                 <label>Heading (optional)</label>
                 <input type="text" class="form-control" value="{{$banner->heading}}" name="heading" placeholder="Enter heading (optional)">
               </div>
             </div>
-            <div class="col-md-6 ">
+            <div class="col-md-4 ">
               <div class="form-group">
                 <label>Sub heading (optional)</label>
                 <input type="text" class="form-control" value="{{$banner->sub_heading}}" name="sub_heading" placeholder="Enter sub heading (optional)">
@@ -82,43 +88,40 @@ Banner
   </div>
 </form>
 @endsection
-
 @section('js')
 <script>
-  $(document).ready(function() {
-    setTimeout(function () {    
-    $("#type").trigger('change');
-      },100);
-
-      $(document).on('change', '#type',function() {
-            var video_hmtl=`<div class="col-md-12 mt-1">
-            <div class="form-group">
-                <label>Video</label>
-                <input type="file" class="form-control"  name="video" >
-                {{$banner->video}}
-              </div>
-            </div>`;
-
-            var image_html=`<div class="col-md-6 mt-1">
-            <div class="form-group">
-                <label>Image</label>
-                <input type="file" class="form-control"  name="image" >
-                 <span>{{$banner->image}}</span>
-              </div>
-            </div>
-            <div class="col-md-6 mt-1">
-              <div class="form-group">
-                <label>Background Image</label>
-                <input type="file" class="form-control"  name="background_image" >
-                <span>{{$banner->background_image}}</span>
-              </div>
-            </div>`;
-            if($(this).val()=="video"){
-                $('#type-content').html(video_hmtl);
-            }else{
-                $('#type-content').html(image_html);
-            }
-      });
-  });
+$(document).ready(function() {
+setTimeout(function () {
+$("#type").trigger('change');
+},100);
+$(document).on('change', '#type',function() {
+var video_hmtl=`<div class="col-md-12 mt-1">
+  <div class="form-group">
+    <label>Video</label>
+    <input type="file" class="form-control"  name="video" >
+    {{$banner->video}}
+  </div>
+</div>`;
+var image_html=`<div class="col-md-6 mt-1">
+  <div class="form-group">
+    <label>Image</label>
+    <input type="file" class="form-control"  name="image" >
+    <span>{{$banner->image}}</span>
+  </div>
+</div>
+<div class="col-md-6 mt-1">
+  <div class="form-group">
+    <label>Background Image</label>
+    <input type="file" class="form-control"  name="background_image" >
+    <span>{{$banner->background_image}}</span>
+  </div>
+</div>`;
+if($(this).val()=="video"){
+$('#type-content').html(video_hmtl);
+}else{
+$('#type-content').html(image_html);
+}
+});
+});
 </script>
 @endsection

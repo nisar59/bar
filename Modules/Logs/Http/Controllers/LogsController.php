@@ -27,10 +27,10 @@ class LogsController extends Controller
                         $action='';
 
                     if(Auth::user()->can('logs.view')){
-                    $action.='<a class="btn btn-success m-1 btn-sm show-log" href="'.url('logs/show/'.$row->id).'"><i class="fas fa-eye"></i></a>';
+                    $action.='<a class="btn btn-success m-1 btn-sm show-log" href="'.url('admin/logs/show/'.$row->id).'"><i class="fas fa-eye"></i></a>';
                     }
                     if(Auth::user()->can('logs.delete')){
-                    $action.='<a class="btn btn-danger m-1 btn-sm" href="'.url('logs/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                    $action.='<a class="btn btn-danger m-1 btn-sm" href="'.url('admin/logs/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                         }
                     
                     return $action;
@@ -72,7 +72,7 @@ class LogsController extends Controller
                     ->addColumn('action', function ($row) {
                         $action='';
                     if(Auth::user()->can('logs.delete')){
-                    $action.='<a class="btn btn-danger m-1 btn-sm" href="'.url('system-logs/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                    $action.='<a class="btn btn-danger m-1 btn-sm" href="'.url('admin/system-logs/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                         }
                     
                     return $action;
@@ -175,7 +175,7 @@ class LogsController extends Controller
         try {
             Logs::findOrFail($id)->delete();
             DB::commit();
-            return redirect('logs')->with('success','Log successfully deleted');
+            return redirect('admin/logs')->with('success','Log successfully deleted');
         } catch (Exception $e) {
                 DB::rollback();
                 return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
@@ -193,7 +193,7 @@ class LogsController extends Controller
         
         try {
             Logs::truncate();
-            return redirect('logs')->with('success','Logs Table successfully truncated');
+            return redirect('admin/logs')->with('success','Logs Table successfully truncated');
         } catch (Exception $e) {
                 return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
         }
@@ -212,7 +212,7 @@ class LogsController extends Controller
         try {
             SystemLogs::findOrFail($id)->delete();
             DB::commit();
-            return redirect('logs')->with('success','System Log successfully deleted');
+            return redirect('admin/logs')->with('success','System Log successfully deleted');
         } catch (Exception $e) {
                 DB::rollback();
                 return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
@@ -232,7 +232,7 @@ class LogsController extends Controller
         
         try {
             SystemLogs::truncate();
-            return redirect('logs')->with('success','System Logs Table successfully truncated');
+            return redirect('admin/logs')->with('success','System Logs Table successfully truncated');
         } catch (Exception $e) {
                 return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
         }

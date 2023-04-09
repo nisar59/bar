@@ -5,6 +5,8 @@ namespace Modules\Pages\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Blocks\Entities\Blocks;
+use Modules\Banner\Entities\Banner;
+use Modules\Slider\Entities\Slider;
 
 class Pages extends Model
 {
@@ -20,6 +22,16 @@ class Pages extends Model
     public function blocks()
     {
         return $this->hasMany(Blocks::class, 'page_id', 'id');
+    }
+
+    public function banner()
+    {
+        return $this->hasOne(Banner::class,'id', 'slider_banner_id');
+    }
+
+    public function slider()
+    {
+        return $this->hasOne(Slider::class,'id', 'slider_banner_id');
     }
 
 }

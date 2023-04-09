@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
            <div class="navbar-brand-box">
-                            <a href="{{url('/home')}}" class="logo logo-dark">
+                            <a href="{{url('admin/home')}}" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
                                 </span>
@@ -12,7 +12,7 @@
                                 </span>
                             </a>
 
-                            <a href="{{url('/home')}}" class="logo logo-light">
+                            <a href="{{url('admin/home')}}" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
                                 </span>
@@ -62,14 +62,14 @@
             @can('logs.view')
             <div class="dropdown d-none d-lg-inline-block">
                 <button type="button" class="btn noti-icon header-item waves-effect">
-                <a href="{{url('logs')}}"><i class="mdi mdi-format-list-bulleted-square"></i></a>
+                <a href="{{url('admin/logs')}}"><i class="mdi mdi-format-list-bulleted-square"></i></a>
                 </button>
             </div>
             @endcan
             @can('trash.view')
             <div class="dropdown d-none d-lg-inline-block">
                 <button type="button" class="btn noti-icon header-item waves-effect">
-                <a href="{{url('trash')}}"><i class="mdi mdi-trash-can-outline"></i></a>
+                <a href="{{url('admin/trash')}}"><i class="mdi mdi-trash-can-outline"></i></a>
                 </button>
             </div>
             @endcan
@@ -196,7 +196,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="{{url('users/edit/'.Auth::id())}}"><i class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Profile</a>
+                    <a class="dropdown-item" href="{{url('admin/users/edit/'.Auth::id())}}"><i class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Profile</a>
                     <a class="dropdown-item" href=""><i class="mdi mdi-lock-open-outline font-size-17 align-middle me-1"></i> Lock screen</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{url('logout')}}"><i class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i> Logout</a>

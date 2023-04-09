@@ -28,11 +28,11 @@ class BannerController extends Controller
                $path=url('images/banner');                   
                 $action.='<a class="btn btn-success banner-show btn-sm m-1" data-type="'.$row->type.'" data-img="'.$path.'/'.$row->image.'" data-bgimg="'.$path.'/'.$row->background_image.'" data-video="'.$path.'/'.$row->video.'" href="javascript:void(0)"><i class="fas fa-eye"></i></a>';
 
-                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('banner/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/banner/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
                 }
 
                 if(Auth::user()->can('banner.delete')){
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('banner/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/banner/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                 }
                return $action;
            })
@@ -40,9 +40,9 @@ class BannerController extends Controller
             ->addColumn('status',function ($row){
                $action='';
                if($row->status==1){
-                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('banner/status/'.$row->id).'">Active</a>';
+                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/banner/status/'.$row->id).'">Active</a>';
                 }else{
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('banner/status/'.$row->id).'">Deactive</a>';
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/banner/status/'.$row->id).'">Deactive</a>';
                 }
                return $action;
            })
@@ -73,6 +73,7 @@ class BannerController extends Controller
     public function store(Request $req)
     {
         $req->validate([
+        'name'=>'required',
         'background_image'=>'required',
         'type'=>'required',
         ]);
@@ -93,7 +94,7 @@ class BannerController extends Controller
 
         Banner::create($inputs);
         DB::commit();
-         return redirect('banner')->with('success','Banner successfully created');
+         return redirect('admin/banner')->with('success','Banner successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -125,7 +126,7 @@ class BannerController extends Controller
         }
         $page->save();
         DB::commit();
-         return redirect('banner')->with('success','Banner status successfully updated');
+         return redirect('admin/banner')->with('success','Banner status successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -170,6 +171,7 @@ class BannerController extends Controller
     public function update(Request $req, $id)
     {
         $req->validate([
+        'name'=>'required',
         'type'=>'required',
         ]);
            DB::beginTransaction();
@@ -188,7 +190,7 @@ class BannerController extends Controller
         }
         Banner::find($id)->update($inputs);
         DB::commit();
-         return redirect('banner')->with('success','Banner successfully created');
+         return redirect('admin/banner')->with('success','Banner successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -210,7 +212,7 @@ class BannerController extends Controller
         try{
         Banner::find($id)->delete();
         DB::commit();
-         return redirect('banner')->with('success','Banner successfully deleted');
+         return redirect('admin/banner')->with('success','Banner successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();

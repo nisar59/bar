@@ -38,7 +38,7 @@ Page Blocks
                         <h4 class="text-white col-8">{{strtoupper($pb->block_name)}}</h4>                      
                         <span class="col-3 handle text-end settings" data-sectionid="{{$pb->id}}"><i class="fa fa-cog text-white fa-lg mt-2" aria-hidden="true"></i>
                         </span>
-                        <span class="col-1 text-end"><a href="{{url('pages/blocks/destroy/'.$pb->id)}}"><i class="fas fa-expand-arrows-alt text-danger fa-lg mt-2" aria-hidden="true"></i></a></span>
+                        <span class="col-1 text-end"><a href="{{url('admin/pages/blocks/destroy/'.$pb->id)}}"><i class="fas fa-expand-arrows-alt text-danger fa-lg mt-2" aria-hidden="true"></i></a></span>
                         <input type="hidden" name="sections[]" class="section" value="{{$pb->block_name}}">
                     </li>
                     @endforeach
@@ -108,14 +108,14 @@ function AddSectionData(event) {
             $(item).find('.handle').html('<i class="fa fa-cog text-white fa-lg mt-2" aria-hidden="true"></i>');
 
     $.ajax({
-        url:"{{url('pages/blocks/create/'.$page->id)}}/"+inpt.val(),
+        url:"{{url('admin/pages/blocks/create/'.$page->id)}}/"+inpt.val(),
         type:"POST",
         data:{_token:"{{csrf_token()}}"},
         success:function(res){
             if(res.success){
                 $("#mdl").html(res.html);
                  $(item).find('.handle').attr('data-sectionid', res.data);
-                 $(item).append(`<span class="col-1 text-end"><a href="{{url('pages/blocks/destroy/')}}/`+res.data+`"><i class="fas fa-expand-arrows-alt text-danger fa-lg mt-2" aria-hidden="true"></i></a></span>`)
+                 $(item).append(`<span class="col-1 text-end"><a href="{{url('admin/pages/blocks/destroy/')}}/`+res.data+`"><i class="fas fa-expand-arrows-alt text-danger fa-lg mt-2" aria-hidden="true"></i></a></span>`)
                 $("#PageContentModal").modal('show');
             }else{
 
@@ -131,7 +131,7 @@ function AddSectionData(event) {
 function ModifySectionData(id) {
     
     $.ajax({
-        url:"{{url('pages/blocks/edit/')}}/"+id,
+        url:"{{url('admin/pages/blocks/edit/')}}/"+id,
         type:"GET",
         data:{},
         success:function(res){

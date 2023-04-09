@@ -18,7 +18,6 @@ Route::get('login', function () {
 });
 
 //Ferontend Controller Routes
-Route::get('/', 'FrontendController@index');
 Route::get('welcome', 'FrontendController@welcome');
 Route::get('ourstory', 'FrontendController@ourstory');
 Route::get('hours-location', 'FrontendController@hours_location');
@@ -41,8 +40,12 @@ Route::get('work-with-us', 'FrontendController@work_with');
 Auth::routes();
 Route::any('logout', 'Auth\LoginController@logout');
 
-Route::get('check-auth', 'HomeController@checkauth');
-Route::get('lock-screen', 'HomeController@lockscreen');
+Route::get('admin/check-auth', 'HomeController@checkauth');
+Route::get('admin/lock-screen', 'HomeController@lockscreen');
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/artisan/{command}', 'HomeController@artisan')->name('home')->middleware('auth');
+Route::get('admin/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('admin/artisan/{command}', 'HomeController@artisan')->name('home')->middleware('auth');
+
+
+Route::get('/', 'FrontendController@index');
+//Route::get('/{slug}', 'FrontendController@index');

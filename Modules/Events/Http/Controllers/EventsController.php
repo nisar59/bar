@@ -20,8 +20,8 @@ class EventsController extends Controller
            return DataTables::of($events)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('events/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('events/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/events/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/events/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                return $action;
            })
            ->addColumn('image', function ($row) {
@@ -78,7 +78,7 @@ class EventsController extends Controller
            'facebook_link'=> $req->face_link,
         ]);
         if($events->save()){
-            return redirect('events')->with('success', 'Events successfully created');
+            return redirect('admin/events')->with('success', 'Events successfully created');
         }
     }
 
@@ -128,7 +128,7 @@ class EventsController extends Controller
         $events->ticket_link=$req->ticket_link;
         $events->facebook_link=$req->face_link;
         if($events->save()){
-            return redirect('events')->with('success', 'Events successfully Updated');
+            return redirect('admin/events')->with('success', 'Events successfully Updated');
         }
     }
 
@@ -141,7 +141,7 @@ class EventsController extends Controller
     {
         $events=Events::find($id);
         if($events->delete()){
-        return redirect('events')->with('success', 'Events successfully Deleted');
+        return redirect('admin/events')->with('success', 'Events successfully Deleted');
  
         }
     }

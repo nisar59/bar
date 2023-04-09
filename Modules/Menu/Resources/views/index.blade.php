@@ -22,7 +22,7 @@ Menu
         <div class="row">
           <h4 class="col-md-6">Menu</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('menu/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/menu/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ Menu
   var roles_table = $('#menu').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('menu')}}",
+              ajax: "{{url('admin/menu')}}",
               buttons:[],
               columns: [
                 {data: 'type', name: 'type',class:'text-center'},

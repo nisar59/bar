@@ -20,8 +20,8 @@ class BrunchController extends Controller
            return DataTables::of($brunch)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('brunch/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('brunch/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/brunch/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/brunch/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                return $action;
            })
            ->addColumn('image', function ($row) {
@@ -70,7 +70,7 @@ class BrunchController extends Controller
            'link'=> $req->link,
         ]);
         if($brunch->save()){
-            return redirect('brunch')->with('success', 'Brunch successfully created');
+            return redirect('admin/brunch')->with('success', 'Brunch successfully created');
         }
     }
 
@@ -116,7 +116,7 @@ class BrunchController extends Controller
         $brunch->description=$req->description;
         $brunch->link=$req->link;
         if($brunch->save()){
-         return redirect('brunch')->with('success','Brunch successfully Updated');
+         return redirect('admin/brunch')->with('success','Brunch successfully Updated');
          }
     }
 
@@ -129,7 +129,7 @@ class BrunchController extends Controller
     {
         $brunch=Brunch::find($id);
         if($brunch->delete()){
-        return redirect('brunch')->with('success', 'Brunch successfully Deleted');
+        return redirect('admin/brunch')->with('success', 'Brunch successfully Deleted');
 
         }
     }

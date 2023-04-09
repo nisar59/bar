@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix'=>'pages','middleware' => ['permission:pages.edit']],function(){
+Route::group(['prefix'=>'admin/pages','middleware' => ['permission:pages.edit']],function(){
     Route::get('blocks/{id}', 'BlocksController@index');
     Route::post('blocks/create/{id}/{key}', 'BlocksController@create');
     Route::post('blocks/store/{id}/{key}', 'BlocksController@store');
