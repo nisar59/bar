@@ -50,27 +50,14 @@ Slider
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Images</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Slider Images</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <a href="javascript:void(0);" class="add_button float-end btn btn-success mt-4" title="Add field">+</a>
-          </div>
-          <div class="field_wrapper">
-            <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="">Add Image</label>
-                <input type="file" class="form-control" name="image">
-              </div>
-            </div>
-            </div>
-          </div>
+        <div class="modal-body" id="slider-images-container">
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -94,27 +81,22 @@ columns: [
 ]
 });
 $(document).on('click','.slider-show',function () {
-var id=$(this).data('id');
-$("#mdl-show").modal('show');
-});
-});
-$(document).ready(function(){
-var maxField = 10;
-var addButton = $('.add_button');
-var wrapper = $('.field_wrapper');
-var fieldHTML = '<div class="row"><div class="col-md-10 mt-1"><input type="file" class="form-control" name="image"></div><div class="col-md-2 mt-1"><button class="btn btn-danger remove_button">x</button</div></div>';
-var x = 1;
-$(addButton).click(function(){
-if(x < maxField){
-x++;
-$(wrapper).append(fieldHTML);
-}
+
+var images_data=$(this).data('images');
+console.log(images_data);
+var html='';
+$.each(images_data,function(indx, vlu) {
+        var img=vlu.image;
+        html+=`<div class="row"><div class="col-md-12 m-1">
+        <a class="btn btn-danger btn-sm position-absolute end-0" href="{{url('slider/image/destroy/')}}/`+vlu.id+`">x</a>
+        <img src="{{asset('images/slider/')}}/`+img+`" class="w-100 border border-primary" />
+        </div>
+        </div>`      
 });
 
-$(wrapper).on('click', '.remove_button', function(e){
-e.preventDefault();
-$(this).parent('div').remove();
-x--;
+$("#slider-images-container").html(html);
+
+$("#mdl-show").modal('show');
 });
 });
 </script>

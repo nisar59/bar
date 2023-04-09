@@ -27,4 +27,5 @@ Route::group(['prefix'=>'slider','middleware' => ['permission:slider.edit']],fun
 });
 Route::group(['prefix'=>'slider','middleware' => ['permission:slider.delete']],function(){
     Route::get('destroy/{id}', 'SliderController@destroy');
+    Route::get('image/destroy/{id}', 'SliderController@destroyimage');
 });

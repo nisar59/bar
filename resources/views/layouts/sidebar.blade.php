@@ -34,7 +34,7 @@ $type = Request()->type;
                 </li>
                 @endcan
                 <!-- CMS -->
-                @canany(['cms.view','permissions.view'])
+                @canany(['pages.view','menu.view','banner.view','slider.view','product-showcase'])
             <li class="menu-title">CMS</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -54,8 +54,8 @@ $type = Request()->type;
                         @can('slider.view')
                         <li><a href="{{url('slider')}}">Slider</a></li>
                         @endcan
-                        @can('productshowcase.view')
-                        <li><a href="{{url('productshowcase')}}">Product Showcase</a></li>
+                        @can('product-showcase.view')
+                        <li><a href="{{url('product-showcase')}}">Product Showcase</a></li>
                         @endcan
                     </ul>
                 </li>

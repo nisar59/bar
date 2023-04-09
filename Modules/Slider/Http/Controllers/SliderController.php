@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Slider\Entities\Slider;
+use Modules\Slider\Entities\SliderImages;
 use Yajra\DataTables\Facades\DataTables;
 use Throwable;
 use DB;
@@ -19,12 +20,13 @@ class SliderController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-        $slider=Slider::select('*')->orderBy('id','ASC')->get();
+        $slider=Slider::with('images')->select('*')->orderBy('id','ASC')->get();
            return DataTables::of($slider)
            ->addColumn('action',function ($row){
                $action='';
                if(Auth::user()->can('slider.edit')){
-                 $action.='<a class="btn btn-success btn-sm m-1 slider-show" data-id="'.$row->id.'" href="javscript:void(0)"><i class="fas fa-plus"></i></a>';
+                 $action.="<a class='btn btn-success btn-sm m-1 slider-show' data-images='".json_encode($row->images)."' href='javascript:void(0)'><i class='fas fa-eye'></i></a>";
+
                    $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('slider/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
 
                 }
@@ -67,15 +69,25 @@ class SliderController extends Controller
     public function store(Request $req)
     {
         $req->validate([
-        'name'=>'required',
-        'description'=>'required',
+        'image' => 'required|array',
+        'image.*' => 'image|mimes:jpg,jpeg,png'
         ]);
 
         DB::beginTransaction();
         try{
-            $inputs=$req->except('_token');
+            $inputs=$req->except('_token','image');
             $inputs['status']=1;
-        Slider::create($inputs);
+        $slider=Slider::create($inputs);
+        $path=public_path('images/slider');
+        foreach ($req->image as $key => $image) {
+            if($image!=null){
+            SliderImages::create([
+                'slider_id'=>$slider->id,
+                'image'=>FileUpload($image, $path)
+            ]);
+            }
+        }
+
         DB::commit();
          return redirect('slider')->with('success','Slider successfully created');
          
@@ -124,6 +136,16 @@ class SliderController extends Controller
         DB::beginTransaction();
         try{
         Slider::find($id)->update($req->except('_token'));
+
+        $path=public_path('images/slider');
+        foreach ($req->image as $key => $image) {
+            if($image!=null){
+            SliderImages::create([
+                'slider_id'=>$id,
+                'image'=>FileUpload($image, $path)
+            ]);
+            }
+        }
         DB::commit();
          return redirect('slider')->with('success','Slider successfully updated');
          
@@ -183,4 +205,24 @@ class SliderController extends Controller
             return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
          }
     }
+
+
+    public function destroyimage($id)
+    {
+        DB::beginTransaction();
+        try{
+        SliderImages::find($id)->delete();
+        DB::commit();
+         return redirect('slider')->with('success','Slider image successfully deleted');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+    }
+
+
 }

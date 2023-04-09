@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\ProductShowcase\Entities\ProductShowcase;
+use Modules\ProductShowcase\Entities\ProductShowcaseImages;
 use Yajra\DataTables\Facades\DataTables;
 use Throwable;
 use DB;
@@ -19,41 +20,33 @@ class ProductShowcaseController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-        $productshowcase=ProductShowcase::select('*')->orderBy('id','ASC')->get();
-           return DataTables::of($productshowcase)
+        $slider=ProductShowcase::with('images')->select('*')->orderBy('id','ASC')->get();
+           return DataTables::of($slider)
            ->addColumn('action',function ($row){
                $action='';
-               if(Auth::user()->can('productshowcase.edit')){
-                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('productshowcase/show/'.$row->id).'"><i class="fas fa-eye"></i></a>';
-                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('productshowcase/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               if(Auth::user()->can('product-showcase.edit')){
+                 $action.="<a class='btn btn-success btn-sm m-1 product-showcase-show' data-images='".json_encode($row->images)."' href='javascript:void(0)'><i class='fas fa-eye'></i></a>";
+
+                   $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('product-showcase/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+
                 }
-                if(Auth::user()->can('productshowcase.delete')){
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('productshowcase/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                if(Auth::user()->can('product-showcase.delete')){
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('product-showcase/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                 }
                return $action;
            })
-            ->addColumn('image', function ($row) {
-                                $path=public_path('images');
-                                $url=url('images');
-                                $img=$url.'/images.png';
-                                if(file_exists($path.'/product'.$row->image) AND $row->image!=null){
-                                $img=$url.'/product'.$row->image;
-                                }
-            
-                                return '<img src="'.$img.'" height="50" width="50">';
-                            })
+
            ->addColumn('status',function ($row){
                $action='';
                if($row->status==1){
-                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('productshowcase/status/'.$row->id).'">Active</a>';
+                   $action.='<a class="btn btn-success btn-sm m-1" href="'.url('product-showcase/status/'.$row->id).'">Active</a>';
                 }else{
-                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('productshowcase/status/'.$row->id).'">Deactive</a>';
+                   $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('product-showcase/status/'.$row->id).'">Deactive</a>';
                 }
                return $action;
            })
-           
 
-           ->rawColumns(['action','image','status'])
+           ->rawColumns(['action','status'])
            ->make(true);
         }
         return view('productshowcase::index');
@@ -76,28 +69,37 @@ class ProductShowcaseController extends Controller
     public function store(Request $req)
     {
         $req->validate([
-        'name'=>'required|string|max:255',
-        'image'=>['required'],        
+        'image' => 'required|array',
+        'image.*' => 'image|mimes:jpg,jpeg,png'
         ]);
 
-         if($req->hasfile('image'))
-         {
-            $data = [];
-            foreach($req->file('image') as $image)
-            {
-                $name=$image->getClientOriginalName();
-                $image->move(public_path().'/images/product/', $name);  
-                $data[] = $name;  
+        DB::beginTransaction();
+        try{
+            $inputs=$req->except('_token','image');
+            $inputs['status']=1;
+        $product_showcase=ProductShowcase::create($inputs);
+        $path=public_path('images/product-showcase');
+        foreach ($req->image as $key => $image) {
+            if($image!=null){
+            ProductShowcaseImages::create([
+                'product_showcase_id'=>$product_showcase->id,
+                'image'=>FileUpload($image, $path)
+            ]);
             }
-         }
-          $product= new ProductShowcase();
-          $product->name=$req->name;
-          $product->image=json_encode($data);
-        if($product->save()){
-            return redirect('productshowcase')->with('success','Product Showcase successfully created');
-
         }
+
+        DB::commit();
+         return redirect('product-showcase')->with('success','Product Showcase successfully created');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
+
     /**
      * Show the specified resource.
      * @param int $id
@@ -108,8 +110,58 @@ class ProductShowcaseController extends Controller
         return view('productshowcase::show');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit($id)
+    {
+        $productshowcase=ProductShowcase::find($id);
+        return view('productshowcase::edit',compact('productshowcase'));
+    }
 
-     public function status($id)
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $req, $id)
+    {
+
+        DB::beginTransaction();
+        try{
+        Slider::find($id)->update($req->except('_token'));
+
+        $path=public_path('images/product-showcase');
+        foreach ($req->image as $key => $image) {
+            if($image!=null){
+            SliderImages::create([
+                'slider_id'=>$id,
+                'image'=>FileUpload($image, $path)
+            ]);
+            }
+        }
+        DB::commit();
+         return redirect('product-showcase')->with('success','Product Showcase successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+
+    public function status($id)
     {
         DB::beginTransaction();
         try{
@@ -123,7 +175,24 @@ class ProductShowcaseController extends Controller
         }
         $page->save();
         DB::commit();
-         return redirect('productshowcase')->with('success','Product Showcase status successfully updated');
+         return redirect('product-showcase')->with('success','Product Showcase status successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+    }
+
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+        try{
+        ProductShowcase::find($id)->delete();
+        DB::commit();
+         return redirect('product-showcase')->with('success','Product Showcase successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();
@@ -135,40 +204,13 @@ class ProductShowcaseController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
+    public function destroyimage($id)
     {
-        $product=ProductShowcase::find($id);
-        return view('productshowcase::edit',compact('product'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-         DB::beginTransaction();
+        DB::beginTransaction();
         try{
-        ProductShowcase::find($id)->delete();
+        ProductShowcaseImages::find($id)->delete();
         DB::commit();
-         return redirect('productshowcase')->with('success','Product Showcase successfully deleted');
+         return redirect('product-showcase')->with('success','Product Showcase image successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();
@@ -176,6 +218,8 @@ class ProductShowcaseController extends Controller
          }catch(Throwable $e){
             DB::rollback();
             return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
-}
+
+
 }
