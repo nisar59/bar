@@ -9,7 +9,7 @@ class Faqs extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','text'];
+    protected $fillable = ['title','description'];
     protected $table='faqs';
     
     protected static function newFactory()

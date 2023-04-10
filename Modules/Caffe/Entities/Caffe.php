@@ -9,7 +9,7 @@ class Caffe extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','file','description','link'];
+    protected $fillable = ['title','file','description'];
     protected $table='caffe';
     
     protected static function newFactory()

@@ -1,12 +1,12 @@
 @extends('layouts.template')
 @section('title')
-Bottomless-Brunch 
+Bottomless Brunch 
 @endsection
 @section('content')
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Bottomless-Brunch </h6>
+      <h6 class="page-title">Bottomless Brunch </h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">Bottomless-Brunch </li>
@@ -20,7 +20,7 @@ Bottomless-Brunch
     <div class="card card-primary">
       <div class="card-header bg-white">
         <div class="row">
-          <h4 class="col-md-6">Bottomless-Brunch </h4>
+          <h4 class="col-md-6">Bottomless Brunch </h4>
           <div class="col-md-6 text-end">
             <a href="{{url('admin/brunch/create')}}" class="btn btn-success">+</a>
           </div>

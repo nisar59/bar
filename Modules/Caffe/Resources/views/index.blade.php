@@ -32,7 +32,6 @@ Caffe Menu
             <thead class="text-center bg-primary text-white">
               <tr>
                 <th>Title</th>
-                <th>Small Description</th>
                 <th>Description</th>
                 <th>File</th>
                 <th>Action</th>
@@ -59,7 +58,6 @@ Caffe Menu
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},
                 {data: 'description', name: 'description',class:'text-center'},
-                {data: 'link', name: 'link',class:'text-center'},
                 {data: 'file', name: 'file',class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]

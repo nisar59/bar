@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Events\Entities\Events;
 use Yajra\DataTables\Facades\DataTables;
+use Throwable;
+use DB;
+use Auth;
 class EventsController extends Controller
 {
     /**
@@ -20,8 +23,12 @@ class EventsController extends Controller
            return DataTables::of($events)
            ->addColumn('action',function ($row){
                $action='';
+                if(Auth::user()->can('events.edit')){
                $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/events/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+            }
+                if(Auth::user()->can('events.delete')){
                $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/events/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+           }
                return $action;
            })
            ->addColumn('image', function ($row) {
@@ -65,21 +72,24 @@ class EventsController extends Controller
            'image'=>'required', 
            'info_link'=>'required', 
            'ticket_link'=>'required', 
-           'face_link'=>'required', 
+           'facebook_link'=>'required', 
         ]);
-        $path=public_path('images/events');
-        $events=Events::create([
-           'image'=>FileUpload($req->file('image'), $path),
-           'events'=> $req->s_event,
-           'title'=> $req->title,
-           'description'=> $req->description,
-           'info_link'=> $req->info_link,
-           'ticket_link'=> $req->ticket_link,
-           'facebook_link'=> $req->face_link,
-        ]);
-        if($events->save()){
-            return redirect('admin/events')->with('success', 'Events successfully created');
-        }
+        DB::beginTransaction();
+        try{
+            $path=public_path('images/events');
+            $inputs=$req->except('_token');
+            $inputs['image']=FileUpload($req->image, $path);
+        Events::create($inputs);
+        DB::commit();
+         return redirect('admin/events')->with('success','Events Menu successfully created');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**
@@ -111,25 +121,33 @@ class EventsController extends Controller
      */
     public function update(Request $req, $id)
     {
-        $file=$req->file('image');
-        if ($file!=null) {
-        $imgname=$file->getClientOriginalName();
-   
-        }
-        $path=public_path('images/events');
-        $events=Events::find($id);
-         if ($req->file('image')!=null) {
-        $events->image=FileUpload($req->file('image'),$path);
-        }
-        $events->events=$req->s_event;
-        $events->title=$req->title;
-        $events->description=$req->description;
-        $events->info_link=$req->info_link;
-        $events->ticket_link=$req->ticket_link;
-        $events->facebook_link=$req->face_link;
-        if($events->save()){
-            return redirect('admin/events')->with('success', 'Events successfully Updated');
-        }
+         $req->validate([
+           'events'=>'required', 
+           'title'=>'required', 
+           'description'=>'required', 
+           'info_link'=>'required', 
+           'ticket_link'=>'required', 
+           'facebook_link'=>'required', 
+        ]);
+        DB::beginTransaction();
+        try{
+            $path=public_path('images/events');
+            $inputs=$req->except('_token');
+            if($req->image!=null){
+                $inputs['image']=FileUpload($req->image, $path);
+            }
+        Events::find($id)->update($inputs);
+        DB::commit();
+         return redirect('admin/events')->with('success','Events successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+
     }
 
     /**

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Caffe\Entities\Caffe;
 use Yajra\DataTables\Facades\DataTables;
+use Throwable;
+use DB;
+use Auth;
 class CaffeController extends Controller
 {
     /**
@@ -20,8 +23,12 @@ class CaffeController extends Controller
            return DataTables::of($caffe)
            ->addColumn('action',function ($row){
                $action='';
+               if(Auth::user()->can('caffe.edit')){
                $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/caffe/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+           }
+           if(Auth::user()->can('caffe.delete')){
                $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/caffe/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+           }
                return $action;
            })
            ->rawColumns(['action'])
@@ -50,18 +57,23 @@ class CaffeController extends Controller
            'title'=>'required', 
            'file'=>'required', 
            'description'=>'required', 
-           'link'=>'required', 
         ]);
-        $path=public_path('images/caffe');
-        $caffe=Caffe::create([
-           'title'=> $req->title,
-           'file'=>FileUpload($req->file('file'), $path),
-           'description'=> $req->description,
-           'link'=> $req->link,
-        ]);
-        if($caffe->save()){
-            return redirect('admin/caffe')->with('success', 'Caffe successfully created');
-        }
+        DB::beginTransaction();
+        try{
+            $path=public_path('caffe-menu');
+            $inputs=$req->except('_token');
+            $inputs['file']=FileUpload($req->file, $path);
+        Caffe::create($inputs);
+        DB::commit();
+         return redirect('admin/caffe')->with('success','Caffe Menu successfully created');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**
@@ -93,22 +105,28 @@ class CaffeController extends Controller
      */
     public function update(Request $req, $id)
     {
-        $file=$req->file('file');
-        if ($file!=null) {
-        $imgname=$file->getClientOriginalName();
-   
-        }
-        $path=public_path('images/caffe');
-        $caffe=Caffe::find($id);
-         if ($req->file('file')!=null) {
-        $caffe->file=FileUpload($req->file('file'),$path);
-        }
-         $caffe->title=$req->title;
-         $caffe->description=$req->description;
-         $caffe->link=$req->link;
-        if($caffe->save()){
-            return redirect('admin/caffe')->with('success', 'Caffe successfully Updated');
-        }
+        $req->validate([
+           'title'=>'required', 
+           'description'=>'required', 
+        ]);
+         DB::beginTransaction();
+        try{
+            $path=public_path('caffe-menu');
+            $inputs=$req->except('_token');
+            if($req->file!=null){
+                $inputs['file']=FileUpload($req->file, $path);
+            }
+        Caffe::find($id)->update($inputs);
+        DB::commit();
+         return redirect('admin/caffe')->with('success','Caffe Menu successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**
@@ -118,10 +136,18 @@ class CaffeController extends Controller
      */
     public function destroy($id)
     {
-        $caffe=Caffe::find($id);
-        if($caffe->delete()) {
-        return redirect('admin/caffe')->with('success','Caffe successfully Deleted');
-        
-    }
+        DB::beginTransaction();
+        try{
+        Caffe::find($id)->delete();
+        DB::commit();
+         return redirect('admin/caffe')->with('success','Caffe Menu successfully deleted');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 }
