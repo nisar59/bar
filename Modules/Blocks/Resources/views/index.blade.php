@@ -7,7 +7,18 @@ Page Blocks
 
   <style>
 /*  .ui-state-highlight { height: 1.5em; line-height: 1.2em; list-style: none; contain: 'Drop here'; background: red;}
-*/  </style>
+*/  
+
+.tooltip .tooltip-arrow:before {
+    border-top-color: #006BA6 !important;
+}
+
+.tooltip .tooltip-inner {
+    background-color: #006BA6;
+    width: 350;
+    max-width: 350px;
+}
+  </style>
 
 @endsection
 
@@ -28,14 +39,17 @@ Page Blocks
     <div class="col-6 col-md-6">
         <div class="card card-primary">
         <div class="card-header bg-white">
-          <h4>Pages</h4>
+          <h4>Page Sections</h4>
         </div>
 
         <div class="card-body">
                 <ol id="page-sections">
                     @foreach($page->blocks as $pb)
+                    @php
+                    $block_name=ucfirst($pb->block_name);
+                    @endphp
                     <li class="bg-primary row mb-1">
-                        <h4 class="text-white col-8">{{strtoupper($pb->block_name)}}</h4>                      
+                        <h5 class="text-white col-8">{{str_replace('_', ' ',$block_name)}}</h5>                      
                         <span class="col-3 handle text-end settings" data-sectionid="{{$pb->id}}"><i class="fa fa-cog text-white fa-lg mt-2" aria-hidden="true"></i>
                         </span>
                         <span class="col-1 text-end"><a href="{{url('admin/pages/blocks/destroy/'.$pb->id)}}"><i class="fas fa-expand-arrows-alt text-danger fa-lg mt-2" aria-hidden="true"></i></a></span>
@@ -57,8 +71,11 @@ Page Blocks
             
                 <ol id="sections" >
                     @foreach(config('page-blocks') as $key=> $block)
-                    <li class="bg-primary row mb-1">
-                        <h4 class="text-white col-8">{{strtoupper($key)}}</h4>                      
+                    @php
+                    $block_name=ucfirst($key);
+                    @endphp
+                    <li class="bg-primary row mb-1" data-toggle="tooltip" title='<img src="{{asset("block/".$block["sample"])}}" alt="Sample not found" class="w-100" />'>
+                        <h5 class="text-white col-8">{{str_replace('_', ' ',$block_name)}}</h5>                      
                         <span class="col-4 handle text-end"><i class="fa fa-arrows-alt text-white fa-lg mt-2"></i></span>
                         <input type="hidden" name="sections[]" class="section" value="{{$key}}">
                     </li>
@@ -78,6 +95,13 @@ Page Blocks
 <script>
 
 $(document).ready(function () {
+
+$('[data-toggle="tooltip"]').tooltip({
+    animated: 'fade',
+    placement: 'top',
+    html: true
+});
+
 
 $("#sections").sortable({
     group: {
