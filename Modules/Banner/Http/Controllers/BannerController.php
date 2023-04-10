@@ -26,7 +26,7 @@ class BannerController extends Controller
 
                if(Auth::user()->can('banner.edit')){
                $path=url('images/banner');                   
-                $action.='<a class="btn btn-success banner-show btn-sm m-1" data-type="'.$row->type.'" data-img="'.$path.'/'.$row->image.'" data-bgimg="'.$path.'/'.$row->background_image.'" data-video="'.$path.'/'.$row->video.'" href="javascript:void(0)"><i class="fas fa-eye"></i></a>';
+                $action.='<a class="btn btn-success banner-show btn-sm m-1" data-type="'.$row->type.'" data-img="'.$path.'/'.$row->image.'" data-bgimg="'.$path.'/'.$row->background_image.'" data-video="'.$row->video.'" href="javascript:void(0)"><i class="fas fa-eye"></i></a>';
 
                    $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/banner/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
                 }
@@ -74,7 +74,8 @@ class BannerController extends Controller
     {
         $req->validate([
         'name'=>'required',
-        'background_image'=>'required',
+        'background_image'=>'required_without:video',
+        'video'=>'required_without:background_image',
         'type'=>'required',
         ]);
          DB::beginTransaction();
@@ -89,7 +90,7 @@ class BannerController extends Controller
             $inputs['background_image']=FileUpload($req->background_image, $path);
         }
         if($req->video!=null){
-            $inputs['video']=FileUpload($req->video, $path);
+            $inputs['video']=$req->video;
         }
 
         Banner::create($inputs);
@@ -173,6 +174,8 @@ class BannerController extends Controller
         $req->validate([
         'name'=>'required',
         'type'=>'required',
+        'background_image'=>'required_without:video',
+        'video'=>'required_without:background_image',
         ]);
            DB::beginTransaction();
         try{
@@ -186,7 +189,7 @@ class BannerController extends Controller
             $inputs['background_image']=FileUpload($req->background_image, $path);
         }
         if($req->video!=null){
-            $inputs['video']=FileUpload($req->video, $path);
+            $inputs['video']=$req->video;
         }
         Banner::find($id)->update($inputs);
         DB::commit();

@@ -97,9 +97,8 @@ $("#type").trigger('change');
 $(document).on('change', '#type',function() {
 var video_hmtl=`<div class="col-md-12 mt-1">
   <div class="form-group">
-    <label>Video</label>
-    <input type="file" class="form-control"  name="video" >
-    {{$banner->video}}
+    <label>Vimeo Video Link</label>
+    <input type="text" value="{{$banner->video}}" class="form-control"  name="video"  placeholder="Vimeo Video Link">
   </div>
 </div>`;
 var image_html=`<div class="col-md-6 mt-1">

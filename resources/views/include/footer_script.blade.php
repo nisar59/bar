@@ -18,11 +18,14 @@
         var player = $f(iframe);
         player.api("pause");
       });
+
       $(document).on('click', '.play-motion', function () {
         var iframe = document.getElementById('videoId');
         var player = $f(iframe);
         player.api("play");
       });
+
+      
       $(window).scroll(function(){
       if( $(window).scrollTop() > 30 ) {
       $(".site-header").addClass("site-header-mobi--collapse");

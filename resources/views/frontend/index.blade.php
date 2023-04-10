@@ -13,14 +13,16 @@ Home | Dante NYC
 					@include('frontend.blocks.banner', ['banner'=>$page->banner])
 				@endif
 
+				@if($page->blocks!=null)
+					@foreach($page->blocks as $block)
+						@php
+							$nme=$block->block_name;
+							$file_name=config('page-blocks')->$nme;
+						@endphp
+						@include('frontend.blocks.'.$file_name['name'], ['data'=>	$block->data])
+					@endforeach
+				@endif
 
-
-
-					@include('frontend.blocks.ranking')
-					@include('frontend.blocks.book-table')
-					@include('frontend.blocks.celebrate')
-					@include('frontend.blocks.shop')
-					@include('frontend.blocks.food-drink')
 			</main>
 		</div>
 @endsection

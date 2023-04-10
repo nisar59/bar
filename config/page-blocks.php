@@ -5,7 +5,7 @@ return (object) $blocks = [
 
   'ranking' => [
     'title'=>'Ranking',
-    'name' => 'ranking.blade.php',
+    'name' => 'ranking',
     'data' => [
       'heading_one'=>['name'=>'heading_one','type'=>'text'],
       'subheading_one'=>['name'=>'subheading_one','type'=>'text'],
@@ -18,7 +18,7 @@ return (object) $blocks = [
 
 
   'table_reservation' => [
-    'name' => 'book-table.blade.php',
+    'name' => 'book-table',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
       'sub_heading'=>['name'=>'sub_heading','type'=>'text'],
@@ -32,7 +32,7 @@ return (object) $blocks = [
 
 
   'follow_up_section_with_right_image' => [
-    'name' => 'book-table.blade.php',
+    'name' => 'book-table',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
       'sub_heading'=>['name'=>'sub_heading','type'=>'text'],
@@ -45,7 +45,7 @@ return (object) $blocks = [
 
 
   'follow_up_section_with_left_image' => [
-    'name' => 'celebrate.blade.php',
+    'name' => 'celebrate',
     'data' => [
       'image'=>['name'=>'image','type'=>'file'],
       'heading'=>['name'=>'heading','type'=>'text'],
@@ -59,7 +59,7 @@ return (object) $blocks = [
 
 
   'follow_up_section_with_background_image' => [
-    'name' => 'food-drink.blade.php',
+    'name' => 'food-drink',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
       'sub_heading'=>['name'=>'sub_heading','type'=>'text'],
@@ -78,7 +78,7 @@ return (object) $blocks = [
 
 
   'qoute_without_heading' => [
-    'name' => 'welcome-center-text.blade.php',
+    'name' => 'welcome-center-text',
     'data' => [
       'qoute_text'=>['name'=>'qoute_text', 'type'=>'text'],
       'author'=>['name'=>'author','type'=>'text'],
@@ -86,7 +86,7 @@ return (object) $blocks = [
   ],
 
   'qoute_with_heading' => [
-    'name' => 'our-story-text.blade.php',
+    'name' => 'our-story-text',
     'data' => [
       'qoute_text'=>['name'=>'qoute_text', 'type'=>'text'],
       'author'=>['name'=>'author','type'=>'text'],
@@ -96,7 +96,7 @@ return (object) $blocks = [
 
 
   'products_showcase' => [
-    'name' => 'welcome-images.blade.php',
+    'name' => 'welcome-images',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
       'products'=>['name'=>'products','type'=>'table']
@@ -111,7 +111,7 @@ return (object) $blocks = [
 
 
   'our_story_text1' => [
-    'name' => 'our-story-text.blade.php',
+    'name' => 'our-story-text',
     'data' => [
       'header',
       'heading',
@@ -120,7 +120,7 @@ return (object) $blocks = [
   ],
 
   'our_story_one' => [
-    'name' => 'our-story-one.blade.php',
+    'name' => 'our-story-one',
     'data' => [
       'heading',
       'image',
@@ -128,14 +128,14 @@ return (object) $blocks = [
   ],
 
   'our_story_text2' => [
-    'name' => 'our-story-center-text.blade.php',
+    'name' => 'our-story-center-text',
     'data' => [
       'heading',
     ],
   ],
 
   'our_story_two' => [
-    'name' => 'our-story-two.blade.php',
+    'name' => 'our-story-two',
     'data' => [
       'image',
       'heading',
@@ -143,7 +143,7 @@ return (object) $blocks = [
   ],
 
   'our_story_footer_images' => [
-    'name' => 'our-story-footer-img.blade.php',
+    'name' => 'our-story-footer-img',
     'data' => [
       'images',
     ],
@@ -151,7 +151,7 @@ return (object) $blocks = [
 
   //Hours+Location sections files
   'hour_image_text' => [
-    'name' => 'hour-image-text.blade.php',
+    'name' => 'hour-image-text',
     'data' => [
       'heading',
       'link',
@@ -165,7 +165,7 @@ return (object) $blocks = [
 
   //Menus sections files
   'menus_nav' => [
-    'name' => 'menus-nav.blade.php',
+    'name' => 'menus-nav',
     'data' => [
       'button',
       'nav-bar',
@@ -175,7 +175,7 @@ return (object) $blocks = [
   // News and Events
 
   'news_images' => [
-    'name' => 'news-footer-images.blade',
+    'name' => 'news-footer-images',
     'data' => [
       'images',
       'subheading',
