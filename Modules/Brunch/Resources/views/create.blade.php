@@ -11,7 +11,7 @@ Bottomless Brunch
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">Bottomless Brunch</li>
-        <li class="breadcrumb-item active">Bottomless-Brunch</li>
+        <li class="breadcrumb-item active">Bottomless Brunch</li>
       </ol>
     </div>
   </div>

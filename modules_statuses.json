@@ -15,5 +15,6 @@
     "Banner": true,
     "Slider": true,
     "ProductShowcase": true,
-    "TablesReservation": true
+    "TablesReservation": true,
+    "Extras": true
 }

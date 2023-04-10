@@ -75,6 +75,21 @@ $type = Request()->type;
                     </ul>
                 </li>
                 @endcan
+                <!-- Extras -->
+                 @can('extras.view')
+                <li class="menu-title">Extras</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fa fa-circle"></i>
+                        <span>Extras</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('extras.view')
+                        <li><a href="{{url('admin/extras')}}">Extras</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
 
 
                 <!-- Caffe Menu -->
