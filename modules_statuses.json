@@ -14,5 +14,6 @@
     "Blocks": true,
     "Banner": true,
     "Slider": true,
-    "ProductShowcase": true
+    "ProductShowcase": true,
+    "TablesReservation": true
 }

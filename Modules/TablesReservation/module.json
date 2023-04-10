@@ -1,0 +1,11 @@
+{
+    "name": "TablesReservation",
+    "alias": "tablesreservation",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\TablesReservation\\Providers\\TablesReservationServiceProvider"
+    ],
+    "files": []
+}
