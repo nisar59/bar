@@ -5,9 +5,8 @@ Home | Dante NYC
   @section('content')
   
     <div class="site-content">
-			<main class="site-content__main page-id--635812">
-				<h1 class="sr-only">Home</h1>
-				<span id="main-content" class="sr-only">Main content starts here, tab to start navigating</span>
+    	<div class="site-header-spacer-desktop" aria-hidden="true"></div><div class="site-header-spacer-mobile" aria-hidden="true" style="height:62.125px;"></div>
+			<main class="site-content__main">
 				
 				@if($page->slider_banner_type=="banner")
 					@include('frontend.blocks.banner', ['banner'=>$page->banner])
