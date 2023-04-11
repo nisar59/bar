@@ -28,7 +28,7 @@ Enter Events
             <div class="row mt-2">
               <div class="col-md-6">
                 <label>Select Event</label>
-                <select name="s_event" id="" class="form-control">
+                <select name="events" id="" class="form-control">
                   <option value="weakend"{{$events->events == "weakend" ? 'selected' : '' }}>Weakened</option>
                   <option value="weak_night"{{$events->events == "weak_night" ? 'selected' : '' }}>Weak Night</option>
                 </select>
@@ -76,7 +76,7 @@ Enter Events
             <div class="col-md-6">
                <div class="form-group">
             <label>Facebook Link</label>
-            <input type="url" class="form-control" name="face_link" value="{{$events->facebook_link}}" placeholder="Enter Facebook Link">
+            <input type="url" class="form-control" name="facebook_link" value="{{$events->facebook_link}}" placeholder="Enter Facebook Link">
           </div>
             </div>
           </div>

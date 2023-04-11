@@ -56,7 +56,7 @@ FAQs
               buttons:[],
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},
-                {data: 'text', name: 'text',class:'text-center'},
+                {data: 'description', name: 'description',class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });

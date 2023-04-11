@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Faqs\Entities\Faqs;
 use Yajra\DataTables\Facades\DataTables;
+use Throwable;
+use DB;
+use Auth;
 class FaqsController extends Controller
 {
     /**
@@ -20,8 +23,12 @@ class FaqsController extends Controller
            return DataTables::of($faqs)
            ->addColumn('action',function ($row){
                $action='';
+               if(Auth::user()->can('faqs.edit')){
                $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/faqs/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+            }
+            if(Auth::user()->can('faqs.delete')){
                $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/faqs/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+           }
                return $action;
            })
            ->rawColumns(['action'])
@@ -48,15 +55,22 @@ class FaqsController extends Controller
     {
         $req->validate([
            'title'=>'required', 
-           'area'=>'required', 
+           'description'=>'required', 
         ]);
-        $faq=Faqs::create([
-           'title'=> $req->title,
-           'text'=> $req->area,
-        ]);
-        if($faq->save()){
-            return redirect('admin/faqs')->with('success', 'FAQs successfully created');
-        }
+        DB::beginTransaction();
+        try{
+        Faqs::create($req->except('_token'));
+        DB::commit();
+         return redirect('admin/faqs')->with('success','FAQs successfully created');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+       
     }
 
     /**
@@ -87,13 +101,25 @@ class FaqsController extends Controller
      * @return Renderable
      */
     public function update(Request $req, $id)
-    {
-        $faq=Faqs::find($id);
-        $faq->title=$req->title;
-        $faq->text=$req->area;
-        if($faq->save()){
-            return redirect('admin/faqs')->with('success', 'FAQs successfully Updated');
-        }
+    {   
+        $req->validate([
+           'title'=>'required', 
+           'description'=>'required', 
+        ]);
+          DB::beginTransaction();
+        try{
+        Faqs::find($id)->update($req->except('_token'));
+        DB::commit();
+         return redirect('admin/faqs')->with('success','FAQs successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+        
     }
 
     /**
@@ -103,10 +129,18 @@ class FaqsController extends Controller
      */
     public function destroy($id)
     {
-        $faq=Faqs::find($id);
-        if($faq->delete()){
-            return redirect('admin/faqs')->with('success', 'FAQs successfully Updated');
-        }
-        
+        DB::beginTransaction();
+        try{
+        Faqs::find($id)->delete();
+        DB::commit();
+         return redirect('admin/faqs')->with('success','FAQs successfully deleted');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 }

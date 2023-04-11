@@ -1,12 +1,12 @@
 @extends('layouts.template')
 @section('title')
-Weakly-Events 
+Weakly Events 
 @endsection
 @section('content')
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Weakly-Events</h6>
+      <h6 class="page-title">Weakly Events</h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">Weakly-Events</li>
@@ -20,7 +20,7 @@ Weakly-Events
     <div class="card card-primary">
       <div class="card-header bg-white">
         <div class="row">
-          <h4 class="col-md-6">Weakly-Events </h4>
+          <h4 class="col-md-6">Weakly Events </h4>
           <div class="col-md-6 text-end">
             <a href="{{url('admin/weaklyevents/create')}}" class="btn btn-success">+</a>
           </div>

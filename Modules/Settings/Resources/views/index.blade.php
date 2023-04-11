@@ -62,14 +62,35 @@ $favicon=url('public/img/settings/'.$sett->portal_favicon);
                   </div>
                   <div class="row">
                     <div class="form-group col-md-6">
-                      <label>Panel Logo</label>
+                      <label>Panel Logo (2388x1988)</label>
                       <input type="file" class="form-control" name="panel_logo" id="panel_logo">
                     </div>
                     <div class="form-group col-md-6">
-                      <label>Panel Favicon</label>
+                      <label>Panel Favicon (16x16)</label>
                       <input type="file" class="form-control" name="panel_favicon" id="panel_favicon">
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Website Logo(1297x597)</label>
+                      <input type="file" class="form-control" name="website_logo" id="">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Website Small Logo(600x162)</label>
+                      <input type="file" class="form-control" name="website_s_logo" id="">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Website Favicon Icone(16x16)</label>
+                      <input type="file" class="form-control" name="website_f_icone" id="">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Penal Logo(600x162)</label>
+                      <input type="file" class="form-control" name="penal_logo" id="">
+                    </div>
+                  </div>
+
                 </div>
                 <div class="tab-pane p-3" id="application-logs" role="tabpanel">
                   <div class="row">

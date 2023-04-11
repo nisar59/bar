@@ -35,10 +35,6 @@ Edit Caffe Menu
             <textarea name="description" class="form-control"id=""  cols="68" placeholder="Enter Description " rows="5">{{$caffe->description}}</textarea>
           </div>
           <div class="form-group">
-            <label>Link</label>
-            <input type="link" class="form-control"value="{{$caffe->link}}" name="link" placeholder="Enter Url">
-          </div>
-          <div class="form-group">
             <label>File /Upload Pdf File</label>
             <input type="file" class="form-control mb-2"  name="file" placeholder="Enter Image">
             <span ><b>{{$caffe->file}}</b></span>

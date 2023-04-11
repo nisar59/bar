@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Brunch\Entities\Brunch;
 use Yajra\DataTables\Facades\DataTables;
+use Throwable;
+use DB;
+use Auth;
 class BrunchController extends Controller
 {
     /**
@@ -20,8 +23,12 @@ class BrunchController extends Controller
            return DataTables::of($brunch)
            ->addColumn('action',function ($row){
                $action='';
+               if(Auth::user()->can('brunch.edit')){
                $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/brunch/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+           }
+           if(Auth::user()->can('brunch.delete')){
                $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/brunch/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+           }
                return $action;
            })
            ->addColumn('image', function ($row) {
@@ -63,15 +70,22 @@ class BrunchController extends Controller
            'description'=>'required', 
            'link'=>'required', 
         ]);
-        $path=public_path('images/brunch');
-        $brunch=Brunch::create([
-           'image'=>FileUpload($req->file('image'), $path),
-           'description'=> $req->description,
-           'link'=> $req->link,
-        ]);
-        if($brunch->save()){
-            return redirect('admin/brunch')->with('success', 'Brunch successfully created');
-        }
+        DB::beginTransaction();
+        try{
+            $path=public_path('images/brunch');
+            $inputs=$req->except('_token');
+            $inputs['image']=FileUpload($req->image, $path);
+        Brunch::create($inputs);
+        DB::commit();
+         return redirect('admin/brunch')->with('success','Brunch successfully created');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**
@@ -103,20 +117,28 @@ class BrunchController extends Controller
      */
     public function update(Request $req, $id)
     {
-         $file=$req->file('image');
-        if ($file!=null) {
-        $imgname=$file->getClientOriginalName();
-   
-        }
-        $path=public_path('images/brunch');
-        $brunch=Brunch::find($id);
-         if ($req->file('image')!=null) {
-        $brunch->image=FileUpload($req->file('image'),$path);
-        }
-        $brunch->description=$req->description;
-        $brunch->link=$req->link;
-        if($brunch->save()){
-         return redirect('admin/brunch')->with('success','Brunch successfully Updated');
+        $req->validate([
+/*           'image'=>'required', 
+*/           'description'=>'required', 
+           'link'=>'required', 
+        ]);
+          DB::beginTransaction();
+        try{
+            $path=public_path('images/brunch');
+            $inputs=$req->except('_token');
+            if($req->image!=null){
+                $inputs['image']=FileUpload($req->image, $path);
+            }
+        Brunch::find($id)->update($inputs);
+        DB::commit();
+         return redirect('admin/brunch')->with('success','Brunch successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
          }
     }
 
@@ -127,10 +149,18 @@ class BrunchController extends Controller
      */
     public function destroy($id)
     {
-        $brunch=Brunch::find($id);
-        if($brunch->delete()){
-        return redirect('admin/brunch')->with('success', 'Brunch successfully Deleted');
-
-        }
+        DB::beginTransaction();
+        try{
+        Brunch::find($id)->delete();
+        DB::commit();
+         return redirect('admin/brunch')->with('success','Brunch successfully deleted');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 }

@@ -28,7 +28,7 @@ Enter Events
             <div class="row">
               <div class="col-md-6">
                 <label>Select Event</label>
-                <select name="s_event" id="" class="form-control">
+                <select name="events" id="" class="form-control">
                   <option value="" class="form-control">Please Select One</option>
                   <option value="weakend" class="form-control">Weakened</option>
                   <option value="weak_night" class="form-control">Weak Night</option>
@@ -74,7 +74,7 @@ Enter Events
             <div class="col-md-6">
                <div class="form-group">
             <label>Facebook Link</label>
-            <input type="url" class="form-control" name="face_link" placeholder="Enter Facebook Link">
+            <input type="url" class="form-control" name="facebook_link" placeholder="Enter Facebook Link">
           </div>
             </div>
           </div>

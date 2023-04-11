@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('title')
-Enter FAQs
+FAQs
 @endsection
 @section('content')
 <div class="page-title-box">
@@ -30,7 +30,7 @@ Enter FAQs
           </div>
           <div class="form-group mt-3">
             <label>Description</label>
-            <textarea id="elm1" class="form-control" name="area"></textarea>
+            <textarea id="elm1" class="form-control" name="description"></textarea>
           </div>
         </div>
         <div class="card-footer text-end">
