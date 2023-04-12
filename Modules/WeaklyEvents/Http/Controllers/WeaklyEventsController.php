@@ -118,7 +118,6 @@ class WeaklyEventsController extends Controller
     public function update(Request $req, $id)
     {
         $req->validate([
-           'image'=>'required', 
            'description'=>'required', 
         ]);
          DB::beginTransaction();

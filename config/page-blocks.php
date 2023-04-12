@@ -82,7 +82,7 @@ return (object) $blocks = [
 
 
   'qoute_without_heading' => [
-    'name' => 'welcome-center-text',
+    'name' => 'qoute_without_heading',
     'sample' => 'qoute_without_heading.png',
     'data' => [
       'qoute_text'=>['name'=>'qoute_text', 'type'=>'text'],
@@ -91,9 +91,10 @@ return (object) $blocks = [
   ],
 
   'qoute_with_heading' => [
-    'name' => 'our-story-text',
+    'name' => 'qoute_with_heading',
     'sample' => 'qoute_with_heading.png',
     'data' => [
+      'heading'=>['name'=>'heading', 'type'=>'text'],
       'qoute_text'=>['name'=>'qoute_text', 'type'=>'text'],
       'author'=>['name'=>'author','type'=>'text'],
     ],
@@ -102,7 +103,7 @@ return (object) $blocks = [
 
 
   'products_showcase' => [
-    'name' => 'welcome-images',
+    'name' => 'products_showcase',
     'sample' => 'products_showcase.png',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
@@ -117,7 +118,7 @@ return (object) $blocks = [
   //our story sections files
 
 
-  'our_story_text_one' => [
+/*  'our_story_text_one' => [
     'name' => 'our-story-text',
     'sample' => 'our_story_text_one.png',
     'data' => [
@@ -125,76 +126,82 @@ return (object) $blocks = [
       'heading',
       'subheading',
     ],
-  ],
+  ],*/
 
-  'our_story_one' => [
-    'name' => 'our-story-one',
-    'sample' => 'our_story_one.png',
+
+
+  'right_image_with_text' => [
+    'name' => 'right_image_with_text',
+    'sample' => 'right_image_with_text.png',
     'data' => [
-      'heading',
-      'image',
+      'heading'=>['name'=>'heading','type'=>'text'],
+      'image'=>['name'=>'image','type'=>'file'],
     ],
   ],
 
-  'our_story_text_two' => [
-    'name' => 'our-story-center-text',
-    'sample' => 'our_story_text_two.png',
+  'paragraph' => [
+    'name' => 'paragraph',
+    'sample' => 'paragraph.png',
     'data' => [
-      'heading',
+      'paragraph'=>['name'=>'paragraph','type'=>'text'],
     ],
   ],
 
-  'our_story_two' => [
-    'name' => 'our-story-two',
-    'sample' => 'our_story_two.png',
+  'left_image_with_text' => [
+    'name' => 'left_image_with_text',
+    'sample' => 'left_image_with_text.png',
     'data' => [
-      'image',
-      'heading',
+      'heading'=>['name'=>'heading','type'=>'text'],
+      'image'=>['name'=>'image','type'=>'file'],
     ],
   ],
 
-  'our_story_footer_images' => [
-    'name' => 'our-story-footer-img',
-    'sample' => 'our_story_footer_images.png',
+  'multiple_images' => [
+    'name' => 'multiple_images',
+    'sample' => 'multiple_images.png',
     'data' => [
-      'images',
+    'image'=>['name'=>'image','type'=>'file'],
+
     ],
   ],
 
   //Hours+Location sections files
   'hour_image_text' => [
-    'name' => 'hour-image-text',
+    'name' => 'hour_image_text',
     'sample' => 'hour_image_text.png',
     'data' => [
-      'heading',
-      'link',
-      'phone',
-      'subheading',
-      'image',
+      'heading'=>['name'=>'heading','type'=>'text'],
+      'link'=>['name'=>'link','type'=>'url'],
+      'phone'=>['name'=>'phone','type'=>'number'],
+      'subheading'=>['name'=>'subheading','type'=>'text'],
+      'image'=>['name'=>'image','type'=>'file'],
+
     ],
   ],
 
-  //Direction missing
+  //Direction(map at footer in hour+location) missing
 
   //Menus sections files
-  'menus_nav' => [
-    'name' => 'menus-nav',
-    'sample' => 'menus_nav.png',
+  'caffe_menu' => [
+    'name' => 'cafe_menu',
+    'sample' => 'cafe_menu.png',
     'data' => [
-      'button',
-      'nav-bar',
+      'button'=>['name'=>'button','type'=>'button'],
+      'navbar'=>['name'=>'button','type'=>'cafe_menu']
     ],
   ],
 
   // News and Events
 
   'news_images' => [
-    'name' => 'news-footer-images',
+    'name' => 'news_images',
     'sample' => 'news_images.png',
     'data' => [
-      'images',
-      'subheading',
-      'button',
+      'images'=>['name'=>'images','type'=>'files'],
+      'subheading'=>['name'=>'subheading','type'=>'text'],
+      'phone'=>['name'=>'phone','type'=>'number'],
+      'button'=>['name'=>'button','type'=>'button'],
+
     ],
   ],
 
