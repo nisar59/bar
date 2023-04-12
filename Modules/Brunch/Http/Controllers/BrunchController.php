@@ -77,7 +77,7 @@ class BrunchController extends Controller
             $inputs['image']=FileUpload($req->image, $path);
         Brunch::create($inputs);
         DB::commit();
-         return redirect('admin/brunch')->with('success','Brunch successfully created');
+         return redirect('admin/brunch')->with('success','Bottomless Brunch successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -131,7 +131,7 @@ class BrunchController extends Controller
             }
         Brunch::find($id)->update($inputs);
         DB::commit();
-         return redirect('admin/brunch')->with('success','Brunch successfully updated');
+         return redirect('admin/brunch')->with('success','Bottomless Brunch successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -153,7 +153,7 @@ class BrunchController extends Controller
         try{
         Brunch::find($id)->delete();
         DB::commit();
-         return redirect('admin/brunch')->with('success','Brunch successfully deleted');
+         return redirect('admin/brunch')->with('success','Bottomless Brunch successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();
