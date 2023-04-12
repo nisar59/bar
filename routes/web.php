@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', function () {
-    return redirect('login');
-});
-
+Route::get('user-login', 'Auth\LoginController@userloginform');
+Route::get('user-register', 'Auth\RegisterController@userregisterform');
 //Ferontend Controller Routes
 Route::get('welcome', 'FrontendController@welcome');
 Route::get('ourstory', 'FrontendController@ourstory');
@@ -36,8 +34,18 @@ Route::get('contact', 'FrontendController@contact');
 Route::get('celebrate', 'FrontendController@celebrate');
 Route::get('work-with-us', 'FrontendController@work_with');
 
-
 Auth::routes();
+
+
+// Authentication Routes...
+Route::get('admin', 'Auth\LoginController@showLoginForm')->name('admin');
+
+Route::get('login', function()
+{
+	return redirect('user-login');
+})->name('login');
+
+
 Route::any('logout', 'Auth\LoginController@logout');
 
 Route::get('admin/check-auth', 'HomeController@checkauth');
@@ -48,4 +56,5 @@ Route::get('admin/artisan/{command}', 'HomeController@artisan')->name('home')->m
 
 
 Route::get('/', 'FrontendController@index');
+Route::get('home', 'FrontendController@index')->middleware('auth');
 //Route::get('/{slug}', 'FrontendController@index');

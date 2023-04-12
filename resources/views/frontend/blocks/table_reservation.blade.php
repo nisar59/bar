@@ -16,30 +16,32 @@ $data=json_decode($data);
 			<div class="c-split__image" role="img" aria-label="Dante Negroni over Menu" style="background-image: url('@if(isset($data->image)) {{asset("images/frontend/".$data->image)}} @endif');background-position:none"></div>
 		</div>
 	</div>
-
-</section>	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">New message</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
+</section>
+@section('modal')
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header justify-content-center">
+				<h5 class="modal-title text-dark" id="exampleModalLabel">RESERVATIONS</h5>
+			</div>
+			<form action="{{url('table-bookings/create')}}">
 				<div class="modal-body">
-					<form>
-						<div class="mb-3">
-							<label for="recipient-name" class="col-form-label">Recipient:</label>
-							<input type="text" class="form-control" id="recipient-name">
-						</div>
-						<div class="mb-3">
-							<label for="message-text" class="col-form-label">Message:</label>
-							<textarea class="form-control" id="message-text"></textarea>
-						</div>
-					</form>
+					<div class="mb-3">
+						<label for="guest" class="col-form-label text-dark">Guests:</label>
+						<input type="number" min="1" class="form-control border border-dark" name="guests" id="guest" placeholder="Number of Guests" required>
+					</div>
+					<div class="mb-3">
+						<label for="date" class="col-form-label text-dark">Date:</label>
+						<input type="date" class="form-control border border-dark" name="date" id="date" required>
+					</div>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Send message</button>
+					<button type="submit" class="btn btn-success mt-2 w-auto">Next</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
+</div>
+@endsection

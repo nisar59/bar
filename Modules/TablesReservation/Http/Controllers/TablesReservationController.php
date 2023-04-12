@@ -79,7 +79,11 @@ class TablesReservationController extends Controller
         DB::beginTransaction();
         try{
 
-            $table_reservation=TablesReservation::whereTime('time_to','>=',$req->time_from)->orWhereTime('time_to','>=', $req->time_to);
+            $table_reservation=TablesReservation::where('guests', $req->guests)->where(function($qry) use($req)
+            {
+                $qry->whereTime('time_to','>=',$req->time_from);
+                $qry->orWhereTime('time_to','>=', $req->time_to);
+            });
             if($table_reservation->count()>0){
             return redirect()->back()->withInput()->with('error','There is an other table available in this time slot');
             }
@@ -144,7 +148,7 @@ class TablesReservationController extends Controller
             {
                $qry->whereTime('time_to','>=',$req->time_from);
                $qry->orWhereTime('time_to','>=', $req->time_to);
-            });
+            })->where('guests', $req->guests);
 
 
             if($table_reservation->count()>0){

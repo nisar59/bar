@@ -16,5 +16,6 @@
     "Slider": true,
     "ProductShowcase": true,
     "TablesReservation": true,
-    "Extras": true
+    "Extras": true,
+    "TableBookings": true
 }

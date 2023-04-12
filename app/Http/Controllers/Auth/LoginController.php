@@ -38,4 +38,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function authenticated()
+    {
+
+        if(auth()->user()->roles()->count()<1 OR auth()->user()->hasRole('user'))
+        {
+            
+            if(session()->has('redirect-url')){                
+                $red_url=session()->get('redirect-url');
+                session()->forget('redirect-url');
+                return redirect($red_url);
+            }
+
+            return redirect(RouteServiceProvider::HOME);
+        } 
+        else{
+            return redirect(RouteServiceProvider::ADMIN);
+        }
+
+    }
+
+    public function userloginform()
+    {
+      return view('auth.user-login');
+    }
+
+
 }

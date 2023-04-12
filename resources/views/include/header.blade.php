@@ -49,41 +49,19 @@
             <nav class="site-nav" aria-label="Navigation Menu">
               <ul class="site-nav-menu" data-menu-type="mobile">
                 <li>
-                  <a class="site-nav-link " href="{{url('welcome')}}">Welcome</a>
+                  <a class="site-nav-link " href="{{url('welcome')}}">WELCOME</a>
                 </li>
                 <li>
-                  <a class="site-nav-link " href="{{url('ourstory')}}">A Taste of Italy</a>
+                  <a class="site-nav-link " href="{{url('ourstory')}}">OUR STORY</a>
                 </li>
                 <li>
-                  <a class="site-nav-link " href="{{url('hours-location')}}">Hours & Locations</a>
+                  <a class="site-nav-link " href="{{url('hours-location')}}">HOURS & LOCATIONS</a>
                 </li>
                 <li>
-                  <a class="site-nav-link " href="#">Menu</a>
+                  <a class="site-nav-link " href="{{url('west-village-menu')}}">MENU</a>
                 </li>
                 <li>
                   <a class="site-nav-link " href="#">Bottomless Brunch</a>
-                </li>
-                
-                <li>
-                  <a class="site-nav-link" href="#">Events</a>
-                </li>
-                <li>
-                  <a class="site-nav-link" href="#">Book Our Venue</a>
-                </li>
-                <li>
-                  <a class="site-nav-link" href="#">Contact</a>
-                </li>
-                <li>
-                  <a class="site-nav-link" href="#">FAQs</a>
-                </li>
-                <li>
-                  <a class="site-nav-link" href="#">Nottingham</a>
-                </li>
-                <li>
-                  <a class="site-nav-link" href="#">Secret</a>
-                </li>
-                <li>
-                  <a class="site-nav-link" href="#">Garden</a>
                 </li>
               </ul>
             </nav>

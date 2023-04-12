@@ -1,5 +1,5 @@
-<script type="text/javascript" src="assetss/js/jquery-3.6.4.min.js"></script>
-<script type="text/javascript" src="assetss/js/bootstrap.js"></script>
+<script type="text/javascript" src="{{url('assetss/js/jquery-3.6.4.min.js')}}"></script>
+<script type="text/javascript" src="{{url('assetss/js/bootstrap.js')}}"></script>
 <script type="text/javascript" src="https://unpkg.com/vimeo-froogaloop2@0.1.0/javascript/froogaloop.min.js"></script>
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script type="text/javascript">
@@ -41,7 +41,7 @@
        var w = $(window).width();
        var h=(w*56)/100;
        var t=h/2;
-      $('.hero__video-inner').css({'width':w, 'height':h, 'top':-''+t});
+      $('.hero__video-inner').css({'width':w, 'height':h, 'top':'-'+t});
     }
         VideoSize();
     $(window).resize(function() {
