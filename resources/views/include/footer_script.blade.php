@@ -1,4 +1,5 @@
 <script type="text/javascript" src="{{url('assetss/js/jquery-3.6.4.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assetss/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
 <script type="text/javascript" src="{{url('assetss/js/bootstrap.js')}}"></script>
 <script type="text/javascript" src="https://unpkg.com/vimeo-froogaloop2@0.1.0/javascript/froogaloop.min.js"></script>
 <script src="https://player.vimeo.com/api/player.js"></script>
