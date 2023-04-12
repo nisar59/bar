@@ -85,10 +85,7 @@ $favicon=url('public/img/settings/'.$sett->portal_favicon);
                       <label>Website Favicon Icone(16x16)</label>
                       <input type="file" class="form-control" name="website_f_icone" id="">
                     </div>
-                    <div class="form-group col-md-6">
-                      <label>Penal Logo(600x162)</label>
-                      <input type="file" class="form-control" name="penal_logo" id="">
-                    </div>
+                   
                   </div>
 
                 </div>

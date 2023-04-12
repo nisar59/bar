@@ -39,7 +39,6 @@ class SettingsController extends Controller
         $portal_favicon=null;
         $website_logo=null;
         $website_small_logo=null;
-        $penal_logo=null;
         $path=public_path('img/settings/');
 
         $sett=Settings::first();
@@ -50,7 +49,6 @@ class SettingsController extends Controller
             $website_logo=$sett->website_logo;
             $website_small_logo=$sett->website_small_logo;
             $website_favicon_icone=$sett->website_favicon_icone;
-            $penal_logo=$sett->penal_logo;
         }
 
         if($req->file('panel_logo')!=null){
@@ -68,9 +66,7 @@ class SettingsController extends Controller
                 if($req->file('website_f_icone')!=null){
             $website_favicon_icone=FileUpload($req->file('website_f_icone'), $path);
         }
-         if($req->file('penal_logo')!=null){
-            $penal_logo=FileUpload($req->file('penal_logo'), $path);
-        }
+        
 
         $settings=Settings::firstOrNew(['id'=>1]);
         $settings->portal_name=$req->panel_name;
@@ -80,7 +76,6 @@ class SettingsController extends Controller
         $settings->website_logo=$website_logo;
         $settings->website_small_logo=$website_small_logo;
         $settings->website_favicon_icone=$website_favicon_icone;
-        $settings->penal_logo=$penal_logo;
         $settings->logging=$req->logging;
         $settings->logs_duration=$req->logs_duration;
         $settings->logs_duration_type=$req->logs_duration_type;
