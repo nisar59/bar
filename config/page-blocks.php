@@ -182,7 +182,7 @@ return (object) $blocks = [
   //Direction(map at footer in hour+location) missing
 
   //Menus sections files
-  'cafe_menu' => [
+  'caffe_menu' => [
     'name' => 'cafe_menu',
     'sample' => 'cafe_menu.png',
     'data' => [
