@@ -166,14 +166,12 @@ return (object) $blocks = [
   ],
 
   //Hours+Location sections files
-  'hour_image_text' => [
-    'name' => 'hour_image_text',
-    'sample' => 'hour_image_text.png',
+  'hours_and_location' => [
+    'name' => 'hours_and_location',
+    'sample' => 'hours_and_location.png',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
-      'link'=>['name'=>'link','type'=>'url'],
-      'phone'=>['name'=>'phone','type'=>'number'],
-      'subheading'=>['name'=>'subheading','type'=>'text'],
+      'text'=>['name'=>'text','type'=>'text'],
       'image'=>['name'=>'image','type'=>'file'],
 
     ],
@@ -186,21 +184,19 @@ return (object) $blocks = [
     'name' => 'cafe_menu',
     'sample' => 'cafe_menu.png',
     'data' => [
-      'button'=>['name'=>'button','type'=>'button'],
-      'navbar'=>['name'=>'button','type'=>'cafe_menu']
+      'caffe_menu'=>['name'=>'caffe_menu','type'=>'table']
     ],
   ],
 
   // News and Events
 
-  'news_images' => [
-    'name' => 'news_images',
-    'sample' => 'news_images.png',
+  'news_and_popups' => [
+    'name' => 'news_and_popups',
+    'sample' => 'news_and_popups.png',
     'data' => [
-      'images'=>['name'=>'images','type'=>'files'],
-      'subheading'=>['name'=>'subheading','type'=>'text'],
-      'phone'=>['name'=>'phone','type'=>'number'],
-      'button'=>['name'=>'button','type'=>'button'],
+      'heading'=>['name'=>'heading','type'=>'text'],
+      'text'=>['name'=>'text','type'=>'text'],
+      'new_popups'=>['name'=>'new_popups','type'=>'table']
 
     ],
   ],
