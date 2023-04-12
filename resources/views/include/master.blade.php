@@ -11,9 +11,10 @@
 <!-- Footer -->
  @include('include.footer')
 
+ @yield('modal')
 	<!-- Footer script -->
   @include('include.footer_script')
 
-
+  @yield('js')
 </body>
 </html>

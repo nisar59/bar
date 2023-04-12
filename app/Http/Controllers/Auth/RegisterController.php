@@ -56,6 +56,12 @@ class RegisterController extends Controller
         ]);
     }
 
+
+    public function userregisterform()
+    {
+        return view('auth.user-register');
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *

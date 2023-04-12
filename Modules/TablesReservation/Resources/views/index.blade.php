@@ -1,16 +1,16 @@
 @extends('layouts.template')
 @section('title')
-Product Showcase
+Tables Reservation
 @endsection
 @section('content')
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Product Showcase</h6>
+      <h6 class="page-title">Tables Reservation</h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">CMS</li>
-        <li class="breadcrumb-item active">Product Showcase</li>
+        <li class="breadcrumb-item active">Tables Reservation</li>
       </ol>
     </div>
   </div>
@@ -20,9 +20,9 @@ Product Showcase
     <div class="card card-primary">
       <div class="card-header bg-white">
         <div class="row">
-          <h4 class="col-md-6">Product Showcase</h4>
+          <h4 class="col-md-6">Tables Reservation</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('admin/product-showcase/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/tables-reservation/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@ Product Showcase
             <thead class="text-center bg-primary text-white">
               <tr>
                 <th>Name</th>
-                <th>No Guests</th>
+                <th>No of Guests</th>
                 <th>Price</th>
                 <th>Time From</th>
                 <th>Time To</th>
