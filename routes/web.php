@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('user-login', 'Auth\LoginController@userloginform');
 Route::get('user-register', 'Auth\RegisterController@userregisterform');
 //Ferontend Controller Routes
-Route::get('welcome', 'FrontendController@welcome');
+/*Route::get('welcome', 'FrontendController@welcome');
 Route::get('ourstory', 'FrontendController@ourstory');
 Route::get('hours-location', 'FrontendController@hours_location');
 Route::get('cafe-dante-menu', 'FrontendController@cafe_dante_menu');
@@ -33,7 +33,7 @@ Route::get('press', 'FrontendController@press');
 Route::get('contact', 'FrontendController@contact');
 Route::get('celebrate', 'FrontendController@celebrate');
 Route::get('work-with-us', 'FrontendController@work_with');
-
+*/
 Auth::routes();
 
 
@@ -57,4 +57,4 @@ Route::get('admin/artisan/{command}', 'HomeController@artisan')->name('home')->m
 
 Route::get('/', 'FrontendController@index');
 Route::get('home', 'FrontendController@index')->middleware('auth');
-//Route::get('/{slug}', 'FrontendController@index');
+Route::get('/{slug}', 'FrontendController@index');

@@ -38,6 +38,7 @@ return (object) $blocks = [
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
       'sub_heading'=>['name'=>'sub_heading','type'=>'text'],
+      'button_text'=>['name'=>'button_text','type'=>'text'],
       'link'=>['name'=>'link','type'=>'url'],
       'image'=>['name'=>'image','type'=>'file'],
     ],
@@ -47,12 +48,13 @@ return (object) $blocks = [
 
 
   'follow_up_section_with_left_image' => [
-    'name' => 'celebrate',
+    'name' => 'follow_up_section_with_left_image',
     'sample' => 'follow_up_section_with_left_image.png',
     'data' => [
       'image'=>['name'=>'image','type'=>'file'],
-      'heading'=>['name'=>'heading','type'=>'text'],
+      'heading'=>['name'=>'heading','type'=>'text'],      
       'sub_heading'=>['name'=>'sub_heading','type'=>'text'],
+      'button_text'=>['name'=>'button_text','type'=>'button_text'],
       'link'=>['name'=>'link','type'=>'url'],
     ],
   ],
@@ -62,11 +64,12 @@ return (object) $blocks = [
 
 
   'follow_up_section_with_background_image' => [
-    'name' => 'food-drink',
+    'name' => 'follow_up_section_with_background_image',
     'sample' => 'follow_up_section_with_background_image.png',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
       'sub_heading'=>['name'=>'sub_heading','type'=>'text'],
+      'button_text'=>['name'=>'button_text','type'=>'button_text'],      
       'link'=>['name'=>'link','type'=>'url'],
       'background_image'=>['name'=>'background_image','type'=>'file'],
     ],
@@ -85,8 +88,7 @@ return (object) $blocks = [
     'name' => 'qoute_without_heading',
     'sample' => 'qoute_without_heading.png',
     'data' => [
-      'qoute_text'=>['name'=>'qoute_text', 'type'=>'text'],
-      'author'=>['name'=>'author','type'=>'text'],
+      'qoute_text'=>['name'=>'qoute_text', 'type'=>'text', 'class'=>'editor'],
     ],
   ],
 

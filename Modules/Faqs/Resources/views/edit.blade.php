@@ -31,7 +31,7 @@ FAQs
           </div>
            <div class="form-group mt-3">
             <label>Description</label>
-            <textarea id="elm1" class="form-control" name="description">{{$faq->description}}</textarea>
+            <textarea class="form-control editor" name="description">{{$faq->description}}</textarea>
           </div>
           
           
