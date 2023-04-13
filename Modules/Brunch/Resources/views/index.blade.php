@@ -22,7 +22,7 @@ Bottomless Brunch
         <div class="row">
           <h4 class="col-md-6">Bottomless Brunch </h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('admin/brunch/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/bottomless-brunch/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@ Bottomless Brunch
   var roles_table = $('#brunch').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('admin/brunch')}}",
+              ajax: "{{url('admin/bottomless-brunch')}}",
               buttons:[],
               columns: [
                 {data: 'image', name: 'image',class:'text-center', orderable: false, searchable: false ,class:'text-center'},

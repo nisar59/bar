@@ -1,0 +1,11 @@
+{
+    "name": "Socialmedia",
+    "alias": "socialmedia",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Socialmedia\\Providers\\SocialmediaServiceProvider"
+    ],
+    "files": []
+}

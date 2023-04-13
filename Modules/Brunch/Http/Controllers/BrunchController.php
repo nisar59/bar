@@ -23,11 +23,11 @@ class BrunchController extends Controller
            return DataTables::of($brunch)
            ->addColumn('action',function ($row){
                $action='';
-               if(Auth::user()->can('brunch.edit')){
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/brunch/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               if(Auth::user()->can('bottomless-brunch.edit')){
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/bottomless-brunch/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
            }
-           if(Auth::user()->can('brunch.delete')){
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/brunch/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+           if(Auth::user()->can('bottomless-brunch.delete')){
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/bottomless-brunch/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
            }
                return $action;
            })
@@ -77,7 +77,7 @@ class BrunchController extends Controller
             $inputs['image']=FileUpload($req->image, $path);
         Brunch::create($inputs);
         DB::commit();
-         return redirect('admin/brunch')->with('success','Bottomless Brunch successfully created');
+         return redirect('admin/bottomless-brunch')->with('success','Bottomless Brunch successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -131,7 +131,7 @@ class BrunchController extends Controller
             }
         Brunch::find($id)->update($inputs);
         DB::commit();
-         return redirect('admin/brunch')->with('success','Bottomless Brunch successfully updated');
+         return redirect('admin/bottomless-brunch')->with('success','Bottomless Brunch successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -153,7 +153,7 @@ class BrunchController extends Controller
         try{
         Brunch::find($id)->delete();
         DB::commit();
-         return redirect('admin/brunch')->with('success','Bottomless Brunch successfully deleted');
+         return redirect('admin/bottomless-brunch')->with('success','Bottomless Brunch successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();
