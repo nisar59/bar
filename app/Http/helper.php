@@ -5,6 +5,7 @@ use Modules\Logs\Entities\Logs;
 use Modules\Logs\Entities\SystemLogs;
 use Illuminate\Support\Facades\Http;
 use Modules\ProductShowcase\Entities\ProductShowcase;
+use Modules\Caffe\Entities\Caffe;
 
 function AllPermissions()
 {
@@ -167,4 +168,10 @@ function ColorsPack()
 function ProductShowcase($id)
 {
 	return ProductShowcase::with('images')->find($id);
+}
+
+
+function Caffe()
+{
+	return Caffe::where('status',1)->get();
 }

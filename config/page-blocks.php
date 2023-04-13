@@ -115,27 +115,11 @@ return (object) $blocks = [
 
 
 
-
-  //our story sections files
-
-
-/*  'our_story_text_one' => [
-    'name' => 'our-story-text',
-    'sample' => 'our_story_text_one.png',
-    'data' => [
-      'header',
-      'heading',
-      'subheading',
-    ],
-  ],*/
-
-
-
   'right_image_with_text' => [
     'name' => 'right_image_with_text',
     'sample' => 'right_image_with_text.png',
     'data' => [
-      'heading'=>['name'=>'heading','type'=>'text'],
+      'text'=>['name'=>'text','type'=>'text', 'class'=>'editor'],
       'image'=>['name'=>'image','type'=>'file'],
     ],
   ],
@@ -144,7 +128,7 @@ return (object) $blocks = [
     'name' => 'paragraph',
     'sample' => 'paragraph.png',
     'data' => [
-      'paragraph'=>['name'=>'paragraph','type'=>'text'],
+      'paragraph'=>['name'=>'paragraph','type'=>'text', 'class'=>'editor'],
     ],
   ],
 
@@ -152,17 +136,8 @@ return (object) $blocks = [
     'name' => 'left_image_with_text',
     'sample' => 'left_image_with_text.png',
     'data' => [
-      'heading'=>['name'=>'heading','type'=>'text'],
+      'text'=>['name'=>'text','type'=>'text','class'=>'editor'],
       'image'=>['name'=>'image','type'=>'file'],
-    ],
-  ],
-
-  'multiple_images' => [
-    'name' => 'multiple_images',
-    'sample' => 'multiple_images.png',
-    'data' => [
-    'image'=>['name'=>'image','type'=>'file'],
-
     ],
   ],
 
@@ -171,21 +146,20 @@ return (object) $blocks = [
     'name' => 'hours_and_location',
     'sample' => 'hours_and_location.png',
     'data' => [
-      'heading'=>['name'=>'heading','type'=>'text'],
-      'text'=>['name'=>'text','type'=>'text'],
-      'image'=>['name'=>'image','type'=>'file'],
+      'opening_hours'=>['name'=>'opening_hours','type'=>'text', 'class'=>'editor'],
+      'map'=>['name'=>'map','type'=>'file'],
+      'video_url'=>['name'=>'video_url','type'=>'text'],
+      'kiosk_opening_hours'=>['name'=>'kiosk_opening_hours','type'=>'text', 'class'=>'editor'],
 
     ],
   ],
 
-  //Direction(map at footer in hour+location) missing
-
   //Menus sections files
-  'caffe_menu' => [
+  'menu' => [
     'name' => 'cafe_menu',
     'sample' => 'cafe_menu.png',
     'data' => [
-      'caffe_menu'=>['name'=>'caffe_menu','type'=>'table']
+
     ],
   ],
 

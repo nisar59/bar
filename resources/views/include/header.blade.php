@@ -21,10 +21,10 @@
                   <a class="site-nav-link " href="{{url('hours-location')}}">HOURS & LOCATIONS</a>
                 </li>
                 <li>
-                  <a class="site-nav-link " href="{{url('west-village-menu')}}">MENU</a>
+                  <a class="site-nav-link " href="{{url('menu')}}">MENU</a>
                 </li>
                 <li>
-                  <a class="site-nav-link " href="#">Bottomless Brunch</a>
+                  <a class="site-nav-link " href="{{url('bottom-less-brunch')}}">Bottomless Brunch</a>
                 </li>
               </ul>
             </nav>
