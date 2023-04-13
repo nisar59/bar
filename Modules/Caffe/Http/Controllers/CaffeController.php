@@ -24,10 +24,10 @@ class CaffeController extends Controller
            ->addColumn('action',function ($row){
                $action='';
                if(Auth::user()->can('caffe.edit')){
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/caffe/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/caffe-menu/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
            }
            if(Auth::user()->can('caffe.delete')){
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/caffe/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/caffe-menu/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
            }
                return $action;
            })
@@ -65,7 +65,7 @@ class CaffeController extends Controller
             $inputs['file']=FileUpload($req->file, $path);
         Caffe::create($inputs);
         DB::commit();
-         return redirect('admin/caffe')->with('success','Caffe Menu successfully created');
+         return redirect('admin/caffe-menu')->with('success','Caffe Menu successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -118,7 +118,7 @@ class CaffeController extends Controller
             }
         Caffe::find($id)->update($inputs);
         DB::commit();
-         return redirect('admin/caffe')->with('success','Caffe Menu successfully updated');
+         return redirect('admin/caffe-menu')->with('success','Caffe Menu successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -140,7 +140,7 @@ class CaffeController extends Controller
         try{
         Caffe::find($id)->delete();
         DB::commit();
-         return redirect('admin/caffe')->with('success','Caffe Menu successfully deleted');
+         return redirect('admin/caffe-menu')->with('success','Caffe Menu successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();

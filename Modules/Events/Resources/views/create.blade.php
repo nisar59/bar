@@ -28,7 +28,7 @@ Enter Events
             <div class="row">
               <div class="col-md-6">
                 <label>Select Event</label>
-                <select name="events" id="" class="form-control">
+                <select name="event_type" id="" class="form-control">
                   <option value="" class="form-control">Please Select One</option>
                   <option value="weakend" class="form-control">Weakened</option>
                   <option value="weak_night" class="form-control">Weak Night</option>

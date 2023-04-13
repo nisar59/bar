@@ -16,7 +16,7 @@ Edit Caffe Menu
     </div>
   </div>
 </div>
-<form action="{{url('admin/caffe/update/'.$caffe->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/caffe-menu/update/'.$caffe->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">

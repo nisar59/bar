@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('title')
-Caffe Menu
+Caffe-Menu
 @endsection
 @section('content')
 <div class="page-title-box">
@@ -20,9 +20,9 @@ Caffe Menu
     <div class="card card-primary">
       <div class="card-header bg-white">
         <div class="row">
-          <h4 class="col-md-6">Menu</h4>
+          <h4 class="col-md-6">Caffe Menu</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('admin/caffe/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/caffe-menu/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@ Caffe Menu
   var roles_table = $('#caffe').DataTable({
               processing: true,
               serverSide: true,
-              ajax: "{{url('admin/caffe')}}",
+              ajax: "{{url('admin/caffe-menu')}}",
               buttons:[],
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},

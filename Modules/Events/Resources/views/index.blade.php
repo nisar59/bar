@@ -60,7 +60,7 @@ Events
               ajax: "{{url('admin/events')}}",
               buttons:[],
               columns: [
-                {data: 'events', name: 'events',class:'text-center'},
+                {data: 'event_type', name: 'event_type',class:'text-center'},
                 {data: 'title', name: 'title',class:'text-center'},
                 {data: 'description', name: 'description',class:'text-center'},
                 {data: 'image', name: 'image', orderable: false, searchable: false ,class:'text-center'},

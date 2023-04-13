@@ -66,7 +66,7 @@ class EventsController extends Controller
     public function store(Request $req)
     {
          $req->validate([
-           's_event'=>'required', 
+           'event_type'=>'required', 
            'title'=>'required', 
            'description'=>'required', 
            'image'=>'required', 

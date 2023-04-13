@@ -17,5 +17,8 @@
     "ProductShowcase": true,
     "TablesReservation": true,
     "Extras": true,
-    "TableBookings": true
+    "TableBookings": true,
+    "Social": true,
+    "Media": true,
+    "Socialmedia": true
 }
