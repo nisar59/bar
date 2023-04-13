@@ -15,7 +15,7 @@
                   <a class="site-nav-link " href="{{url('welcome')}}">WELCOME</a>
                 </li>
                 <li>
-                  <a class="site-nav-link " href="{{url('ourstory')}}">OUR STORY</a>
+                  <a class="site-nav-link " href="{{url('our-story')}}">OUR STORY</a>
                 </li>
                 <li>
                   <a class="site-nav-link " href="{{url('hours-location')}}">HOURS & LOCATIONS</a>

@@ -4,6 +4,8 @@ use App\Models\User;
 use Modules\Logs\Entities\Logs;
 use Modules\Logs\Entities\SystemLogs;
 use Illuminate\Support\Facades\Http;
+use Modules\ProductShowcase\Entities\ProductShowcase;
+
 function AllPermissions()
 {
 	$role=[];
@@ -104,26 +106,6 @@ function SendMessage($phone, $msg)
 
 }
 
-
-
-
-function PackageDetail($id)
-{
-	$package=Packages::find($id);
-
-	if($package!=null){
-		return $package;
-	}
-
-}
-
-
-
-
-
-
-
-
 function GenerateLog($info)
 {
 	if(!Settings()->logging){
@@ -182,3 +164,7 @@ function ColorsPack()
 	return ['#006BA6','#E33932','#F8A101','#F77C0C','#B3234E','#890D53','#601071', '#3B1585','#6891B1','#05B4C9','#00C3A7','#00C76F'];
 }
 
+function ProductShowcase($id)
+{
+	return ProductShowcase::with('images')->find($id);
+}

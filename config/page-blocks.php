@@ -97,8 +97,7 @@ return (object) $blocks = [
     'sample' => 'qoute_with_heading.png',
     'data' => [
       'heading'=>['name'=>'heading', 'type'=>'text'],
-      'qoute_text'=>['name'=>'qoute_text', 'type'=>'text'],
-      'author'=>['name'=>'author','type'=>'text'],
+      'qoute_text'=>['name'=>'qoute_text', 'type'=>'text', 'class'=>'editor'],
     ],
   ],
 
@@ -109,7 +108,7 @@ return (object) $blocks = [
     'sample' => 'products_showcase.png',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
-      'products'=>['name'=>'products','type'=>'table']
+      'products'=>['name'=>'product_showcase','type'=>'table']
     ],
   ],
 

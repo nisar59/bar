@@ -10568,5 +10568,7 @@ a {
   justify-content: center;
 }
 
-
+.carousel-control-prev, .carousel-control-next{
+  width: 5%;
+}
 

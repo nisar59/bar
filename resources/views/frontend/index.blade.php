@@ -12,6 +12,10 @@ Home | Dante NYC
 					@include('frontend.blocks.banner', ['banner'=>$page->banner])
 				@endif
 
+				@if($page->slider_banner_type=="slider")
+					@include('frontend.blocks.slider', ['slider'=>$page->slider])
+				@endif
+
 				@if($page->blocks!=null)
 					@foreach($page->blocks as $block)
 						@php

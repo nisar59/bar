@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Pages\Entities\Pages;
-
+use App;
 class FrontendController extends Controller
 {
     /**
@@ -19,6 +19,10 @@ class FrontendController extends Controller
             $slug='landing';
         }          
     $page=Pages::where('slug',$slug)->first();
+
+    if($page==null){
+        App::abort(404,'The url not found');
+    }
 
     return view('frontend.index')->withPage($page);
 
