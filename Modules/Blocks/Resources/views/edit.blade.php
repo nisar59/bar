@@ -30,12 +30,32 @@
                         $label=str_replace('_',' ',$key);
                         $blck_name=$content['name'];
                         @endphp
-                        <div class="@if(isset($content['class']) && $content['class']=='editor') col-md-12 @else col-md-4 @endif">
+                        <div class="col-md-12">
                             <label for="">{{ucfirst($label)}}</label>
+
+                            @if($content['type']=='table')
+
+                            @php
+                            $tble_data=\DB::table($blck_name)->where('status',1)->get();
+                            @endphp
+
+                            <select name="{{$blck_name}}" class="form-control" id="">
+                                <option value="">Select</option>
+                                @foreach($tble_data as $tbl)
+                                    <option value="{{$tbl->id}}" @if($block_data->$blck_name==$tbl->id) selected @endif>{{$tbl->name}}</option>
+                                @endforeach
+
+                            </select>
+
+                            @else
+
                             <input type="{{$content['type']}}" class="form-control @if(isset($content['class'])) {{$content['class']}} @endif" name="{{$blck_name}}" placeholder="{{ucfirst($label)}}"
                             @if($content['type']!="file" && isset($block_data->$blck_name)) value="{{$block_data->$blck_name}}" @endif
                             >
                             @if($content['type']=="file" && isset($block_data->$blck_name)){{$block_data->$blck_name}} @endif
+
+                            @endif
+
                         </div>
                         @endforeach
                     </div>
