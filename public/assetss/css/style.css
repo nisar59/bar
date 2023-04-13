@@ -10572,3 +10572,20 @@ a {
   width: 5%;
 }
 
+#pdf-viewer::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+ 
+#pdf-viewer::-webkit-scrollbar-track {
+    background-color: #ebebeb;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#pdf-viewer::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #000; 
+}
+
