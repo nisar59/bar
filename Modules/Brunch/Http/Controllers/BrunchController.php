@@ -68,7 +68,6 @@ class BrunchController extends Controller
         $req->validate([
            'image'=>'required', 
            'description'=>'required', 
-           'link'=>'required', 
         ]);
         DB::beginTransaction();
         try{
@@ -120,7 +119,6 @@ class BrunchController extends Controller
         $req->validate([
 /*           'image'=>'required', 
 */           'description'=>'required', 
-           'link'=>'required', 
         ]);
           DB::beginTransaction();
         try{

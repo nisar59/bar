@@ -33,7 +33,6 @@ Bottomless Brunch
               <tr>
                 <th>Image</th>
                 <th>Description</th>
-                <th>Link</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -58,7 +57,6 @@ Bottomless Brunch
               columns: [
                 {data: 'image', name: 'image',class:'text-center', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'description', name: 'description',class:'text-center'},
-                {data: 'link', name: 'link',class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });

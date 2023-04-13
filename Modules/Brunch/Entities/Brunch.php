@@ -9,7 +9,7 @@ class Brunch extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image','description','link'];
+    protected $fillable = ['image','description'];
     protected $table='brunch';
     
     protected static function newFactory()
