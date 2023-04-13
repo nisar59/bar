@@ -34,7 +34,7 @@ Caffe Menu
             <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5"></textarea>
           </div>
            <div class="form-group">
-            <label>File /Upload Pdf File</label>
+            <label>Pdf File</label>
             <input type="file" class="form-control" name="file" placeholder="Enter Image">
           </div>
           
