@@ -31,7 +31,16 @@ class CaffeController extends Controller
            }
                return $action;
            })
-           ->rawColumns(['action'])
+           ->addColumn('status',function ($row){
+               $status='';
+               if($row->status==1){
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/caffe-menu/status/'.$row->id).'">Active</a>';
+                }else{
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/caffe-menu/status/'.$row->id).'">Deactive</a>';                
+           }
+               return $status;
+           })
+           ->rawColumns(['action','status'])
            ->make(true);
         }
         return view('caffe::index');
@@ -86,6 +95,7 @@ class CaffeController extends Controller
         return view('caffe::show');
     }
 
+
     /**
      * Show the form for editing the specified resource.
      * @param int $id
@@ -95,6 +105,35 @@ class CaffeController extends Controller
     {
         $caffe=Caffe::find($id);
         return view('caffe::edit',compact('caffe'));
+    }
+      /**
+     * Update status.
+     * @param int $id
+     * @return Renderable
+     */
+    public function status($id)
+    {
+        DB::beginTransaction();
+        try{
+        $page=Caffe::find($id);
+
+        if($page->status==1){
+            $page->status=0;
+        }
+        else{
+            $page->status=1;
+        }
+        $page->save();
+        DB::commit();
+         return redirect('admin/caffe-menu')->with('success','Caffe Menu status successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**

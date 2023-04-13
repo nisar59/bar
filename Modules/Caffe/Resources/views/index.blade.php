@@ -34,6 +34,7 @@ Caffe-Menu
                 <th>Title</th>
                 <th>Description</th>
                 <th>File</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -59,6 +60,7 @@ Caffe-Menu
                 {data: 'title', name: 'title',class:'text-center'},
                 {data: 'description', name: 'description',class:'text-center'},
                 {data: 'file', name: 'file',class:'text-center'},
+                {data: 'status', name: 'status', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });

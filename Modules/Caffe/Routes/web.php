@@ -23,6 +23,8 @@ Route::group(['prefix'=>'admin/caffe-menu','middleware' => ['permission:caffe-me
 Route::group(['prefix'=>'admin/caffe-menu','middleware' => ['permission:caffe-menu.edit']],function(){
     Route::get('edit/{id}', 'CaffeController@edit');
     Route::post('update/{id}', 'CaffeController@update');
+    Route::get('status/{id}', 'CaffeController@status');
+
 });
 Route::group(['prefix'=>'admin/caffe-menu','middleware' => ['permission:caffe-menu.delete']],function(){
     Route::get('destroy/{id}', 'CaffeController@destroy');
