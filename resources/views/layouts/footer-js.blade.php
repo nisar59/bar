@@ -75,6 +75,7 @@
 <script type="text/javascript">
 
   $(document).ready(function(){
+    InitEditor();
 
   setInterval(function() {
       $.ajax({

@@ -30,7 +30,7 @@ FAQs
           </div>
           <div class="form-group mt-3">
             <label>Description</label>
-            <textarea id="elm1" class="form-control" name="description"></textarea>
+            <textarea class="form-control editor" name="description"></textarea>
           </div>
         </div>
         <div class="card-footer text-end">

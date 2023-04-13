@@ -174,8 +174,6 @@ class BannerController extends Controller
         $req->validate([
         'name'=>'required',
         'type'=>'required',
-        'background_image'=>'required_without:video',
-        'video'=>'required_without:background_image',
         ]);
            DB::beginTransaction();
         try{
