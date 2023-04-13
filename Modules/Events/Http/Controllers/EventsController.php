@@ -43,7 +43,16 @@ class EventsController extends Controller
 
                     return '<img src="'.$img.'" height="50" width="50">';
                 })
-           ->rawColumns(['action','image'])
+             ->addColumn('status',function ($row){
+               $status='';
+               if($row->status==1){
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/events/status/'.$row->id).'">Active</a>';
+                }else{
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/events/status/'.$row->id).'">Deactive</a>';                
+           }
+               return $status;
+           })
+           ->rawColumns(['action','image','status'])
            ->make(true);
         }
         return view('events::index');
@@ -81,7 +90,7 @@ class EventsController extends Controller
             $inputs['image']=FileUpload($req->image, $path);
         Events::create($inputs);
         DB::commit();
-         return redirect('admin/events')->with('success','Events Menu successfully created');
+         return redirect('admin/events')->with('success','Events successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -100,6 +109,37 @@ class EventsController extends Controller
     public function show($id)
     {
         return view('events::show');
+    }
+
+
+     /**
+     * Update status.
+     * @param int $id
+     * @return Renderable
+     */
+    public function status($id)
+    {
+        DB::beginTransaction();
+        try{
+        $page=Events::find($id);
+
+        if($page->status==1){
+            $page->status=0;
+        }
+        else{
+            $page->status=1;
+        }
+        $page->save();
+        DB::commit();
+         return redirect('admin/events')->with('success','Events Menu status successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**

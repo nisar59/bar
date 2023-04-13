@@ -11,14 +11,6 @@
 |
 */
 
-/*Route::prefix('weaklyevents')->group(function() {
-    Route::get('/', 'WeaklyEventsController@index');
-    Route::get('create', 'WeaklyEventsController@create');
-    Route::post('store', 'WeaklyEventsController@store');
-    Route::get('edit/{id}', 'WeaklyEventsController@edit');
-    Route::post('update/{id}', 'WeaklyEventsController@update');
-    Route::get('destroy/{id}', 'WeaklyEventsController@destroy');
-});*/
 Route::group(['prefix'=>'admin/weaklyevents','middleware' => ['permission:weaklyevents.view']],function(){
    Route::get('/', 'WeaklyEventsController@index');
 });
