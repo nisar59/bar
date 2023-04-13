@@ -34,6 +34,7 @@ Social Media
                 <th>Name</th>
                 <th>Link</th>
                 <th>Icone</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -60,6 +61,7 @@ columns: [
 {data: 'name', name: 'name',class:'text-center'},
 {data: 'link', name: 'link',class:'text-center'},
 {data: 'icone', name: 'icone',class:'text-center'},
+{data: 'status', name: 'status',class:'text-center'},
 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
 ]
 });

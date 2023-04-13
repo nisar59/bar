@@ -131,7 +131,7 @@ class EventsController extends Controller
         }
         $page->save();
         DB::commit();
-         return redirect('admin/events')->with('success','Events Menu status successfully updated');
+         return redirect('admin/events')->with('success','Events status successfully updated');
          
          } catch(Exception $e){
             DB::rollback();

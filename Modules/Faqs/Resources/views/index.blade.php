@@ -33,6 +33,7 @@ FAQs
               <tr>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -57,6 +58,7 @@ FAQs
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},
                 {data: 'description', name: 'description',class:'text-center'},
+                {data: 'status', name: 'status', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });

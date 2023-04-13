@@ -23,7 +23,7 @@ Route::group(['prefix'=>'admin/events','middleware' => ['permission:events.add']
 Route::group(['prefix'=>'admin/events','middleware' => ['permission:events.edit']],function(){
     Route::get('edit/{id}', 'EventsController@edit');
     Route::post('update/{id}', 'EventsController@update');
-        Route::get('status/{id}', 'EventsController@status');
+     Route::get('status/{id}', 'EventsController@status');
 
 });
 Route::group(['prefix'=>'admin/events','middleware' => ['permission:events.delete']],function(){

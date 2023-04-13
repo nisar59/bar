@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('title')
-Caffe-Menu
+Caffe Menu
 @endsection
 @section('content')
 <div class="page-title-box">

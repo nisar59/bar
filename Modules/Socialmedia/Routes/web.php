@@ -21,6 +21,8 @@ Route::group(['prefix'=>'admin/social-media','middleware' => ['permission:social
 Route::group(['prefix'=>'admin/social-media','middleware' => ['permission:social-media.edit']],function(){
     Route::get('edit/{id}', 'SocialmediaController@edit');
     Route::post('update/{id}', 'SocialmediaController@update');
+    Route::get('status/{id}', 'SocialmediaController@status');
+
 
 });
 Route::group(['prefix'=>'admin/social-media','middleware' => ['permission:social-media.delete']],function(){

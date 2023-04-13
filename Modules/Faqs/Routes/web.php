@@ -24,6 +24,8 @@ Route::group(['prefix'=>'admin/faqs','middleware' => ['permission:faqs.add']],fu
 Route::group(['prefix'=>'admin/faqs','middleware' => ['permission:faqs.edit']],function(){
     Route::get('edit/{id}', 'FaqsController@edit');
     Route::post('update/{id}', 'FaqsController@update');
+    Route::get('status/{id}', 'FaqsController@status');
+
 });
 Route::group(['prefix'=>'admin/faqs','middleware' => ['permission:faqs.delete']],function(){
     Route::get('destroy/{id}', 'FaqsController@destroy');

@@ -43,7 +43,16 @@ class BrunchController extends Controller
 
                     return '<img src="'.$img.'" height="50" width="50">';
                 })
-           ->rawColumns(['action','image'])
+             ->addColumn('status',function ($row){
+               $status='';
+               if($row->status==1){
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/bottomless-brunch/status/'.$row->id).'">Active</a>';
+                }else{
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/bottomless-brunch/status/'.$row->id).'">Deactive</a>';                
+           }
+               return $status;
+           })
+           ->rawColumns(['action','image','status'])
            ->make(true);
         }
         return view('brunch::index');
@@ -95,6 +104,36 @@ class BrunchController extends Controller
     public function show($id)
     {
         return view('brunch::show');
+    }
+
+     /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+     public function status($id)
+    {
+        DB::beginTransaction();
+        try{
+        $page=Brunch::find($id);
+
+        if($page->status==1){
+            $page->status=0;
+        }
+        else{
+            $page->status=1;
+        }
+        $page->save();
+        DB::commit();
+         return redirect('admin/bottomless-brunch')->with('success','Bottomless Brunch status successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**
