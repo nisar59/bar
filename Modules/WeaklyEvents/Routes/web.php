@@ -31,6 +31,8 @@ Route::group(['prefix'=>'admin/weaklyevents','middleware' => ['permission:weakly
 Route::group(['prefix'=>'admin/weaklyevents','middleware' => ['permission:weaklyevents.edit']],function(){
     Route::get('edit/{id}', 'WeaklyEventsController@edit');
     Route::post('update/{id}', 'WeaklyEventsController@update');
+    Route::get('status/{id}', 'WeaklyEventsController@status');
+
 });
 Route::group(['prefix'=>'admin/weaklyevents','middleware' => ['permission:weaklyevents.delete']],function(){
     Route::get('destroy/{id}', 'WeaklyEventsController@destroy');
