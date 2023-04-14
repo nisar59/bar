@@ -26,7 +26,7 @@
                 <nav class="site-nav" aria-label="Footer">
                   <ul class="site-nav-menu">
                     <li>
-                      <a class="site-nav-link" href="{{url('celebrate')}}">Events</a>
+                      <a class="site-nav-link" href="{{url('events')}}">Events</a>
                     </li>
                     <li>
                       <a class="site-nav-link" href="#">Book our venue</a>

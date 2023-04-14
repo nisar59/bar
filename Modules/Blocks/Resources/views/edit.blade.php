@@ -25,6 +25,7 @@
                         @php
                         $block_data=json_decode($data->data);
                         @endphp
+                        @if(count($block['data'])>0)
                         @foreach($block['data'] as $key=> $content)
                         @php
                         $label=str_replace('_',' ',$key);
@@ -58,6 +59,10 @@
 
                         </div>
                         @endforeach
+
+                        @else
+                        <p class="text-center">Customization is not required</p>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">

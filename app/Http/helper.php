@@ -5,7 +5,10 @@ use Modules\Logs\Entities\Logs;
 use Modules\Logs\Entities\SystemLogs;
 use Illuminate\Support\Facades\Http;
 use Modules\ProductShowcase\Entities\ProductShowcase;
+use Modules\WeaklyEvents\Entities\WeaklyEvents;
+use Modules\Events\Entities\Events;
 use Modules\Caffe\Entities\Caffe;
+use Modules\Brunch\Entities\Brunch;
 
 function AllPermissions()
 {
@@ -174,4 +177,21 @@ function ProductShowcase($id)
 function Caffe()
 {
 	return Caffe::where('status',1)->get();
+}
+
+function BottomLessBrunch()
+{
+	return Brunch::where('status',1)->get();
+}
+
+
+function WeeklyEvents()
+{
+	return WeaklyEvents::where('status', 1)->get();
+}
+
+
+function Events()
+{
+	return Events::where('status', 1)->get();
 }

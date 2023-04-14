@@ -165,16 +165,23 @@ return (object) $blocks = [
 
   // News and Events
 
-  'news_and_popups' => [
-    'name' => 'news_and_popups',
-    'sample' => 'news_and_popups.png',
+  'bottomless_brunch' => [
+    'name' => 'bottomless_brunch',
+    'sample' => 'bottomless_brunch.png',
     'data' => [
-      'heading'=>['name'=>'heading','type'=>'text'],
-      'text'=>['name'=>'text','type'=>'text'],
-      'new_popups'=>['name'=>'new_popups','type'=>'table']
-
+      'description'=>['name'=>'description','type'=>'text', 'class'=>'editor'],
     ],
   ],
+
+  'events' => [
+    'name' => 'events',
+    'sample' => 'events.png',
+    'data' => [
+      'description'=>['name'=>'description','type'=>'text', 'class'=>'editor'],
+    ],
+  ],
+
+
 
 ];
 

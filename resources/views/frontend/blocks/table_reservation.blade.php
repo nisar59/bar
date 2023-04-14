@@ -7,7 +7,7 @@ $data=json_decode($data);
 			<div class="c-split__content content">
 				<h2 class="h2 c-split__heading">@if(isset($data->heading)) {{$data->heading}} @endif</h2>
 				<p>@if(isset($data->sub_heading)) {{$data->sub_heading}} @endif</p>
-				<button type="button" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#exampleModal">@if(isset($data->button_text)) {{$data->button_text}} @endif</button>
+				<button type="button" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#reservation">@if(isset($data->button_text)) {{$data->button_text}} @endif</button>
 			</div>
 		</div>
 	</div>
@@ -18,11 +18,11 @@ $data=json_decode($data);
 	</div>
 </section>
 @section('modal')
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="reservation" tabindex="-1" aria-labelledby="reservationLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header justify-content-center">
-				<h5 class="modal-title text-dark" id="exampleModalLabel">RESERVATIONS</h5>
+				<h5 class="modal-title text-dark" id="reservationLabel">RESERVATIONS</h5>
 			</div>
 			<form action="{{url('table-bookings/create')}}">
 				<div class="modal-body">
