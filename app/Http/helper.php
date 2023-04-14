@@ -9,6 +9,7 @@ use Modules\WeaklyEvents\Entities\WeaklyEvents;
 use Modules\Events\Entities\Events;
 use Modules\Caffe\Entities\Caffe;
 use Modules\Brunch\Entities\Brunch;
+use Modules\Faqs\Entities\Faqs;
 
 function AllPermissions()
 {
@@ -194,4 +195,10 @@ function WeeklyEvents()
 function Events()
 {
 	return Events::where('status', 1)->get();
+}
+
+
+function Faqs()
+{
+	return Faqs::where('status', 1)->get();
 }

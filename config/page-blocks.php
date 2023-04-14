@@ -202,9 +202,23 @@ return (object) $blocks = [
     ],
   ],
 
+  'faqs' => [
+    'name' => 'faqs',
+    'sample' => 'faqs.png',
+    'data' => [
+      'intro'=>['name'=>'intro','type'=>'text', 'class'=>'editor'],
 
+    ],
+  ],
 
+  'contact_us' => [
+    'name' => 'contact_us',
+    'sample' => 'faqs.png',
+    'data' => [
+      'contact_us_detail'=>['name'=>'contact_us_detail','type'=>'text', 'class'=>'editor'],
 
+    ],
+  ],
 
 ];
 

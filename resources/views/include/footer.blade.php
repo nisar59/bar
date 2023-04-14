@@ -32,7 +32,7 @@
                       <a class="site-nav-link" href="book-our-venue">Book our venue</a>
                     </li>
                     <li>
-                      <a class="site-nav-link" href="{{url('contact')}}">Contact</a>
+                      <a class="site-nav-link" href="{{url('contact-us')}}">Contact</a>
                     </li>
                     <li>
                       <a class="site-nav-link" href="{{url('faqs')}}">FAQs</a>
