@@ -29,13 +29,13 @@
                       <a class="site-nav-link" href="{{url('events')}}">Events</a>
                     </li>
                     <li>
-                      <a class="site-nav-link" href="#">Book our venue</a>
+                      <a class="site-nav-link" href="book-our-venue">Book our venue</a>
                     </li>
                     <li>
                       <a class="site-nav-link" href="{{url('contact')}}">Contact</a>
                     </li>
                     <li>
-                      <a class="site-nav-link" href="#">FAQs</a>
+                      <a class="site-nav-link" href="{{url('faqs')}}">FAQs</a>
                     </li>
                     <li>
                       <a class="site-nav-link" href="#">Nottingham Secret Garden</a>

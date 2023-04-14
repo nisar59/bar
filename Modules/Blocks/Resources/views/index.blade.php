@@ -43,7 +43,7 @@ Page Blocks
         </div>
 
         <div class="card-body">
-                <ol id="page-sections">
+                <ol class="p-0" id="page-sections" style="height:20vh">
                     @foreach($page->blocks as $pb)
                     @php
                     $block_name=ucfirst($pb->block_name);
