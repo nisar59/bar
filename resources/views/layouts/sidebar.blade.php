@@ -60,6 +60,22 @@ $type = Request()->type;
                 </li>
                 @endcan
 
+                <!-- Reservation Structure -->
+                @can('reservation-structure.view')
+                <li class="menu-title">Reservation Structure</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fa fa-coffee" aria-hidden="true"></i>
+                        <span>Reservation Structure</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('reservation-structure.view')
+                        <li><a href="{{url('admin/reservation-structure')}}">Reservation Structure</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
                 <!-- Table Reservation -->
                 @can('tables-reservation.view')
                 <li class="menu-title">Tables Reservation</li>
@@ -124,7 +140,7 @@ $type = Request()->type;
                 @endcan
                 <!-- Weakly Events -->
                 @can('weaklyevents.view')
-                <li class="menu-title">Weakly Events</li>
+                <li class="menu-title">Weekly Events</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -132,7 +148,7 @@ $type = Request()->type;
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         @can('weaklyevents.view')
-                        <li><a href="{{url('admin/weaklyevents')}}">Weekly Events</a></li>
+                        <li><a href="{{url('admin/weekly-events')}}">Weekly Events</a></li>
                         @endcan
                     </ul>
                 </li>

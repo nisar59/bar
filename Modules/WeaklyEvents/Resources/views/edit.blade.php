@@ -1,28 +1,28 @@
 @extends('layouts.template')
 @section('title')
-Weakly Events
+Weekly Events
 @endsection
 @section('content')
 
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Weakly Events</h6>
+      <h6 class="page-title">Weekly Events</h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
-        <li class="breadcrumb-item">Weakly-Events</li>
-        <li class="breadcrumb-item active">Weakly Events</li>
+        <li class="breadcrumb-item">Weekly Events</li>
+        <li class="breadcrumb-item active">Weekly Events</li>
       </ol>
     </div>
   </div>
 </div>
-<form action="{{url('admin/weaklyevents/update/'.$events->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/weekly-events/update/'.$events->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">
       <div class="card card-primary">
         <div class="card-header bg-white">
-          <h4>Weakly Events</h4>
+          <h4>Weekly Events</h4>
         </div>
         <div class="card-body">
           <div class="row">
