@@ -32,9 +32,18 @@ class SocialmediaController extends Controller
                 }
                return $action;
            })
+             ->addColumn('status',function ($row){
+               $status='';
+               if($row->status==1){
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/social-media/status/'.$row->id).'">Active</a>';
+                }else{
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/social-media/status/'.$row->id).'">Deactive</a>';                
+           }
+               return $status;
+           })
 
 
-           ->rawColumns(['action'])
+           ->rawColumns(['action','status'])
            ->make(true);
         }
         return view('socialmedia::index');
@@ -84,6 +93,36 @@ class SocialmediaController extends Controller
     public function show($id)
     {
         return view('socialmedia::show');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function status($id)
+    {
+        DB::beginTransaction();
+        try{
+        $page=Socialmedia::find($id);
+
+        if($page->status==1){
+            $page->status=0;
+        }
+        else{
+            $page->status=1;
+        }
+        $page->save();
+        DB::commit();
+         return redirect('admin/social-media')->with('success','Social Media status successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 
     /**

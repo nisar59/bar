@@ -23,6 +23,8 @@ Route::group(['prefix'=>'admin/bottomless-brunch','middleware' => ['permission:b
 Route::group(['prefix'=>'admin/bottomless-brunch','middleware' => ['permission:bottomless-brunch.edit']],function(){
     Route::get('edit/{id}', 'BrunchController@edit');
     Route::post('update/{id}', 'BrunchController@update');
+    Route::get('status/{id}', 'BrunchController@status');
+
 });
 Route::group(['prefix'=>'admin/bottomless-brunch','middleware' => ['permission:bottomless-brunch.delete']],function(){
     Route::get('destroy/{id}', 'BrunchController@destroy');

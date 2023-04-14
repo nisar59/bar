@@ -38,6 +38,7 @@ Events
                 <th>More Information Link</th>
                 <th>Buy Ticket Link</th>
                 <th>FaceBook Link</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -68,6 +69,7 @@ Events
                 {data: 'ticket_link', name: 'ticket_link',class:'text-center'},
                 {data: 'facebook_link', name: 'facebook_link',class:'text-center'},
                 
+                {data: 'status', name: 'status', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });

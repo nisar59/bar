@@ -33,10 +33,6 @@ Bottomless Brunch
             <label>Description</label>
             <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5"></textarea>
           </div>
-          <div class="form-group">
-            <label>Link</label>
-            <input type="link" class="form-control" name="link" placeholder="Enter Url">
-          </div>
           
         </div>
         <div class="card-footer text-end">
