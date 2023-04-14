@@ -124,7 +124,7 @@ $type = Request()->type;
                 @endcan
                 <!-- Weakly Events -->
                 @can('weaklyevents.view')
-                <li class="menu-title">Weekly Events</li>
+                <li class="menu-title">Weakly Events</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -174,7 +174,7 @@ $type = Request()->type;
                 <li class="menu-title">Social Media</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-facebook-official"></i>
+                <i class="fa fa-globe" aria-hidden="true"></i>
                         <span>Social Media</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">

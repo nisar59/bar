@@ -21,7 +21,7 @@ Enter Events
     <div class="col-12 col-md-12">
       <div class="card card-primary">
         <div class="card-header bg-white">
-          <h4>Enter Events</h4>
+          <h4>Add Event</h4>
         </div>
         <div class="card-body">
           <div class="form-group">
@@ -44,38 +44,44 @@ Enter Events
           </div>
           <div class="row">
             <div class="col-md-6">
-               <div class="form-group">
-            <label>Description</label>
-            <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5"></textarea>
-          </div>
+              <div class="form-group">
+                <label>Event Date</label>
+                <input type="date" class="form-control" name="date" placeholder="Enter Title">
+              </div>
             </div>
             <div class="col-md-6">
-               <div class="form-group">
-            <label>Image</label>
-            <input type="file" class="form-control" name="image" placeholder="Enter Image">
-          </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-               <div class="form-group">
-            <label>More Information Link</label>
-            <input type="url" class="form-control" name="info_link" placeholder="Enter More Information Link">
-          </div>
-            </div>
-            <div class="col-md-6">
-               <div class="form-group">
-            <label>Buy Ticket Link</label>
-            <input type="url" class="form-control" name="ticket_link" placeholder="Enter Buy Ticket Link">
-          </div>
+              <div class="form-group">
+                <label>Image</label>
+                <input type="file" class="form-control" name="image" placeholder="Enter Image">
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-               <div class="form-group">
-            <label>Facebook Link</label>
-            <input type="url" class="form-control" name="facebook_link" placeholder="Enter Facebook Link">
+              <div class="form-group">
+                <label>More Information Link</label>
+                <input type="url" class="form-control" name="info_link" placeholder="Enter More Information Link">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Buy Ticket Link</label>
+                <input type="url" class="form-control" name="ticket_link" placeholder="Enter Buy Ticket Link">
+              </div>
+            </div>
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Facebook Link</label>
+                <input type="url" class="form-control" name="facebook_link" placeholder="Enter Facebook Link">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Description</label>
+              <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5"></textarea>
             </div>
           </div>
           
