@@ -165,16 +165,46 @@ return (object) $blocks = [
 
   // News and Events
 
-  'news_and_popups' => [
-    'name' => 'news_and_popups',
-    'sample' => 'news_and_popups.png',
+  'bottomless_brunch' => [
+    'name' => 'bottomless_brunch',
+    'sample' => 'bottomless_brunch.png',
     'data' => [
-      'heading'=>['name'=>'heading','type'=>'text'],
-      'text'=>['name'=>'text','type'=>'text'],
-      'new_popups'=>['name'=>'new_popups','type'=>'table']
+      'description'=>['name'=>'description','type'=>'text', 'class'=>'editor'],
+    ],
+  ],
+
+  'events' => [
+    'name' => 'events',
+    'sample' => 'events.png',
+    'data' => [
+      'about_your_events'=>['name'=>'about_your_events','type'=>'text', 'class'=>'editor'],
+      'description'=>['name'=>'description','type'=>'text', 'class'=>'editor'],
+    ],
+  ],
+
+  'book_our_venue' => [
+    'name' => 'book_our_venue',
+    'sample' => 'book_our_venue.png',
+    'data' => [
+      'first_image'=>['name'=>'first_image','type'=>'file'],
+      'first_image_description'=>['name'=>'first_image_description','type'=>'text'],
+      'first_button_text'=>['name'=>'first_button_text','type'=>'text'],
+
+      'second_image'=>['name'=>'second_image','type'=>'file'],
+      'second_image_description'=>['name'=>'second_image_description','type'=>'text'],
+      'second_button_text'=>['name'=>'second_button_text','type'=>'text'],
+
+      'third_image'=>['name'=>'third_image','type'=>'file'],
+      'third_image_description'=>['name'=>'third_image_description','type'=>'text'],
+      'third_button_text'=>['name'=>'third_button_text','type'=>'text'],
+
 
     ],
   ],
+
+
+
+
 
 ];
 

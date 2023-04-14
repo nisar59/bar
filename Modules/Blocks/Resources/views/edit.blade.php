@@ -7,7 +7,7 @@
 }
 </style>
 <!-- sample modal content -->
-<div id="PageContentModal" class="modal fade" tabindex="-1" role="dialog"
+<div id="PageContentModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -17,6 +17,7 @@
                     @endphp
                 <h5 class="modal-title" id="myModalLabel1">{{str_replace('_', ' ',$block_name)}}
                 </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{url('admin/pages/blocks/update/'.$data->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -25,6 +26,7 @@
                         @php
                         $block_data=json_decode($data->data);
                         @endphp
+                        @if(count($block['data'])>0)
                         @foreach($block['data'] as $key=> $content)
                         @php
                         $label=str_replace('_',' ',$key);
@@ -58,9 +60,14 @@
 
                         </div>
                         @endforeach
+
+                        @else
+                        <p class="text-center">Customization is not required</p>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit"
                     class="btn btn-primary waves-effect waves-light">Save
                     changes</button>
