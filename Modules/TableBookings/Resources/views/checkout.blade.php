@@ -16,7 +16,7 @@ Home | Dante NYC
 						<div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                                                        
+                                     <div id="paypal-button-container"></div>                                   
                                 </div>
                             </div>
 						</div>

@@ -11,7 +11,7 @@ class TableBookings extends Model
     use HasFactory;
 
     protected $table="table_bookings";
-    protected $fillable = ['user_id','table_id','booking_date','payment_status'];
+    protected $fillable = ['user_id','table_id','extras_ids','booking_date','payment_status','status'];
     
     protected static function newFactory()
     {

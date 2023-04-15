@@ -14,9 +14,8 @@
 Route::prefix('table-bookings')->group(function() {
     Route::get('/', 'TableBookingsController@index');
     Route::get('/create', 'TableBookingsController@create');
-    Route::get('/store/{id}', 'TableBookingsController@store');
+    Route::post('/create/', 'TableBookingsController@store');
     Route::get('/checkout/{id}', 'TableBookingsController@checkout');
-
 });
 
 Route::prefix('admin/table-bookings')->group(function() {

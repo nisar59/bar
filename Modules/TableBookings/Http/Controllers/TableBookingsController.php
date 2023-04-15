@@ -8,6 +8,8 @@ use Illuminate\Routing\Controller;
 use Modules\TablesReservation\Entities\TablesReservation;
 use Modules\Extras\Entities\Extras;
 use Modules\TableBookings\Entities\TableBookings;
+use Modules\SittingStructure\Entities\StructureTables;
+use Modules\Sittings\Entities\Sittings;
 use Throwable;
 use Auth;
 use DB;
@@ -28,9 +30,36 @@ class TableBookingsController extends Controller
      */
     public function create(Request $req)
     {
+        $guests=$req->guests;
         $extras=Extras::where('status',1)->get();
-        $tables=TablesReservation::where('status',1)->get();
-        return view('tablebookings::create')->withData($tables)->withExtras($extras);
+        $table_booking=TableBookings::whereDate('booking_date', $req->date)->get();
+
+        $bookings=[];
+
+        foreach ($table_booking as $key => $tb) {
+            $bookings[]=$tb->table_id;
+        }
+
+
+        if($guests==null){
+        $sitting=Sittings::with('tables.table')->where('status',1)->get();
+        }
+        else{
+
+        $structure_table=StructureTables::where('guests',$guests)->get('id');
+        $tables=[];
+        foreach ($structure_table as $key => $value) {
+           $tables[]=$value->id;
+        }
+
+        $sitting=Sittings::with(['tables'=>function($qry) use($tables)
+        {
+         $qry->whereIn('table_id',$tables);
+        }])->where('status',1)->get();
+        }
+
+
+        return view('tablebookings::create')->withData($sitting)->withExtras($extras)->withBookings($bookings);
     }
 
     /**
@@ -38,7 +67,7 @@ class TableBookingsController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $req, $id)
+    public function store(Request $req)
     {
         if(!Auth::check()){
             session()->put('redirect-url', url()->current());
@@ -49,11 +78,11 @@ class TableBookingsController extends Controller
             return redirect('table-bookings/create');
         }
 
-
         DB::beginTransaction();
         try{
         $inputs['user_id']=Auth::user()->id;
-        $inputs['table_id']=$id;
+        $inputs['table_id']=$req->table;
+        $inputs['extras_ids']=json_encode($req->extras);
         $inputs['booking_date']=$req->date;
         $inputs['payment_status']=0;
         $inputs['status']=0;
