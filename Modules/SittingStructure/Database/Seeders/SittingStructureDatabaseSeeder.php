@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Reservationstructure\Database\Seeders;
+namespace Modules\SittingStructure\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class ReservationstructureDatabaseSeeder extends Seeder
+class SittingStructureDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

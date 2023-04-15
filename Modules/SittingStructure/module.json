@@ -1,0 +1,11 @@
+{
+    "name": "SittingStructure",
+    "alias": "sittingstructure",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SittingStructure\\Providers\\SittingStructureServiceProvider"
+    ],
+    "files": []
+}

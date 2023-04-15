@@ -38,6 +38,7 @@
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
 
+@yield('modal')
 <!-- JAVASCRIPT -->
     @include('layouts.footer-js')
     <script type="text/javascript">

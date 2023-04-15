@@ -1,21 +1,21 @@
 <?php
 
-namespace Modules\Reservationstructure\Providers;
+namespace Modules\SittingStructure\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class ReservationstructureServiceProvider extends ServiceProvider
+class SittingStructureServiceProvider extends ServiceProvider
 {
     /**
      * @var string $moduleName
      */
-    protected $moduleName = 'Reservationstructure';
+    protected $moduleName = 'SittingStructure';
 
     /**
      * @var string $moduleNameLower
      */
-    protected $moduleNameLower = 'reservationstructure';
+    protected $moduleNameLower = 'sittingstructure';
 
     /**
      * Boot the application events.

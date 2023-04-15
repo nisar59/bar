@@ -61,16 +61,16 @@ $type = Request()->type;
                 @endcan
 
                 <!-- Reservation Structure -->
-                @can('reservation-structure.view')
-                <li class="menu-title">Reservation Structure</li>
+                @can('sitting-structure.view')
+                <li class="menu-title">Sitting Structure</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fa fa-coffee" aria-hidden="true"></i>
-                        <span>Reservation Structure</span>
+                        <span>Sitting Structure</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        @can('reservation-structure.view')
-                        <li><a href="{{url('admin/reservation-structure')}}">Reservation Structure</a></li>
+                        @can('sitting-structure.view')
+                        <li><a href="{{url('admin/sitting-structure')}}">Sitting Structure</a></li>
                         @endcan
                     </ul>
                 </li>
