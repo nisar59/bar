@@ -10,7 +10,7 @@ class WeaklyEvents extends Model
     use HasFactory;
 
     protected $fillable = ['image','description'];
-    protected $table='wekaly-events';
+    protected $table='weekly-events';
     
     protected static function newFactory()
     {

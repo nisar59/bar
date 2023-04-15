@@ -19,15 +19,15 @@ class WeaklyEventsController extends Controller
     public function index()
     {
          if (request()->ajax()) {
-        $weaklyevents=WeaklyEvents::select('*')->orderBy('id','ASC')->get();
-           return DataTables::of($weaklyevents)
+        $weekly=WeaklyEvents::select('*')->orderBy('id','ASC')->get();
+           return DataTables::of($weekly)
            ->addColumn('action',function ($row){
                $action='';
-               if(Auth::user()->can('weaklyevents.edit')){
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/weaklyevents/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+               if(Auth::user()->can('weekly-events.edit')){
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/weekly-events/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
            }
-               if(Auth::user()->can('weaklyevents.delete')){
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/weaklyevents/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+               if(Auth::user()->can('weekly-events.delete')){
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/weekly-events/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
            }
                return $action;
            })
@@ -46,9 +46,9 @@ class WeaklyEventsController extends Controller
              ->addColumn('status',function ($row){
                $status='';
                if($row->status==1){
-               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/weaklyevents/status/'.$row->id).'">Active</a>';
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/weekly-events/status/'.$row->id).'">Active</a>';
                 }else{
-               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/weaklyevents/status/'.$row->id).'">Deactive</a>';                
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/weekly-events/status/'.$row->id).'">Deactive</a>';                
            }
                return $status;
            })
@@ -87,7 +87,7 @@ class WeaklyEventsController extends Controller
             $inputs['image']=FileUpload($req->image, $path);
         WeaklyEvents::create($inputs);
         DB::commit();
-         return redirect('admin/weaklyevents')->with('success','Weakly Events successfully created');
+         return redirect('admin/weekly-events')->with('success','Weekly Events successfully created');
          
          } catch(Exception $e){
             DB::rollback();
@@ -127,7 +127,7 @@ class WeaklyEventsController extends Controller
         }
         $page->save();
         DB::commit();
-         return redirect('admin/weaklyevents')->with('success','Weakly Events status successfully updated');
+         return redirect('admin/weekly-events')->with('success','Weekly Events status successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -169,7 +169,7 @@ class WeaklyEventsController extends Controller
             }
         WeaklyEvents::find($id)->update($inputs);
         DB::commit();
-         return redirect('admin/weaklyevents')->with('success','Weakly Events successfully updated');
+         return redirect('admin/weekly-events')->with('success','Weekly Events successfully updated');
          
          } catch(Exception $e){
             DB::rollback();
@@ -191,7 +191,7 @@ class WeaklyEventsController extends Controller
         try{
         WeaklyEvents::find($id)->delete();
         DB::commit();
-         return redirect('admin/weaklyevents')->with('success','Weakly Events successfully deleted');
+         return redirect('admin/weekly-events')->with('success','Weekly Events successfully deleted');
          
          } catch(Exception $e){
             DB::rollback();

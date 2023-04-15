@@ -20,5 +20,6 @@
     "TableBookings": true,
     "Social": true,
     "Media": true,
-    "Socialmedia": true
+    "Socialmedia": true,
+    "Reservationstructure": true
 }
