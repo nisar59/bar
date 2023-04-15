@@ -4,24 +4,17 @@
             <div class="site-footer-desktop-primary" data-footer-sticky="">
               <div class="site-footer-desktop-primary__container container">
                 <ul class="social-accounts">
-                  <li>
-                    <a href="#" target="_blank" rel="noopener" data-bb-track="button" data-bb-track-on="click" data-bb-track-category="Social Icons" data-bb-track-action="Click" data-bb-track-label="Facebook, Footer" aria-describedby="audioeye_new_window_message">
-                      <span class="fa fa-facebook" aria-hidden="true"></span>
-                      <span class="sr-only">Facebook</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" target="_blank" rel="noopener" data-bb-track="button" data-bb-track-on="click" data-bb-track-category="Social Icons" data-bb-track-action="Click" data-bb-track-label="Instagram, Footer" aria-describedby="audioeye_new_window_message">
-                      <span class="fa fa-instagram" aria-hidden="true"></span>
-                      <span class="sr-only">Instagram</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" target="_blank" rel="noopener" data-bb-track="button" data-bb-track-on="click" data-bb-track-category="Social Icons" data-bb-track-action="Click" data-bb-track-label="spotify, Footer" aria-describedby="audioeye_new_window_message">
-                      <span class="fa fa-spotify" aria-hidden="true"></span>
-                      <span class="sr-only">spotify</span>
-                    </a>
-                  </li>
+
+                  @if(SocailMedia()->count()>0)
+                    @foreach(SocailMedia() as $sm)
+                        <li>
+
+                          <a href="{{$sm->link}}" target="_blank" >
+                            <span class="{{$sm->icon}}" aria-hidden="true"></span>
+                          </a>
+                        </li>
+                    @endforeach
+                  @endif
                 </ul>
                 <nav class="site-nav" aria-label="Footer">
                   <ul class="site-nav-menu">

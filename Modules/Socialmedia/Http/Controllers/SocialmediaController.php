@@ -42,8 +42,12 @@ class SocialmediaController extends Controller
                return $status;
            })
 
+             ->editColumn('icon',function($row)
+             {
+                return '<i class="'.$row->icon.'"></i>';
+             })
 
-           ->rawColumns(['action','status'])
+           ->rawColumns(['action','status', 'icon'])
            ->make(true);
         }
         return view('socialmedia::index');
@@ -55,7 +59,11 @@ class SocialmediaController extends Controller
      */
     public function create()
     {
-        return view('socialmedia::create');
+        $fontawesom=public_path('assets/fontawesom/fontawesom.json');
+
+        $get_icons=file_get_contents($fontawesom);
+
+        return view('socialmedia::create')->withIcons(json_decode($get_icons));
     }
 
     /**
@@ -68,7 +76,7 @@ class SocialmediaController extends Controller
         $req->validate([
         'name' => 'required',
         'link' => 'required',
-        'icone' => 'required',
+        'icon' => 'required',
         ]);
         DB::beginTransaction();
         try{
@@ -132,8 +140,12 @@ class SocialmediaController extends Controller
      */
     public function edit($id)
     {
+        $fontawesom=public_path('assets/fontawesom/fontawesom.json');
+
+        $get_icons=file_get_contents($fontawesom);
+
         $social_media=Socialmedia::find($id);
-        return view('socialmedia::edit',compact('social_media'));
+        return view('socialmedia::edit',compact('social_media'))->withIcons(json_decode($get_icons));
     }
 
     /**
@@ -147,7 +159,7 @@ class SocialmediaController extends Controller
         $req->validate([
         'name' => 'required',
         'link' => 'required',
-        'icone' => 'required',
+        'icon' => 'required',
         ]);
          DB::beginTransaction();
         try{

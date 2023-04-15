@@ -9,15 +9,7 @@
 <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
 
 
-<!-- Peity chart-->
-<!-- <script src="{{asset('assets/libs/peity/jquery.peity.min.js')}}"></script>
- -->
-<!-- Plugin Js-->
-<!-- <script src="{{asset('assets/libs/chartist/chartist.min.js')}}"></script>
-<script src="{{asset('assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltip.min.js')}}"></script> -->
 
-<!-- <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
- -->
 <script src="{{asset('assets/js/app.js')}}"></script>
 <script src="{{asset('assets/izitoast/js/iziToast.min.js')}}"></script>
 
@@ -59,7 +51,7 @@
 <script src="{{asset('assets/context-menu/jquery.contextMenu.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('assets/context-menu/jquery.ui.position.min.js')}}" type="text/javascript"></script>
-
+<script src="{{asset('assets/selectpicker/js/bootstrap-select.js')}}"></script>
 
 
         <!--tinymce js-->

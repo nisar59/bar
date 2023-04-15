@@ -10,6 +10,8 @@ use Modules\Events\Entities\Events;
 use Modules\Caffe\Entities\Caffe;
 use Modules\Brunch\Entities\Brunch;
 use Modules\Faqs\Entities\Faqs;
+use Modules\Menu\Entities\Menu;
+use Modules\Socialmedia\Entities\Socialmedia;
 
 function AllPermissions()
 {
@@ -201,4 +203,15 @@ function Events()
 function Faqs()
 {
 	return Faqs::where('status', 1)->get();
+}
+
+
+function Menu($type='header')
+{
+	return Menu::where('status',1)->where('type',$type)->get();
+}
+
+function SocailMedia()
+{
+	return Socialmedia::where('status', 1)->get();
 }

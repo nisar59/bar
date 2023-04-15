@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{asset('assets/izitoast/css/iziToast.min.css')}}">
     <link href="{{asset('assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/context-menu/jquery.contextMenu.css')}}" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="{{asset('assets/selectpicker/css/bootstrap-select.css')}}">
 
 
     <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css">

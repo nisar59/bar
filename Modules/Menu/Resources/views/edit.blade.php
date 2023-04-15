@@ -49,7 +49,7 @@ Menu
                 <select name="page_slug" class="form-control">
                   <option value=""></option>
                 @foreach($pages as $page)
-                <option value="{{$page->slug}}"@if($page->slug==$menu->page_slug) selected @endif>{{$page->slug}}</option>
+                <option value="{{$page->slug}}"@if($page->slug==$menu->page_slug) selected @endif>{{$page->title}}</option>
                 @endforeach
               </select>
               </div>
