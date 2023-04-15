@@ -43,7 +43,7 @@ Events
             <div class="col-md-6">
               <div class="form-group">
                 <label>Event Date</label>
-                <input type="date" class="form-control"  name="date" value="{{$events->date}}" placeholder="Enter Date">
+                <input type="date" class="form-control"  name="event_date" value="{{$events->date}}" placeholder="Enter Date">
               </div>
             </div>
             <div class="form-group col-md-6">

@@ -77,7 +77,7 @@ class EventsController extends Controller
          $req->validate([
            'event_type'=>'required', 
            'title'=>'required', 
-           'date'=>'required', 
+           'event_date'=>'required', 
            'description'=>'required', 
            'image'=>'required', 
            'info_link'=>'required', 
@@ -165,7 +165,7 @@ class EventsController extends Controller
          $req->validate([
            'events'=>'required', 
            'title'=>'required', 
-           'date'=>'required', 
+           'event_date'=>'required', 
            'description'=>'required', 
            'info_link'=>'required', 
            'ticket_link'=>'required', 
