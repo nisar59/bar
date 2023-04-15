@@ -34,11 +34,10 @@ Events
                 <th>Events</th>
                 <th>Title</th>
                 <th>Date</th>
-                <th>Description</th>
                 <th>Image</th>
                 <th>More Information Link</th>
                 <th>Buy Ticket Link</th>
-                <th>FaceBook Link</th>
+                <th>Facebook Link</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -65,7 +64,6 @@ Events
                 {data: 'event_type', name: 'event_type',class:'text-center'},
                 {data: 'title', name: 'title',class:'text-center'},
                 {data: 'event_date', name: 'event_date',class:'text-center'},
-                {data: 'description', name: 'description',class:'text-center'},
                 {data: 'image', name: 'image', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'info_link', name: 'info_link',class:'text-center'},
                 {data: 'ticket_link', name: 'ticket_link',class:'text-center'},

@@ -30,8 +30,8 @@ Enter Events
                 <label>Select Event</label>
                 <select name="event_type" id="" class="form-control">
                   <option value="" class="form-control">Please Select One</option>
-                  <option value="weakend" class="form-control">Weakened</option>
-                  <option value="weak_night" class="form-control">Weak Night</option>
+                  <option value="Weekend" class="form-control">Weekend</option>
+                  <option value="Week Night" class="form-control">Week Night</option>
                 </select>
               </div>
               <div class="col-md-6">
