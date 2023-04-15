@@ -5,8 +5,8 @@
           <div class="container">
             <div class="site-logo">
               <a class="site-logo__btn" href="{{url('/')}}">
-                <img class="site-logo__expanded" src="assetss/images/Dante__White.png" alt="Caffe Dante Home" />
-                <img class="site-logo__collapsed" src="assetss/images/31247Dante_-sticky.png" alt="dante sticky logo" />
+                <img class="site-logo__expanded" src="{{url('public/img/settings/'.Settings()->website_logo)}}" alt="Bar" />
+                <img class="site-logo__collapsed" src="{{url('public/img/settings/'.Settings()->website_small_logo)}}" alt="Bar" />
               </a>
             </div>
             <nav class="site-nav">

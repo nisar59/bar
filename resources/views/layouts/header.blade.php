@@ -3,24 +3,23 @@
         <div class="d-flex">
             <!-- LOGO -->
            <div class="navbar-brand-box">
-                            <a href="{{url('admin/home')}}" class="logo logo-dark">
-                                <span class="logo-sm">
-                                    <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
-                                </span>
-                                <span class="logo-lg">
-                                    <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="17">
-                                </span>
-                            </a>
-
-                            <a href="{{url('admin/home')}}" class="logo logo-light">
-                                <span class="logo-sm">
-                                    <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
-                                </span>
-                                <span class="logo-lg">
-                                    <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="18">
-                                </span>
-                            </a>
-                        </div>
+                <a href="{{url('/')}}" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="{{url('public/img/settings/'.Settings()->portal_favicon)}}" height="30" alt="">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{{url('public/img/settings/'.Settings()->portal_logo)}}" height="50" alt="" >
+                    </span>
+                </a>
+                <a href="{{url('/')}}" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="{{url('public/img/settings/'.Settings()->portal_favicon)}}" height="30" alt="" >
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{{url('public/img/settings/'.Settings()->portal_logo)}}" height="50" alt="">
+                    </span>
+                </a>
+            </div>
             <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
             <i class="mdi mdi-menu"></i>
             </button>
