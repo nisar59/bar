@@ -46,7 +46,7 @@ Enter Events
             <div class="col-md-6">
               <div class="form-group">
                 <label>Event Date</label>
-                <input type="date" class="form-control" name="date" placeholder="Enter Title">
+                <input type="date" class="form-control" name="event_date" placeholder="Enter Title">
               </div>
             </div>
             <div class="col-md-6">

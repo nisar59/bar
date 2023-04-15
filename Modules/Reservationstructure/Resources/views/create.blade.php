@@ -6,7 +6,7 @@ Reservation Structure
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Product Showcase</h6>
+      <h6 class="page-title">Reservation Structure</h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">CMS</li>
@@ -39,6 +39,11 @@ Reservation Structure
             </div>
           </div>
           <div class="row">
+            <div id="img-container">
+            <div class="col-md-2mt-4">
+                <button class="btn btn-success" type="button" id="add-img-ele">+</button>
+              </div>
+            </div>
             <div class="col-md-5">
               <div class="form-group">
                 <label for="">Table Name</label>
@@ -51,11 +56,7 @@ Reservation Structure
                 <input type="number" class="form-control" placeholder="Enter No Of Guest">
               </div>
             </div>
-            <div id="img-container">
-            <div class="col-md-2 text-end mt-4">
-                <button class="btn btn-success" type="button" id="add-img-ele">+</button>
-              </div>
-            </div>
+            
           </div>
         </div>
         <div class="card-footer text-end">
