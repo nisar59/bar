@@ -3,6 +3,11 @@
 Social Media
 @endsection
 @section('content')
+
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+@endsection
+
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
@@ -33,7 +38,7 @@ Social Media
               <tr>
                 <th>Name</th>
                 <th>Link</th>
-                <th>Icone</th>
+                <th>Icon</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -60,7 +65,7 @@ buttons:[],
 columns: [
 {data: 'name', name: 'name',class:'text-center'},
 {data: 'link', name: 'link',class:'text-center'},
-{data: 'icone', name: 'icone',class:'text-center'},
+{data: 'icon', name: 'icon',class:'text-center'},
 {data: 'status', name: 'status',class:'text-center'},
 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
 ]

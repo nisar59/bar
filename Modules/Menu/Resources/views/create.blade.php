@@ -50,7 +50,7 @@ Menu
                 <select name="page_slug" class="form-control">
                  <option value=""></option>
                 @foreach($pages as $page)
-                <option value="{{$page->slug}}">{{$page->slug}}</option>
+                <option value="{{$page->slug}}">{{$page->title}}</option>
                 @endforeach
               </select>
               </div>

@@ -11,21 +11,14 @@
             </div>
             <nav class="site-nav">
               <ul class="site-nav-menu" data-menu-type="desktop">
+
+                @if(Menu('header')->count()>0)
+                  @foreach(Menu('header') as $menu)
                 <li>
-                  <a class="site-nav-link " href="{{url('welcome')}}">WELCOME</a>
+                  <a class="site-nav-link " href="@if($menu->page_slug!=null) {{url($menu->page_slug)}} @else {{url($menu->url)}} @endif">{{$menu->name}}</a>
                 </li>
-                <li>
-                  <a class="site-nav-link " href="{{url('our-story')}}">OUR STORY</a>
-                </li>
-                <li>
-                  <a class="site-nav-link " href="{{url('hours-location')}}">HOURS & LOCATIONS</a>
-                </li>
-                <li>
-                  <a class="site-nav-link " href="{{url('menu')}}">MENU</a>
-                </li>
-                <li>
-                  <a class="site-nav-link " href="{{url('bottom-less-brunch')}}">Bottomless Brunch</a>
-                </li>
+                  @endforeach
+                @endif
               </ul>
             </nav>
           </div>
@@ -48,46 +41,29 @@
           <div class="site-header-mobi-panel__inner">
             <nav class="site-nav" aria-label="Navigation Menu">
               <ul class="site-nav-menu" data-menu-type="mobile">
+                @if(Menu('header')->count()>0)
+                  @foreach(Menu('header') as $menu)
                 <li>
-                  <a class="site-nav-link " href="{{url('welcome')}}">WELCOME</a>
+                  <a class="site-nav-link " href="@if($menu->page_slug!=null) {{url($menu->page_slug)}} @else {{url($menu->url)}} @endif">{{$menu->name}}</a>
                 </li>
-                <li>
-                  <a class="site-nav-link " href="{{url('ourstory')}}">OUR STORY</a>
-                </li>
-                <li>
-                  <a class="site-nav-link " href="{{url('hours-location')}}">HOURS & LOCATIONS</a>
-                </li>
-                <li>
-                  <a class="site-nav-link " href="{{url('west-village-menu')}}">MENU</a>
-                </li>
-                <li>
-                  <a class="site-nav-link " href="#">Bottomless Brunch</a>
-                </li>
+                  @endforeach
+                @endif
               </ul>
             </nav>
 
             <div class="site-social site-social--bordered">
               <ul class="social-accounts">
 
-                <li>
-                  <a href="https://www.facebook.com/dantenewyorkcity" target="_blank" rel="noopener" data-bb-track="button" data-bb-track-on="click" data-bb-track-category="Social Icons" data-bb-track-action="Click" data-bb-track-label="Facebook, Header">
-                    <span class="fa fa-facebook" aria-hidden="true"></span>
-                    
-                    <span class="sr-only">Facebook</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/dantenewyorkcity/" target="_blank" rel="noopener" data-bb-track="button" data-bb-track-on="click" data-bb-track-category="Social Icons" data-bb-track-action="Click" data-bb-track-label="Instagram, Header">
-                    <span class="fa fa-instagram" aria-hidden="true"></span>
-                    <span class="sr-only">Instagram</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://open.spotify.com/playlist/04PcJHvCBlIiwOlzex4Dxw" target="_blank" rel="noopener" data-bb-track="button" data-bb-track-on="click" data-bb-track-category="Social Icons" data-bb-track-action="Click" data-bb-track-label="spotify, Header">
-                    <span class="fa fa-spotify" aria-hidden="true"></span>
-                    <span class="sr-only">spotify</span>
-                  </a>
-                </li>
+                  @if(SocailMedia()->count()>0)
+                    @foreach(SocailMedia() as $sm)
+                        <li>
+
+                          <a href="{{$sm->link}}" target="_blank" >
+                            <span class="{{$sm->icon}}" aria-hidden="true"></span>
+                          </a>
+                        </li>
+                    @endforeach
+                  @endif
               </ul>
             </div>
           </div>

@@ -2,7 +2,12 @@
 @section('title')
 Social Media
 @endsection
+
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+@endsection
 @section('content')
+
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
@@ -25,23 +30,28 @@ Social Media
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="">Name</label>
               <input type="text" class="form-control" name="name" placeholder="Enter Name">
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label>Link</label>
                 <input type="url" class="form-control" name="link" placeholder="Enter Link">
               </div>
             </div>
-          </div>
-          <div class="row">
-            <dov class="col-md-6">
+
+            <dov class="col-md-4">
             <div class="form-group">
-              <label>Icone</label>
-              <input type="" class="form-control" name="icone" placeholder="Enter Icone">
+              <label>Icon</label>
+              <select name="icon" class="form-control selectpicker" data-live-search="true">
+                <option value="">Select</option>
+
+                @foreach($icons->icons as $icon)
+                <option value="fa {{$icon}}" data-content="<i class='fa {{$icon}}'></i> {{$icon}}">{{$icon}}</option>
+                @endforeach
+              </select>
             </div>
             </dov>
           </div>  
@@ -53,4 +63,15 @@ Social Media
     </div>
   </div>
 </form>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+$(document).ready(function() {
+
+
+});
+
+</script>
+
 @endsection
