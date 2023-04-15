@@ -30,10 +30,8 @@ Weekly Events
           <label>Image</label>
           <input type="file" class="form-control" name="image" id="image" onchange="document.getElementById('image-display').src = window.URL.createObjectURL(this.files[0])">
         </div>
-        <div class="form-group col-md-6">
-          <img src="{{url('public/images/w-events/'.$events->image)}}" class="image-display float-end" id="image-display" width="100" height="100">
-        </div>
-        </div>
+         <span>{{$events->image}}</span>
+
           <div class="form-group">
             <label>Description</label>
             <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5">{{$events->description}}</textarea>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Events\Entities\Events;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
 use Throwable;
 use DB;
 use Auth;
@@ -52,7 +53,11 @@ class EventsController extends Controller
            }
                return $status;
            })
-           ->rawColumns(['action','image','status'])
+              ->editColumn('event_date',function($row)
+             {
+                 return Carbon::parse($row->event_date)->format('d-m-Y');
+             })
+           ->rawColumns(['action','image','status','event_date'])
            ->make(true);
         }
         return view('events::index');
@@ -163,7 +168,7 @@ class EventsController extends Controller
     public function update(Request $req, $id)
     {
          $req->validate([
-           'events'=>'required', 
+           'event_type'=>'required', 
            'title'=>'required', 
            'event_date'=>'required', 
            'description'=>'required', 
