@@ -25,10 +25,10 @@ class TableBookingsController extends Controller
            return DataTables::of($table)
            ->addColumn('action',function ($row){
                $action='';
-               if(Auth::user()->can('faqs.edit')){
+               if(Auth::user()->can('table-bookings.edit')){
                $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/table-bookings/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
             }
-            if(Auth::user()->can('faqs.delete')){
+            if(Auth::user()->can('table-bookings.delete')){
                $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
            }
                return $action;
