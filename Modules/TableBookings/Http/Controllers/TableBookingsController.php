@@ -91,7 +91,7 @@ class TableBookingsController extends Controller
         $inputs['user_id']=Auth::user()->id;
         $inputs['sitting_id']=$req->sitting;
         $inputs['table_id']=$req->table;
-        $inputs['extras_ids']=json_encode($req->extras);
+        $inputs['extras_ids']=$req->extras;
         $inputs['booking_date']=$req->date;
         $inputs['payment_status']=0;
         $inputs['status']=0;
