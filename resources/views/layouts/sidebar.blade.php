@@ -91,6 +91,7 @@ $type = Request()->type;
                     </ul>
                 </li>
                 @endcan
+                
 
                 <!-- Table Reservation -->
                 @can('tables-reservation.view')

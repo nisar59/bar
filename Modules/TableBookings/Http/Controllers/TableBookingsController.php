@@ -9,9 +9,11 @@ use Modules\Extras\Entities\Extras;
 use Modules\TableBookings\Entities\TableBookings;
 use Modules\SittingStructure\Entities\StructureTables;
 use Modules\Sittings\Entities\Sittings;
+use DataTables;
 use Throwable;
 use Auth;
 use DB;
+use Carbon\Carbon;
 class TableBookingsController extends Controller
 {
     /**
@@ -20,6 +22,67 @@ class TableBookingsController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()) {
+        $table_booking=TableBookings::select('*')->orderBy('id','ASC')->get();
+           return DataTables::of($table_booking)
+           ->addColumn('action',function ($row){
+               $action='';
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+        
+               return $action;
+           })
+             ->addColumn('status',function ($row){
+               $status='';
+               if($row->status==1){
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Served</a>';
+                }else{
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Actived</a>';                
+           }
+               return $status;
+           })
+
+             ->editColumn('user_id',function($row)
+             {
+                 return User($row->user_id);
+             })
+             ->addColumn('user_email',function($row)
+             {
+                if(UserDetail($row->user_id)!=null){
+                 return UserDetail($row->user_id)->email;
+                }
+             })
+
+             ->editColumn('sitting_id',function($row)
+             {
+                $sitt='';
+                 if($row->sitting()->exists()){
+                    $sitt.=Carbon::parse($row->sitting->time_from)->format('h:i A');
+                 }
+
+                 return $sitt;
+             })
+
+             ->editColumn('booking_date',function($row)
+             {
+                 return Carbon::parse($row->booking_date)->format('d-m-Y');
+             })
+
+             ->editColumn('table_id',function($row)
+             {
+                $tlb='Guests ';
+                 if($row->table()->exists() && $row->table->table()->exists()){
+                    $tlb.=$row->table->table->guests;
+                    $tlb.=' (';
+                    $tlb.=$row->table->table->name;
+                    $tlb.=')';
+                 }
+                 
+                 return $tlb;
+             })
+
+           ->rawColumns(['action','status'])
+           ->make(true);
+        }
         return view('tablebookings::index');
     }
 
@@ -119,7 +182,35 @@ class TableBookingsController extends Controller
         $table_book=TableBookings::find($id);
         return view('tablebookings::show')->withData($table_book);
     }
+     /**
+     * Update status.
+     * @param int $id
+     * @return Renderable
+     */
+    public function status($id)
+    {
+        DB::beginTransaction();
+        try{
+        $page=TableBookings::find($id);
 
+        if($page->status==1){
+            $page->status=0;
+        }
+        else{
+            $page->status=1;
+        }
+        $page->save();
+        DB::commit();
+         return redirect('admin/table-bookings')->with('success','Table Booking status successfully updated');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
+    }
     /**
      * Show the specified resource.
      * @param int $id
@@ -160,6 +251,18 @@ class TableBookingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+        TableBookings::find($id)->delete();
+        DB::commit();
+         return redirect('admin/table-bookings')->with('success','Table Booking successfully deleted');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 }
