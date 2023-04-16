@@ -64,6 +64,8 @@ transition: height 1s 0s, opacity 1s 0ms;
 										<div class="col-md-4 col-lg-3 col-xs-6 col-sm-6 mb-3">
 											<button type="button" class="@if(in_array($table->table_id, $bookings)) btn-warning @else table-button btn-outline-primary border-primary @endif btn btn-block  m-0 fw-bold  rounded p-2 fs-6 text-break">Guests @if($table->table!=null) {{$table->table->guests}} @endif<br> <small class="m-0">Price: {{$table->price}}</small></button>
 											<input type="checkbox" hidden name="table" value="{{$table->table_id}}" class="table">
+
+											<input type="checkbox" hidden name="sitting" value="{{$sitting->id}}" class="sitting">
 										</div>
 										@empty
 										<div class="col-md-12 text-center">
@@ -120,7 +122,9 @@ $(document).on('click','.table-button', function() {
 			$('.table-button').removeClass('bg-primary text-white');
 			$(this).addClass('bg-primary text-white');
 			$('.table').removeAttr('checked');
+			$('.sitting').removeAttr('checked');
 			$(this).siblings('.table').attr('checked', true);
+			$(this).siblings('.sitting').attr('checked', true);
 });
 $(document).on('click','.extras-button', function() {
 	var extra_is=$(this).siblings('.extras').is(":checked");
