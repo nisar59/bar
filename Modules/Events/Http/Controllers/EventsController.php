@@ -204,10 +204,18 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        $events=Events::find($id);
-        if($events->delete()){
-        return redirect('admin/events')->with('success', 'Events successfully Deleted');
- 
-        }
+        DB::beginTransaction();
+        try{
+        Events::find($id)->delete();
+        DB::commit();
+         return redirect('admin/events')->with('success','Event Menu successfully deleted');
+         
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error','Something went wrong with this error: '.$e->getMessage());
+         }
     }
 }
