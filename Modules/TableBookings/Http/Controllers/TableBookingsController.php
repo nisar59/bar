@@ -5,10 +5,10 @@ namespace Modules\TableBookings\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\TablesReservation\Entities\TablesReservation;
 use Modules\Extras\Entities\Extras;
 use Modules\TableBookings\Entities\TableBookings;
-use Yajra\DataTables\Facades\DataTables;
+use Modules\SittingStructure\Entities\StructureTables;
+use Modules\Sittings\Entities\Sittings;
 use Throwable;
 use Auth;
 use DB;
@@ -20,31 +20,6 @@ class TableBookingsController extends Controller
      */
     public function index()
     {
-         if (request()->ajax()) {
-        $table=TableBookings::select('*')->orderBy('id','ASC')->get();
-           return DataTables::of($table)
-           ->addColumn('action',function ($row){
-               $action='';
-               if(Auth::user()->can('table-bookings.edit')){
-               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/table-bookings/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
-            }
-            if(Auth::user()->can('table-bookings.delete')){
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
-           }
-               return $action;
-           })
-             ->addColumn('status',function ($row){
-               $status='';
-               if($row->status==1){
-               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Active</a>';
-                }else{
-               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Deactive</a>';                
-           }
-               return $status;
-           })
-           ->rawColumns(['action','status'])
-           ->make(true);
-        }
         return view('tablebookings::index');
     }
 
@@ -54,9 +29,36 @@ class TableBookingsController extends Controller
      */
     public function create(Request $req)
     {
+        $guests=$req->guests;
         $extras=Extras::where('status',1)->get();
-        $tables=TablesReservation::where('status',1)->get();
-        return view('tablebookings::create')->withData($tables)->withExtras($extras);
+        $table_booking=TableBookings::whereDate('booking_date', $req->date)->get();
+
+        $bookings=[];
+
+        foreach ($table_booking as $key => $tb) {
+            $bookings[]=$tb->table_id;
+        }
+
+
+        if($guests==null){
+        $sitting=Sittings::with('tables.table')->where('status',1)->get();
+        }
+        else{
+
+        $structure_table=StructureTables::where('guests',$guests)->get('id');
+        $tables=[];
+        foreach ($structure_table as $key => $value) {
+           $tables[]=$value->id;
+        }
+
+        $sitting=Sittings::with(['tables'=>function($qry) use($tables)
+        {
+         $qry->whereIn('table_id',$tables);
+        }])->where('status',1)->get();
+        }
+
+
+        return view('tablebookings::create')->withData($sitting)->withExtras($extras)->withBookings($bookings);
     }
 
     /**
@@ -64,8 +66,17 @@ class TableBookingsController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $req, $id)
+    public function store(Request $req)
     {
+
+        $req->validate([
+            'table'=>'required',
+            'sitting'=>'required'
+        ],[
+            'table.required'=>'Please select atleast one table to reserve',
+            'sitting.required'=>'Please select atleast one table to reserve'
+        ]);
+
         if(!Auth::check()){
             session()->put('redirect-url', url()->current());
             return redirect('user-login');
@@ -75,11 +86,12 @@ class TableBookingsController extends Controller
             return redirect('table-bookings/create');
         }
 
-
         DB::beginTransaction();
         try{
         $inputs['user_id']=Auth::user()->id;
-        $inputs['table_id']=$id;
+        $inputs['sitting_id']=$req->sitting;
+        $inputs['table_id']=$req->table;
+        $inputs['extras_ids']=json_encode($req->extras);
         $inputs['booking_date']=$req->date;
         $inputs['payment_status']=0;
         $inputs['status']=0;
@@ -115,7 +127,7 @@ class TableBookingsController extends Controller
      */
     public function checkout($id)
     {
-        $table_book=TableBookings::with('table')->find($id);
+        $table_book=TableBookings::with('sitting')->find($id);
         return view('tablebookings::checkout')->withData($table_book);    
     }
 
