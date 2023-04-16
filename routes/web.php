@@ -56,5 +56,5 @@ Route::get('admin/artisan/{command}', 'HomeController@artisan')->name('home')->m
 
 
 Route::get('/', 'FrontendController@index');
-Route::get('home', 'FrontendController@index')->middleware('auth');
+Route::get('home', 'FrontendController@user')->middleware('auth');
 Route::get('/{slug}', 'FrontendController@index');

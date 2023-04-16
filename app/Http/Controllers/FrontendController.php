@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Pages\Entities\Pages;
+use Modules\TableBookings\Entities\TableBookings;
+use Auth;
 use App;
 class FrontendController extends Controller
 {
@@ -33,101 +35,10 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
-    public function welcome()
+    public function user()
     {
-        return view('frontend/welcome');
-    }
-    
-    public function ourstory()
-    {
-         return view('frontend/our_story');
-    }
-
-
-     public function hours_location()
-    {
-         return view('frontend/hour_location');
-    }
-
-
-     public function cafe_dante_menu()
-    {
-         return view('frontend/cafe_dante_menu');
-    }
-
-
-      public function west_village_menu()
-    {
-         return view('frontend/west_village_menu');
-    }
-
-
-
-       public function reservations()
-    {
-         return view('frontend/reservations');
-    }
-
-
-        public function storee()
-    {
-         return view('frontend/store');
-    }
-
-
-         public function gift_card()
-    {
-         return view('frontend/gift_card');
-    }
-
-
-    public function bottled_cocktails()
-    {
-        return view('frontend/bottled-cocktails');
-    }
-
-
-    public function collaborations()
-    {
-        return view('frontend/collaborations');
-    }
-
-
-    public function news_and()
-    {
-       return view('frontend/news-and-events');
-    }
-
-   public function press()
-   {
-       return view('frontend/press');
-   }
-
-
-     public function contact()
-   {
-       return view('frontend/contact');
-   }
-
-
-
-    public function celebrate()
-    {
-        return view('frontend/celebrate');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function work_with()
-    {
-     return view('frontend/work_with');   
+        $book_table=TableBookings::where('user_id', Auth::user()->id)->where('payment_status',1)->get();
+        return view('frontend.pages.user')->withData($book_table);
     }
 
     /**

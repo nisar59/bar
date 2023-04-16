@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Extras\Entities\Extras;
 use Modules\TableBookings\Entities\TableBookings;
 use Modules\SittingStructure\Entities\StructureTables;
+use Modules\Sittings\Entities\SittingTables;
 use Modules\Sittings\Entities\Sittings;
 use DataTables;
 use Throwable;
@@ -92,9 +93,19 @@ class TableBookingsController extends Controller
      */
     public function create(Request $req)
     {
+        if(!Auth::check()){
+            session()->put('redirect-url', url()->current());
+            return redirect('user-login');
+        }
+
+        $get_unpaid=TableBookings::where('user_id', Auth::user()->id)->where('payment_status', 0);
+
+        if($get_unpaid->count()>0){
+            $get_unpaid->delete();
+        }
         $guests=$req->guests;
         $extras=Extras::where('status',1)->get();
-        $table_booking=TableBookings::whereDate('booking_date', $req->date)->get();
+        $table_booking=TableBookings::whereDate('booking_date', $req->date)->where('payment_status',1)->get();
 
         $bookings=[];
 
@@ -151,13 +162,33 @@ class TableBookingsController extends Controller
 
         DB::beginTransaction();
         try{
+
+        $total=0;
+
+        if($req->extras!=null){
+        $ext=Extras::whereIn('id', $req->extras)->get();
+        foreach($ext as $ex){
+            $total=(int)$total + (int) $ex->price;
+            }
+        }
+
+
+        $sitt_tbl=SittingTables::where('table_id', $req->table)->where('sitting_id', $req->sitting)->first(); 
+
+        $total=(int)$total + (int) $sitt_tbl->price;
+
+
+
+
         $inputs['user_id']=Auth::user()->id;
         $inputs['sitting_id']=$req->sitting;
         $inputs['table_id']=$req->table;
         $inputs['extras_ids']=$req->extras;
+        $inputs['amount']=$total;
         $inputs['booking_date']=$req->date;
         $inputs['payment_status']=0;
         $inputs['status']=0;
+
         $table_book=TableBookings::create($inputs);
         DB::commit();
          return redirect('table-bookings/checkout/'.$table_book->id);
@@ -171,6 +202,32 @@ class TableBookingsController extends Controller
 
 
     }
+
+
+    public function postsuccess($id)
+    {
+        try {
+            $book_table=TableBookings::find($id);
+            $book_table->payment_status=1;
+            $book_table->save();
+        DB::commit();
+         return redirect('table-bookings/success');
+         } catch(Exception $e){
+            DB::rollback();
+            return redirect('/')->with('error','Something went wrong with this error, please contact admin: '.$e->getMessage());
+         }catch(Throwable $e){
+            DB::rollback();
+            return redirect('/')->with('error','Something went wrong with this error, please contact admin: '.$e->getMessage());
+         }
+
+    }
+
+
+    public function success()
+    {
+       return view('tablebookings::success');
+    }
+
 
     /**
      * Show the specified resource.

@@ -13,7 +13,7 @@ class TableBookings extends Model
     use HasFactory;
 
     protected $table="table_bookings";
-    protected $fillable = ['user_id','sitting_id','table_id','extras_ids','booking_date','payment_status','status'];
+    protected $fillable = ['user_id','sitting_id','table_id','extras_ids','amount','booking_date','payment_status','status'];
     
     protected $casts = [
        'extras_ids' => 'json',

@@ -4,6 +4,7 @@
 	<title>@yield('title')</title>
 	<link rel="stylesheet" href="{{asset('assetss/css/bootstrap.css')}}">	
 	<link rel="stylesheet" href="{{asset('assetss/bootstrap-datepicker/css/bootstrap-datepicker.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/izitoast/css/iziToast.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assetss/css/style.css')}}">
 
 	@yield('css')

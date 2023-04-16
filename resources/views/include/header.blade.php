@@ -19,6 +19,24 @@
                 </li>
                   @endforeach
                 @endif
+
+                @if(Auth::check())
+                <li>
+                  <a class="site-nav-link" href="{{url('home')}}"> Home</a>
+                </li>
+                <li>
+                  <a class="site-nav-link" href="{{route('logout')}}"> Logout</a>
+                </li>
+                @else
+                <li>
+                  <a class="site-nav-link" href="{{url('user-register')}}"> Register</a>
+                </li>
+                <li>
+                  <a class="site-nav-link" href="{{url('user-login')}}"> Login</a>
+                </li>
+                @endif
+
+
               </ul>
             </nav>
           </div>

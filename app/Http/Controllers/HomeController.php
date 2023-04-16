@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Modules\TableBookings\Entities\TableBookings;
 use App\Models\User;
 use Carbon\Carbon;
 use Artisan;
@@ -31,9 +32,14 @@ class HomeController extends Controller
             'lock_screen_token'=>Hash::make(Auth::id().now()),
         ]);
 
+        $bookings=TableBookings::where('payment_status',1);
 
+        $total_bookings=$bookings->count();
 
-        return view('home');
+        $active_bookings=$bookings->where('status',0)->count();
+        $served_bookings=$bookings->where('status',1)->count();
+
+        return view('home',compact('total_bookings', 'active_bookings', 'served_bookings'));
     }
 
 
