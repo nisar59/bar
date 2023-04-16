@@ -176,7 +176,7 @@ $total=0;
 
         onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function() {
-                window.location="{{url('table-bookings/checkout/success/1')}}";
+                window.location="{{url('table-bookings/checkout/success/'.$data->id)}}";
             });
         }
 
