@@ -23,13 +23,14 @@ transition: height 1s 0s, opacity 1s 0ms;
 	<main class="site-content__main">
 		<section class="content container">
 			<div class="row justify-content-center" style="margin-top: 10%;">
-				<div class="col-8">
+				<div class="col-md-8 col-xs-12">
 					<div class="card">
 						<div class="card-header bg-white">
 							<h4 class="card-title text-dark">Reservation</h4>
 						</div>
+						<form action="{{url('table-bookings/create')}}" method="post" class="m-0">
+							@csrf
 						<div class="card-body pb-0">
-							<form action="" class="m-0">
 								<div class="row">
 									<div class="col-md-12 text-start">
 										<p class="text-dark fw-bold">Need to Know:</p>
@@ -38,7 +39,7 @@ transition: height 1s 0s, opacity 1s 0ms;
 									<div class="col-md-6 text-start">
 										<div class="mb-3">
 											<label for="guest" class="col-form-label text-dark">No of Guests:</label>
-											<input type="number" min="1" value="{{request()->guests}}" class="form-control border border-dark fields" name="guests" id="guests" placeholder="Number of Guests" required>
+											<input type="number" min="1" value="{{request()->guests}}" class="form-control border border-dark fields" name="guests" id="guests" placeholder="Number of Guests">
 										</div>
 									</div>
 									<div class="col-md-6 text-start">
@@ -48,29 +49,47 @@ transition: height 1s 0s, opacity 1s 0ms;
 										</div>
 									</div>
 								</div>
+
+								
 								<div class="row">
-									@foreach($data as $table)
+									@foreach($data as $sitting)
 									@php
-									$tm=Carbon\Carbon::parse($table->time_from);
+									$tm=Carbon\Carbon::parse($sitting->time_from);
 									@endphp
-									<div class="col-md-4 mb-3">
-										<button type="button" class="btn btn-block table-button m-0 fw-bold btn-outline-primary border-primary rounded p-2">{{$tm->format('h:i A')}}</button>
-										<input type="checkbox" hidden name="table" value="{{$table->id}}" class="table">
-									</div>
+									@if($sitting->tables()->exists())
+										<div class="col-md-12">
+											<h6 class="text-dark">{{$sitting->name}} : {{$tm->format('h:i A')}}</h6>
+										</div>
+										@forelse($sitting->tables as $table)
+										<div class="col-md-4 col-lg-3 col-xs-6 col-sm-6 mb-3">
+											<button type="button" class="@if(in_array($table->table_id, $bookings)) btn-warning @else table-button btn-outline-primary border-primary @endif btn btn-block  m-0 fw-bold  rounded p-2 fs-6 text-break">Guests @if($table->table!=null) {{$table->table->guests}} @endif<br> <small class="m-0">Price: {{$table->price}}</small></button>
+											<input type="checkbox" hidden name="table" value="{{$table->table_id}}" class="table">
+
+											<input type="checkbox" hidden name="sitting" value="{{$sitting->id}}" class="sitting">
+										</div>
+										@empty
+										<div class="col-md-12 text-center">
+											<p class="text-dark w-100">Sorry, we don't currently have any tables available</p>
+										</div>
+										@endforelse
+									@endif
 									@endforeach
 								</div>
+
+
+
+
 								<div class="row extras-container">
 									<div class="col-md-12 text-start">
-										<h6 class="text-dark fw-bold">Extras</h6>
+										<h5 class="text-dark fw-bold">Extras</h5>
 									</div>
 									@foreach($extras as $extra)
-									<div class="col-md-4 mb-3">
+									<div class="col-md-4 col-lg-4 col-sm-6 col-xs-6 mb-3">
 										<button type="button" class="btn btn-block extras-button m-0 fw-bold btn-outline-primary border-primary rounded p-2">{{$extra->name}} <br><span class="text-lowercase small">price: {{number_format($extra->price)}}</span></button>
 										<input type="checkbox" hidden name="extras[]" value="{{$extra->id}}" class="extras">
 									</div>
 									@endforeach
 								</div>
-							</form>
 						</div>
 						<div class="card-footer reservation-submit" hidden>
 							<div class="row justify-content-center">
@@ -80,6 +99,8 @@ transition: height 1s 0s, opacity 1s 0ms;
 								</div>
 							</div>
 						</div>
+					</form>
+
 					</div>
 				</div>
 			</div>
@@ -101,7 +122,9 @@ $(document).on('click','.table-button', function() {
 			$('.table-button').removeClass('bg-primary text-white');
 			$(this).addClass('bg-primary text-white');
 			$('.table').removeAttr('checked');
+			$('.sitting').removeAttr('checked');
 			$(this).siblings('.table').attr('checked', true);
+			$(this).siblings('.sitting').attr('checked', true);
 });
 $(document).on('click','.extras-button', function() {
 	var extra_is=$(this).siblings('.extras').is(":checked");
