@@ -76,6 +76,15 @@ class SettingsController extends Controller
         $settings->website_logo=$website_logo;
         $settings->website_small_logo=$website_small_logo;
         $settings->website_favicon_icone=$website_favicon_icone;
+        
+        $settings->payment_environment=$req->payment_environment;
+        $settings->sandbox_secret_key=$req->sandbox_secret_key;
+        $settings->sandbox_client_id=$req->sandbox_client_id;
+        $settings->production_secret_key=$req->production_secret_key;
+        $settings->production_client_id=$req->production_client_id;
+
+
+
         $settings->logging=$req->logging;
         $settings->logs_duration=$req->logs_duration;
         $settings->logs_duration_type=$req->logs_duration_type;
