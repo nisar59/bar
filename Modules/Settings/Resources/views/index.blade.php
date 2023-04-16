@@ -126,21 +126,21 @@ $favicon=url('public/img/settings/'.$sett->portal_favicon);
                       <div class="form-group">
                         <label for="">Payment Environment</label>
                         <select name="payment_environment" id="" class="form-control">
-                          <option value="sandbox">Sandbox</option>
-                          <option value="production">production</option>
+                          <option value="sandbox" @if($sett->payment_environment="sandbox") selected @endif>Sandbox</option>
+                          <option value="production" @if($sett->payment_environment="production") selected @endif>production</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="">Sandbox Secret Key</label>
-                        <input type="text" class="form-control" name="sandbox_secret_key" placeholder="Enter Sandbox Secret ID">
+                        <input type="text" class="form-control" value="{{$sett->sandbox_secret_key}}" name="sandbox_secret_key" placeholder="Enter Sandbox Secret ID">
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="">Sandbox Client ID</label>
-                        <input type="text" class="form-control" name="sandbox_client_id" placeholder="Enter Sandbox Client ID">
+                        <input type="text" class="form-control" value="{{$sett->sandbox_client_id}}" name="sandbox_client_id" placeholder="Enter Sandbox Client ID">
                       </div>
                     </div>
                   </div>
@@ -148,13 +148,13 @@ $favicon=url('public/img/settings/'.$sett->portal_favicon);
                     <div class="col-md-4 mt-2">
                       <div class="form-group">
                         <label for="">Production Secret Key</label>
-                        <input type="text" class="form-control" name="production_secret_key" placeholder="Enter Production Secret ID">
+                        <input type="text" class="form-control" value="{{$sett->production_secret_key}}" name="production_secret_key" placeholder="Enter Production Secret ID">
                       </div>
                     </div>
                     <div class="col-md-4 mt-2">
                       <div class="form-group">
                         <label for="">Production Client ID</label>
-                        <input type="text" class="form-control" name="production_client_id" placeholder="Enter Production Client ID">
+                        <input type="text" class="form-control" value="{{$sett->production_client_id}}" name="production_client_id" placeholder="Enter Production Client ID">
                       </div>
                     </div>
                   </div>
