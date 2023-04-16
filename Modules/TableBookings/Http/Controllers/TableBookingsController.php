@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\TablesReservation\Entities\TablesReservation;
 use Modules\Extras\Entities\Extras;
 use Modules\TableBookings\Entities\TableBookings;
+use Yajra\DataTables\Facades\DataTables;
 use Throwable;
 use Auth;
 use DB;
@@ -19,6 +20,31 @@ class TableBookingsController extends Controller
      */
     public function index()
     {
+         if (request()->ajax()) {
+        $table=TableBookings::select('*')->orderBy('id','ASC')->get();
+           return DataTables::of($table)
+           ->addColumn('action',function ($row){
+               $action='';
+               if(Auth::user()->can('faqs.edit')){
+               $action.='<a class="btn btn-primary btn-sm m-1" href="'.url('admin/table-bookings/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+            }
+            if(Auth::user()->can('faqs.delete')){
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+           }
+               return $action;
+           })
+             ->addColumn('status',function ($row){
+               $status='';
+               if($row->status==1){
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Active</a>';
+                }else{
+               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Deactive</a>';                
+           }
+               return $status;
+           })
+           ->rawColumns(['action','status'])
+           ->make(true);
+        }
         return view('tablebookings::index');
     }
 

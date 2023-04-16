@@ -76,6 +76,22 @@ $type = Request()->type;
                 </li>
                 @endcan
 
+                <!-- Table Bookings -->
+                 @can('table-bookings.view')
+                <li class="menu-title">Table Bookings</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fa fa-coffee" aria-hidden="true"></i>
+                        <span>Table Bookings</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('sitting-structure.view')
+                        <li><a href="{{url('admin/table-bookings')}}">Table Bookings</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
                 <!-- Table Reservation -->
                 @can('tables-reservation.view')
                 <li class="menu-title">Tables Reservation</li>
