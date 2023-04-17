@@ -32,7 +32,6 @@ FAQs
             <thead class="text-center bg-primary text-white">
               <tr>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -57,7 +56,6 @@ FAQs
               buttons:[],
               columns: [
                 {data: 'title', name: 'title',class:'text-center'},
-                {data: 'description', name: 'description',class:'text-center'},
                 {data: 'status', name: 'status', orderable: false, searchable: false ,class:'text-center'},
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
