@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
            <div class="navbar-brand-box">
-                <a href="{{url('/')}}" class="logo logo-dark">
+                <a href="{{url('admin/home')}}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{url('public/img/settings/'.Settings()->portal_favicon)}}" height="30" alt="">
                     </span>
@@ -11,7 +11,7 @@
                         <img src="{{url('public/img/settings/'.Settings()->portal_logo)}}" height="50" alt="" >
                     </span>
                 </a>
-                <a href="{{url('/')}}" class="logo logo-light">
+                <a href="{{url('admin/home')}}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{url('public/img/settings/'.Settings()->portal_favicon)}}" height="30" alt="" >
                     </span>
