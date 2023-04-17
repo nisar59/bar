@@ -57,7 +57,7 @@ $type = Request()->type;
                 <li class="menu-title">Sittings</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-coffee" aria-hidden="true"></i>
+                        <i class="fas fa-chair" aria-hidden="true"></i>
                         <span>Sittings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -75,7 +75,7 @@ $type = Request()->type;
                 <li class="menu-title">Sitting Structure</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-coffee" aria-hidden="true"></i>
+                        <i class="fas fa-th-large" aria-hidden="true"></i>
                         <span>Sitting Structure</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -92,7 +92,7 @@ $type = Request()->type;
                 <li class="menu-title">Extras</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-circle"></i>
+                        <i class="fas fa-th-list"></i>
                         <span>Extras</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -110,7 +110,7 @@ $type = Request()->type;
                 <li class="menu-title">Caffe Menu</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-coffee" aria-hidden="true"></i>
+                        <i class="fas fa-clipboard-listfas fa-clipboard-listfas fa-clipboard-listfas fa-clipboard-listfas fa-clipboard-list" aria-hidden="true"></i>
                         <span>Caffe Menu</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -146,7 +146,7 @@ $type = Request()->type;
                 <li class="menu-title"> Events</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="far fa-calendar"></i>
+                        <i class="fas fa-calendar-alt"></i>
                         <span> Events</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -179,7 +179,7 @@ $type = Request()->type;
                 <li class="menu-title"> FAQs</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="far fa-calendar"></i>
+                        <i class="fas fa-question-circle"></i>
                         <span> FAQs</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -214,7 +214,7 @@ $type = Request()->type;
                 <li class="menu-title">Show Case</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                <i class="fa fa-globe" aria-hidden="true"></i>
+                <i class="fas fa-camera" aria-hidden="true"></i>
                         <span>Show Case</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -231,7 +231,7 @@ $type = Request()->type;
                 <li class="menu-title">CMS</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-camera-retro fa-3x"></i>
+                        <i class="fas fa-laptop-code fa-3x"></i>
                         <span>CMS</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">

@@ -2,8 +2,6 @@
     "Users": true,
     "Roles": true,
     "Settings": true,
-    "Logs": true,
-    "Trash": true,
     "Pages": true,
     "Menu": true,
     "Caffe": true,
