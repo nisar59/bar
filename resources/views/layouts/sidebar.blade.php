@@ -32,35 +32,45 @@ $type = Request()->type;
                     </ul>
                 </li>
                 @endcan
-                <!-- CMS -->
-                @canany(['pages.view','menu.view','banner.view','slider.view','product-showcase'])
-                <li class="menu-title">CMS</li>
+
+
+                <!-- Table Bookings -->
+                 @can('table-bookings.view')
+                <li class="menu-title">Table Bookings</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-camera-retro fa-3x"></i>
-                        <span>CMS</span>
+                        <i class="fa fa-coffee" aria-hidden="true"></i>
+                        <span>Table Bookings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        @can('pages.view')
-                        <li><a href="{{url('admin/pages')}}">Pages</a></li>
-                        @endcan
-                        @can('menu.view')
-                        <li><a href="{{url('admin/menu')}}">Menu</a></li>
-                        @endcan
-                        @can('banner.view')
-                        <li><a href="{{url('admin/banner')}}">Banner</a></li>
-                        @endcan
-                        @can('slider.view')
-                        <li><a href="{{url('admin/slider')}}">Slider</a></li>
-                        @endcan
-                        @can('product-showcase.view')
-                        <li><a href="{{url('admin/product-showcase')}}">Product Showcase</a></li>
+                        @can('table-bookings.view')
+                        <li><a href="{{url('admin/table-bookings')}}">Table Bookings</a></li>
                         @endcan
                     </ul>
                 </li>
                 @endcan
 
-                <!-- Reservation Structure -->
+
+
+                <!-- Sittings -->
+                @can('sittings.view')
+                <li class="menu-title">Sittings</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fa fa-coffee" aria-hidden="true"></i>
+                        <span>Sittings</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('sittings.view')
+                        <li><a href="{{url('admin/sittings')}}">Sittings</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
+
+
+                <!-- Sitting Structure -->
                 @can('sitting-structure.view')
                 <li class="menu-title">Sitting Structure</li>
                 <li>
@@ -76,38 +86,7 @@ $type = Request()->type;
                 </li>
                 @endcan
 
-                <!-- Table Bookings -->
-                 @can('table-bookings.view')
-                <li class="menu-title">Table Bookings</li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-coffee" aria-hidden="true"></i>
-                        <span>Table Bookings</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        @can('sitting-structure.view')
-                        <li><a href="{{url('admin/table-bookings')}}">Table Bookings</a></li>
-                        @endcan
-                    </ul>
-                </li>
-                @endcan
-                
 
-                <!-- Table Reservation -->
-                @can('tables-reservation.view')
-                <li class="menu-title">Tables Reservation</li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-coffee" aria-hidden="true"></i>
-                        <span>Tables Reservation</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        @can('tables-reservation.view')
-                        <li><a href="{{url('admin/tables-reservation')}}">Tables Reservation</a></li>
-                        @endcan
-                    </ul>
-                </li>
-                @endcan
                 <!-- Extras -->
                  @can('extras.view')
                 <li class="menu-title">Extras</li>
@@ -125,6 +104,7 @@ $type = Request()->type;
                 @endcan
 
 
+
                 <!-- Caffe Menu -->
                 @can('caffe-menu.view')
                 <li class="menu-title">Caffe Menu</li>
@@ -140,6 +120,9 @@ $type = Request()->type;
                     </ul>
                 </li>
                 @endcan
+
+
+
                 <!-- BOTTOMLESS BRUNCH -->
                 @can('bottomless-brunch.view')
                 <li class="menu-title">Bottomless Brunch</li>
@@ -155,21 +138,9 @@ $type = Request()->type;
                     </ul>
                 </li>
                 @endcan
-                <!-- Weakly Events -->
-                @can('weaklyevents.view')
-                <li class="menu-title">Weekly Events</li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <span>Weekly Events</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        @can('weaklyevents.view')
-                        <li><a href="{{url('admin/weekly-events')}}">Weekly Events</a></li>
-                        @endcan
-                    </ul>
-                </li>
-                @endcan
+
+
+
                 <!-- Events -->
                 @can('events.view')
                 <li class="menu-title"> Events</li>
@@ -185,6 +156,24 @@ $type = Request()->type;
                     </ul>
                 </li>
                 @endcan
+
+
+                <!-- Weakly Events -->
+                @can('weaklyevents.view')
+                <li class="menu-title">Weekly Events</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span>Weekly Events</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('weaklyevents.view')
+                        <li><a href="{{url('admin/weekly-events')}}">Weekly Events</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
                 <!-- FAQs -->
                 @can('faqs.view')
                 <li class="menu-title"> FAQs</li>
@@ -218,6 +207,50 @@ $type = Request()->type;
                 </li>
 
                 @endcan
+
+
+                <!-- Show Case -->
+                @can('show-case.view')
+                <li class="menu-title">Show Case</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                        <span>Show Case</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('show-case.view')
+                        <li><a href="{{url('admin/show-case')}}">Show Case</a></li>
+                        @endcan
+                    </ul>
+                </li>
+
+                @endcan
+
+                <!-- CMS -->
+                @canany(['pages.view','menu.view','banner.view','slider.view','product-showcase'])
+                <li class="menu-title">CMS</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fa fa-camera-retro fa-3x"></i>
+                        <span>CMS</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('pages.view')
+                        <li><a href="{{url('admin/pages')}}">Pages</a></li>
+                        @endcan
+                        @can('menu.view')
+                        <li><a href="{{url('admin/menu')}}">Menu</a></li>
+                        @endcan
+                        @can('banner.view')
+                        <li><a href="{{url('admin/banner')}}">Banner</a></li>
+                        @endcan
+                        @can('slider.view')
+                        <li><a href="{{url('admin/slider')}}">Slider</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
                 
                 <!--  -->
                 @can('settings')

@@ -1,16 +1,16 @@
 @extends('layouts.template')
 @section('title')
-Product Showcase
+Show Case
 @endsection
 @section('content')
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Product Showcase</h6>
+      <h6 class="page-title">Show Case</h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">CMS</li>
-        <li class="breadcrumb-item active">Product Showcase</li>
+        <li class="breadcrumb-item active">Show Case</li>
       </ol>
     </div>
   </div>
@@ -20,9 +20,9 @@ Product Showcase
     <div class="card card-primary">
       <div class="card-header bg-white">
         <div class="row">
-          <h4 class="col-md-6">Product Showcase</h4>
+          <h4 class="col-md-6">Show Case</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('admin/product-showcase/create')}}" class="btn btn-success">+</a>
+            <a href="{{url('admin/show-case/create')}}" class="btn btn-success">+</a>
           </div>
         </div>
       </div>
@@ -50,10 +50,10 @@ Product Showcase
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Product Showcase Images</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Show Case Images</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id="product-showcase-images-container">
+        <div class="modal-body" id="show-case-images-container">
 
         </div>
         <div class="modal-footer">
@@ -71,7 +71,7 @@ $(document).ready( function(){
 var roles_table = $('#slider').DataTable({
 processing: true,
 serverSide: true,
-ajax: "{{url('admin/product-showcase')}}",
+ajax: "{{url('admin/show-case')}}",
 buttons:[],
 columns: [
 {data: 'name', name: 'name',class:'text-center'},
@@ -80,7 +80,7 @@ columns: [
 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
 ]
 });
-$(document).on('click','.product-showcase-show',function () {
+$(document).on('click','.show-case-show',function () {
 
 var images_data=$(this).data('images');
 console.log(images_data);
@@ -88,13 +88,13 @@ var html='';
 $.each(images_data,function(indx, vlu) {
         var img=vlu.image;
         html+=`<div class="row"><div class="col-md-12 m-1">
-        <a class="btn btn-danger btn-sm position-absolute end-0" href="{{url('admin/product-showcase/image/destroy/')}}/`+vlu.id+`">x</a>
-        <img src="{{asset('images/product-showcase/')}}/`+img+`" class="w-100 border border-primary" />
+        <a class="btn btn-danger btn-sm position-absolute end-0" href="{{url('admin/show-case/image/destroy/')}}/`+vlu.id+`">x</a>
+        <img src="{{asset('images/show-case/')}}/`+img+`" class="w-100 border border-primary" />
         </div>
         </div>`      
 });
 
-$("#product-showcase-images-container").html(html);
+$("#show-case-images-container").html(html);
 
 $("#mdl-show").modal('show');
 });

@@ -1,27 +1,27 @@
 @extends('layouts.template')
 @section('title')
-Product Showcase
+Show Case
 @endsection
 @section('content')
 <div class="page-title-box">
   <div class="row align-items-center">
     <div class="col-md-8">
-      <h6 class="page-title">Product Showcase</h6>
+      <h6 class="page-title">Show Case</h6>
       <ol class="breadcrumb m-0">
         <li class="breadcrumb-item">{{Settings()->portal_name}}</li>
         <li class="breadcrumb-item">CMS</li>
-        <li class="breadcrumb-item active">Product Showcase</li>
+        <li class="breadcrumb-item active">Show Case</li>
       </ol>
     </div>
   </div>
 </div>
-<form action="{{url('admin/product-showcase/store')}}" method="post" enctype="multipart/form-data">
+<form action="{{url('admin/show-case/store')}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-12 col-md-12">
       <div class="card card-primary">
         <div class="card-header bg-white">
-          <h4>Product Showcase</h4>
+          <h4>Show Case</h4>
         </div>
         <div class="card-body">
           <div class="row">
