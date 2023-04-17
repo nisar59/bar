@@ -28,16 +28,15 @@ class TableBookingsController extends Controller
            return DataTables::of($table_booking)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
-        
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';        
                return $action;
            })
              ->addColumn('status',function ($row){
                $status='';
                if($row->status==1){
-               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Served</a>';
+               $status.='<a class="btn btn-info btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Served</a>';
                 }else{
-               $status.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Actived</a>';                
+               $status.='<a class="btn btn-success btn-sm m-1" href="'.url('admin/table-bookings/status/'.$row->id).'">Actived</a>';                
            }
                return $status;
            })
