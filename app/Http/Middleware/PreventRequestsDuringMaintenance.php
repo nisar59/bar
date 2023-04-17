@@ -21,12 +21,11 @@ public function handle($request, Closure $next) {
     if ($this->app->isDownForMaintenance()) {
 
         /** if URL contains API, disable continue, don't keep maintenance */
-        if(!in_array('api',$request->segments())){
+        if(in_array('admin',$request->segments())){
             return $next($request);
         }
 
-        $res=['success'=>false,'message'=>"Maintenance Mode, Thanks for patient, we'll be back soon.",'errors'=>[],'data'=>null];
-        return response()->json($res, 503);
+        abort(503);
     }
 
     return $next($request);

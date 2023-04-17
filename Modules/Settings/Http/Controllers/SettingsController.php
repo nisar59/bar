@@ -77,6 +77,12 @@ class SettingsController extends Controller
         $settings->website_small_logo=$website_small_logo;
         $settings->website_favicon_icone=$website_favicon_icone;
         
+        $settings->order_email_template=$req->order_email_template;
+        $settings->reservation_message=$req->reservation_message;
+        $settings->checkout_success_message=$req->checkout_success_message;
+
+
+
         $settings->payment_environment=$req->payment_environment;
         $settings->sandbox_secret_key=$req->sandbox_secret_key;
         $settings->sandbox_client_id=$req->sandbox_client_id;
