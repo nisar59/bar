@@ -2,6 +2,18 @@
 @section('title')
 Settings
 @endsection
+
+@section('css')
+<style>
+.tox-tinymce-aux {
+    z-index: 999999!important;
+}
+.tox .tox-menu{
+    background-color: white !important;
+}
+</style>
+@endsection
+
 @section('content')
 <div class="page-title-box">
   <div class="row align-items-center">

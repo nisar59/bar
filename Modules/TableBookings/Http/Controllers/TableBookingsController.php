@@ -28,7 +28,13 @@ class TableBookingsController extends Controller
            return DataTables::of($table_booking)
            ->addColumn('action',function ($row){
                $action='';
-               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';        
+               if(Auth::user()->can('table-bookings.view')){
+               $action.='<a class="btn btn-success btn-sm m-1 show-details" href="javascript:void(0)" data-href="'.url('admin/table-bookings/show/'.$row->id).'"><i class="fas fa-eye"></i></a>';    
+                }
+
+               if(Auth::user()->can('table-bookings.edit')){
+               $action.='<a class="btn btn-danger btn-sm m-1" href="'.url('admin/table-bookings/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';    
+                }
                return $action;
            })
              ->addColumn('status',function ($row){
@@ -235,9 +241,63 @@ class TableBookingsController extends Controller
      */
     public function show($id)
     {
+        $res=[
+            'success'=>false,
+            'message'=>null,
+            'html'=>null,
+        ];
+
+        try {
         $table_book=TableBookings::find($id);
-        return view('tablebookings::show')->withData($table_book);
+        $res['success']=true;
+        $res['message']='Table Booking detail successfully fetched';
+        $res['html']=view('tablebookings::show')->withData($table_book)->render();
+        return response()->json($res);
+
+        } catch (Exception $e) {
+            $res['success']=false;
+            $res['message']='Something went wrong with this error: '.$e->getMessage();
+        return response()->json($res);
+        } catch (Throwable $e){
+            $res['success']=false;
+            $res['message']='Something went wrong with this error: '.$e->getMessage();            
+        return response()->json($res);
+        }
     }
+
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function usershow($id)
+    {
+        $res=[
+            'success'=>false,
+            'message'=>null,
+            'html'=>null,
+        ];
+
+        try {
+        $table_book=TableBookings::find($id);
+        $res['success']=true;
+        $res['message']='Table Booking detail successfully fetched';
+        $res['html']=view('tablebookings::user-show')->withData($table_book)->render();
+        return response()->json($res);
+
+        } catch (Exception $e) {
+            $res['success']=false;
+            $res['message']='Something went wrong with this error: '.$e->getMessage();
+        return response()->json($res);
+        } catch (Throwable $e){
+            $res['success']=false;
+            $res['message']='Something went wrong with this error: '.$e->getMessage();            
+        return response()->json($res);
+        }
+    }
+
+
      /**
      * Update status.
      * @param int $id

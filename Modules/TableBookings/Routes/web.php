@@ -18,12 +18,15 @@ Route::prefix('table-bookings')->group(function() {
     Route::get('/checkout/{id}', 'TableBookingsController@checkout');
     Route::get('/checkout/success/{id}', 'TableBookingsController@postsuccess');
     Route::get('/success', 'TableBookingsController@success');
+    Route::get('user-show/{id}', 'TableBookingsController@usershow');
+
 });
 
 Route::prefix('admin/table-bookings')->group(function() {
     Route::get('/', 'TableBookingsController@index');
     Route::get('destroy/{id}', 'TableBookingsController@destroy');
     Route::get('status/{id}', 'TableBookingsController@status');
+    Route::get('show/{id}', 'TableBookingsController@show');
 
 
 });

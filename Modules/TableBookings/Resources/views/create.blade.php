@@ -33,8 +33,7 @@ transition: height 1s 0s, opacity 1s 0ms;
 						<div class="card-body pb-0">
 								<div class="row">
 									<div class="col-md-12 text-start">
-										<p class="text-dark fw-bold">Need to Know:</p>
-										<p class="text-dark small">Your reservation is for a two hour dining experience and will be held for 15 minutes past your reserved time. We do NOT take reservations for drinks only. Please contact us if you are running late on +1 212 982 5275. Children of any age are welcome at all times. Table preferences are considered yet not guarantee. Our menus are available at dante-nyc.com</p>
+										{!! Settings()->reservation_message !!}
 									</div>
 									<div class="col-md-6 text-start">
 										<div class="mb-3">

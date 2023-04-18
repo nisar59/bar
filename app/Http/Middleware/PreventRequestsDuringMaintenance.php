@@ -21,7 +21,7 @@ public function handle($request, Closure $next) {
     if ($this->app->isDownForMaintenance()) {
 
         /** if URL contains API, disable continue, don't keep maintenance */
-        if(in_array('admin',$request->segments())){
+        if(in_array('admin',$request->segments()) OR in_array('login',$request->segments()) OR in_array('logout',$request->segments())){
             return $next($request);
         }
 

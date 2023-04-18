@@ -26,6 +26,7 @@ $total=0;
                                                 <th class="text-center">Table</th>
                                                 <th class="text-center">Price</th>
                                                 <th class="text-center">Status</th>
+                                                <th class="text-center">Action</th>
                                             </thead>
                                             <tbody>
                                                 @foreach($data as $table)
@@ -50,6 +51,9 @@ $total=0;
                                                             <span class="btn m-0 btn-info">Served</span>
                                                         @endif
                                                     </td>
+                                                    <td>
+                                                        <a class="btn btn-info m-0 show-details" href="javascript:void(0)" data-href="{{url('table-bookings/user-show/'.$table->id)}}"><i class="fa fa-eye"></i></a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -65,5 +69,37 @@ $total=0;
     </main>
 </div>
 @endsection
+@section('modal')
+<div id="mdl"></div>
+@endsection
 @section('js')
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('click', '.show-details', function() {
+    var url=$(this).data('href');
+
+    $.ajax({
+      url:url,
+      success:function(res){
+        console.log(res);
+
+        if(res.success){
+          $("#mdl").html(res.html);
+          $("#TableBookingDetailModal").modal('show');
+        }
+        else{
+          error(res.message);
+        }
+      },
+      error:function(res) {
+        console.log(res);        
+        error("Something went wrong with this error: "+ res.responseJSON.message);
+      }
+    })
+
+  });
+    });
+</script>
+
 @endsection

@@ -2,6 +2,13 @@
 @section('title')
 Home | Dante NYC
 @endsection
+@section('css')
+<style>
+	hr{
+		width: 100%;
+	}
+</style>
+@endsection
 @section('content')
 
 <div class="site-content">
@@ -11,8 +18,8 @@ Home | Dante NYC
 			<div class="row justify-content-center" style="margin-top: 10%;">
 				<div class="col-8">
 					<div class="card">
-						<div class="card-body">
-
+						<div class="card-body text-dark">
+							{!! Settings()->checkout_success_message !!}
 						</div>
 					</div>
 				</div>

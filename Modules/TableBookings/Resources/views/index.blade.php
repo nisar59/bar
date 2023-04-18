@@ -49,6 +49,9 @@ Table Bookings
   </div>
 </div>
 @endsection
+@section('modal')
+<div id="mdl"></div>
+@endsection
 @section('js')
 <script type="text/javascript">
     //Roles table
@@ -68,6 +71,31 @@ Table Bookings
                 {data: 'action', name: 'action', orderable: false, searchable: false ,class:'text-center'},
             ]
           });
+
+  $(document).on('click', '.show-details', function() {
+    var url=$(this).data('href');
+
+    $.ajax({
+      url:url,
+      success:function(res){
+        console.log(res);
+
+        if(res.success){
+          $("#mdl").html(res.html);
+          $("#TableBookingDetailModal").modal('show');
+        }
+        else{
+          error(res.message);
+        }
+      },
+      error:function(res) {
+        console.log(res);        
+        error("Something went wrong with this error: "+ res.responseJSON.message);
+      }
+    })
+
+  });
+
       });
 </script>
 @endsection
