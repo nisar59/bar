@@ -152,51 +152,46 @@ $(document).on('click', '#maintenance',function (e) {
                 window.location.href=url_link;
             },
             items: {
-                dashboard: {name: "Dashboard", url_link:'{{url("/")}}', icon: 'fas fa-home',},
+                dashboard: {name: "Dashboard", url_link:'{{url("admin/home")}}', icon: 'fas fa-home',},
                 refresh: {name: "Refresh", url_link:'{{url()->current()}}', icon: 'fas fa-redo',},
                 "sep1": "---------",
 
                 @can('users.view')
-                users: {name: "Users", url_link:'{{url("users")}}', icon: 'fas fa-users',},
+                users: {name: "Users", url_link:'{{url("admin/users")}}', icon: 'fas fa-users',},
                 @endcan
 
                 @can('roles.view')
-                roles: {name: "Roles", url_link:'{{url("roles")}}', icon: 'fas fa-user-lock',},
+                roles: {name: "Roles", url_link:'{{url("admin/roles")}}', icon: 'fas fa-user-lock',},
                 "sep2": "---------",
                 @endcan
 
 
-                @can('desks.view')
-                desk: {name: "Desks", url_link:'{{url("desks")}}', icon: 'fas fa-tv',},
+                @can('table-bookings.view')
+                table_bookings: {name: "Table Bookings", url_link:'{{url("admin/table-bookings")}}', icon: 'fas fa-coffee',},
                 "sep3": "---------",
                 @endcan
 
-                @can('clients.view')
-                clients: {name: "Clients", url_link:'{{url("clients")}}', icon: 'fas fa-hospital-user',},
+                @can('sittings.view')
+                sittings: {name: "Sittings", url_link:'{{url("admin/sittings")}}', icon: 'fas fa-chair',},
                 @endcan
 
-                @can('clients-subscriptions.view')
-                clientssubscriptions: {name: "Clients Subscriptions", url_link:'{{url("clients-subscriptions")}}', icon: 'fas fa-hands-helping',},
-                "sep4": "---------",
-                @endcan
-
-                @can('deposits.view')
-                deposits: {name: "Deposits", url_link:'{{url("deposits")}}', icon: 'fas fa-briefcase',},
+                @can('sitting-structure.view')
+                sitting_structure: {name: "Sitting Structure", url_link:'{{url("admin/sitting-structure")}}', icon: 'fas fa-th-large',},
                 "sep5": "---------",
                 @endcan
 
 
-                @can('feedback.view')
-                feedback: {name: "Feedback", url_link:'{{url("feedback")}}', icon: 'fas fa-comment-medical',},
+                @can('menu.view')
+                menu: {name: "CMS Menu", url_link:'{{url("admin/menu")}}', icon: 'fas fa-laptop-code',},
                 @endcan
-                @can('feedback-questions.view')
-                feedbackquestions: {name: "Feedback Question", url_link:'{{url("feedback-questions")}}', icon: 'fas fa-question-circle',},
+                @can('pages.view')
+                pages: {name: "CMS Pages", url_link:'{{url("admin/pages")}}', icon: 'fas fa-laptop-code',},
                 "sep6": "---------",
                 @endcan
 
 
                 @can('settings.view')
-                settings: {name: "Settings", url_link:'{{url("settings")}}', icon: 'fas fa-cog',}
+                settings: {name: "Settings", url_link:'{{url("admin/settings")}}', icon: 'fas fa-cog',}
                 @endcan
             }
         }); 
