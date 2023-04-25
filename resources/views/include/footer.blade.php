@@ -18,21 +18,14 @@
                 </ul>
                 <nav class="site-nav" aria-label="Footer">
                   <ul class="site-nav-menu">
-                    <li>
-                      <a class="site-nav-link" href="{{url('events')}}">Events</a>
-                    </li>
-                    <li>
-                      <a class="site-nav-link" href="book-our-venue">Book our venue</a>
-                    </li>
-                    <li>
-                      <a class="site-nav-link" href="{{url('contact-us')}}">Contact</a>
-                    </li>
-                    <li>
-                      <a class="site-nav-link" href="{{url('faqs')}}">FAQs</a>
-                    </li>
-                    <li>
-                      <a class="site-nav-link" href="#">Nottingham Secret Garden</a>
-                    </li>
+
+                @if(Menu('footer')->count()>0)
+                  @foreach(Menu('footer') as $menu)
+                <li>
+                  <a class="site-nav-link " href="@if($menu->page_slug!=null) {{url($menu->page_slug)}} @else {{url($menu->url)}} @endif">{{$menu->name}}</a>
+                </li>
+                  @endforeach
+                @endif
                   </ul>
                 </nav>
               </div>
