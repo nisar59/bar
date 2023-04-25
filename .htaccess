@@ -20,8 +20,3 @@
     RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
 
 </IfModule>
-
-# php -- BEGIN cPanel-generated handler, do not edit
-# Set the “alt-php80” package as the default “PHP” programming language.
-AddHandler application/x-httpd-alt-php80 .php .php8 .phtml
-# php -- END cPanel-generated handler, do not edit
