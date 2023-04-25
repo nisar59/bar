@@ -53,7 +53,13 @@ class WeaklyEventsController extends Controller
                return $status;
            })
            
-           ->rawColumns(['action','image','status'])
+             ->editColumn('description',function ($row){
+               
+               return $row->description;
+           })
+
+
+           ->rawColumns(['action','image','status', 'description'])
            ->make(true);
         }
         return view('weaklyevents::index');

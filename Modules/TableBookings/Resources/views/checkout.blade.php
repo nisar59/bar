@@ -68,7 +68,7 @@ $total=0;
                                     </div>
                                     <div class="col-6">
                                         <h6 class="mb-2 fs-5 fw-bold">
-                                            @if($data->table()->exists()) ${{number_format($data->table->price)}} @endif
+                                            @if($data->table()->exists()) £ {{number_format($data->table->price)}} @endif
 
                                             @php
                                             $total=(int) $total + (int) $data->table->price;
@@ -103,7 +103,7 @@ $total=0;
                                         <h6 class="mb-2 fs-5 fw-bold">Total</h6>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="mb-2 fs-5 fw-bold">${{number_format($total)}}</h6>
+                                        <h6 class="mb-2 fs-5 fw-bold">£ {{number_format($total)}}</h6>
                                     </div>
 
                                     <div class="col-md-12 mt-4">

@@ -44,7 +44,7 @@ transition: height 1s 0s, opacity 1s 0ms;
 									<div class="col-md-6 text-start">
 										<div class="mb-3">
 											<label for="date" class="col-form-label text-dark">Date:</label>
-											<input type="date" value="{{request()->date}}" class="form-control border border-dark fields datepicker" autocomplete="false" name="date" id="date" required>
+											<input type="date" min="{{now()->addDay(1)->format('Y-m-d')}}" value="{{request()->date}}" class="form-control border border-dark fields datepicker" autocomplete="false" name="date" id="date" required>
 										</div>
 									</div>
 								</div>

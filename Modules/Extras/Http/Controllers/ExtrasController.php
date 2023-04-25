@@ -40,6 +40,11 @@ class ExtrasController extends Controller
                 }
                return $action;
            })
+
+           ->editColumn('price', function($row)
+           {
+              return '£ '.number_format($row->price);
+           })
            ->rawColumns(['action','status'])
            ->make(true);
         }

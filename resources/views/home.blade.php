@@ -74,17 +74,67 @@ Dashboard
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header bg-white">
+        <h3>Recent Bookings</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm">
+            <thead class="text-center bg-primary text-white">
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Sitting</th>
+                <th>Table</th>
+                <th>Booking Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @forelse($recent_bookings as $bkng)
+              <tr class="text-center">
+                <td>{{@UserDetail($bkng->user_id)->name}}</td>
+                <td>{{@UserDetail($bkng->user_id)->email}}</td>
+                <td>
+                  @if($bkng->sitting()->exists())
+                  {{@Carbon\Carbon::parse($bkng->sitting->time_from)->format('h:i A')}}
+                  @endif
+                </td>
+                <td>
+                  @if($bkng->table()->exists() && $bkng->table->table()->exists())
+                  Guests {{@$bkng->table->table->guests}} ({{@$bkng->table->table->name}})
+                  @endif
+                </td>
+                <td>
+                  {{@Carbon\Carbon::parse($bkng->booking_date)->format('D d-M-Y')}}
+                </td>
+                <td>
+                  @if($bkng->status==0)
+                  <span class="btn m-0 btn-success">Active</span>
+                  @else
+                  <span class="btn m-0 btn-info">Served</span>
+                  @endif
+                </td>
+              </tr>
+              @empty
+              <tr>
+                <td colspan="6" class="text-center">No recent booking found</td>
+              </tr>
+              @endforelse
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 @section('js')
 <script>
 $(document).ready(function() {
-
-
-
-  });
-
-
-
-
+});
 </script>
 @endsection

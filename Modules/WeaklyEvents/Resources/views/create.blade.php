@@ -31,7 +31,7 @@ Weekly Events
           </div>
           <div class="form-group">
             <label>Description</label>
-            <textarea name="description" class="form-control"  id="" cols="68" placeholder="Enter Description " rows="5"></textarea>
+            <textarea name="description" class="form-control editor"  id="" cols="68" placeholder="Enter Description " rows="5"></textarea>
           </div>
           
         </div>

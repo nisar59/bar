@@ -35,11 +35,11 @@ $data=json_decode($data);
 				<div class="modal-body">
 					<div class="mb-3">
 						<label for="guest" class="col-form-label text-dark">Guests:</label>
-						<input type="number" min="1" class="form-control border border-dark" name="guests" id="guest" placeholder="Number of Guests" required>
+						<input type="number" min="1" class="form-control border border-dark" name="guests" id="guest" placeholder="Number of Guests">
 					</div>
 					<div class="mb-3">
 						<label for="date" class="col-form-label text-dark">Date:</label>
-						<input type="date" class="form-control border border-dark" name="date" id="date" required>
+						<input type="date" min="{{now()->addDay(1)->format('Y-m-d')}}" class="form-control border border-dark" name="date" id="date" required>
 					</div>
 					
 				</div>

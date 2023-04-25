@@ -52,7 +52,7 @@ class UsersController extends Controller
                     $action='';
 
                 if(Auth::user()->hasRole('super-admin') AND $row->hasRole('super-admin')){
-                $action.='<a class="btn btn-primary btn-sm" href="'.url('users/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+                $action.='<a class="btn btn-primary btn-sm" href="'.url('admin/users/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
 
                 }
                 elseif($row->hasRole('super-admin'))
@@ -61,10 +61,10 @@ class UsersController extends Controller
                 }
                     else{
                 if(Auth::user()->can('users.edit')){
-                $action.='<a class="btn btn-primary m-1 btn-sm" href="'.url('users/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
+                $action.='<a class="btn btn-primary m-1 btn-sm" href="'.url('admin/users/edit/'.$row->id).'"><i class="fas fa-pencil-alt"></i></a>';
                 }
                 if(Auth::user()->can('users.delete')){
-                $action.='<a class="btn btn-danger m-1 btn-sm" href="'.url('users/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
+                $action.='<a class="btn btn-danger m-1 btn-sm" href="'.url('admin/users/destroy/'.$row->id).'"><i class="fas fa-trash-alt"></i></a>';
                     }
 
                 }
@@ -83,10 +83,10 @@ class UsersController extends Controller
 
                 ->editColumn('status', function ($row) {
                     if($row->status==1){
-                        return  '<a class="btn btn-success btn-sm" href="'.url('users/status/'.$row->id).'">Active</a>';
+                        return  '<a class="btn btn-success btn-sm" href="'.url('admin/users/status/'.$row->id).'">Active</a>';
                     }
                     else{
-                        return  '<a class="btn btn-danger btn-sm" href="'.url('users/status/'.$row->id).'">Deactive</a>';
+                        return  '<a class="btn btn-danger btn-sm" href="'.url('admin/users/status/'.$row->id).'">Deactive</a>';
                     }
                 })
 
@@ -236,11 +236,11 @@ class UsersController extends Controller
 
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong with this error: '.$e->getMessage());
         }
         catch(Throwable $e){
             DB::rollback();
-            return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong with this error: '.$e->getMessage());
         }
     }
 
@@ -264,11 +264,11 @@ class UsersController extends Controller
 
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong with this error: '.$e->getMessage());
         }
         catch(Throwable $e){
             DB::rollback();
-            return redirect()->back()->withInput()->with('error', 'Something went wrong with this error: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong with this error: '.$e->getMessage());
         }
 
     }

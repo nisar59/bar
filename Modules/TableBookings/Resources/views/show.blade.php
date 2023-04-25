@@ -12,11 +12,15 @@
                     <div class="col-6">
                         <h6>Name: <b>@if(UserDetail($data->user_id)!=null){{UserDetail($data->user_id)->name}} @endif</b></h6>
                         <h6>Email: <b>@if(UserDetail($data->user_id)!=null){{UserDetail($data->user_id)->email}} @endif</b></h6>
+                        <h6>Phone: <b>@if(UserDetail($data->user_id)!=null){{UserDetail($data->user_id)->phone}} @endif</b></h6>                        
                     </div>
                     <div class="col-6 text-end">
                         <h6>Date: <b>{{Carbon\Carbon::parse($data->booking_date)->format('D d-M-Y')}}</b></h6>
                         <h6>Sitting: <b>@if($data->sitting()->exists()) {{Carbon\Carbon::parse($data->sitting->time_from)->format('h:i A')}} @endif</b></h6>
                         <h6>Table: <b>@if($data->table()->exists() && $data->table->table->exists()) Guests {{$data->table->table->guests}} ({{$data->table->table->name}}) @endif</b></h6>
+                        <h6>Price: <b>@if($data->table()->exists()) £ {{number_format($data->table->price)}} @endif</b></h6>
+
+
                     </div>
                     <div class="col-12">
                         <h5>Extras</h5>
@@ -29,7 +33,7 @@
                                 @forelse($data->extras as $extra)
                                 <tr class="text-center">
                                     <td>{{$extra->name}}</td>
-                                    <td>{{$extra->price}}</td>
+                                    <td>£ {{number_format($extra->price)}}</td>
                                 </tr>
                                 @empty
                                 <tr class="text-center"><td colspan="2">No Extra found</td></tr>
@@ -38,7 +42,7 @@
                         </table>
                     </div>
                     <div class="col-12 text-end">
-                        <h5>Total: <b>$ {{number_format($data->amount)}}</b></h5>
+                        <h5>Total: <b>£ {{number_format($data->amount)}}</b></h5>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,24 @@ use DB;
 use Carbon\Carbon;
 class TableBookingsController extends Controller
 {
+
+    function __construct()
+    {
+        $bkngs=TableBookings::whereDate('booking_date','<',now());
+        if($bkngs->count()>0){
+        DB::beginTransaction();
+
+        try {
+            $bkngs->update(['status'=>1]);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+        } catch (Throwable $e){
+            DB::rollback();
+        }
+    }
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -216,7 +234,7 @@ class TableBookingsController extends Controller
             $book_table->payment_status=1;
             $book_table->save();
         DB::commit();
-         return redirect('table-bookings/success');
+         return redirect('table-bookings/success/'.$id);
          } catch(Exception $e){
             DB::rollback();
             return redirect('/')->with('error','Something went wrong with this error, please contact admin: '.$e->getMessage());
@@ -228,9 +246,10 @@ class TableBookingsController extends Controller
     }
 
 
-    public function success()
+    public function success($id)
     {
-       return view('tablebookings::success');
+        $book_table=TableBookings::find($id);
+       return view('tablebookings::success')->withData($book_table);
     }
 
 

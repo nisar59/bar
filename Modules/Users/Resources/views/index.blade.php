@@ -56,6 +56,7 @@ Users
               <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Phone</th>
                 <th>Role</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -87,6 +88,7 @@ $(document).ready( function(){
       columns: [
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
+            {data: 'phone', name: 'phone', class:'text-center'},
             {data: 'role', name: 'role', class:"text-center"},
             {data: 'status', name: 'status', class:'text-center'},
             {data: 'action', name: 'action', orderable: false, class:"d-flex justify-content-center w-auto", searchable: false},

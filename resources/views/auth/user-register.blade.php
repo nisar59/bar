@@ -43,6 +43,23 @@ Home | Dante NYC
 							</div>
 						</label>
 
+
+						<label role="presentation" class="input--populated">
+							<span class="input-label show" aria-hidden="true" id="ae_label_select_desc1">Phone
+								<span class="input-label-required">- Required</span>
+							</span>
+							<div class="form-control-group">
+								<input type="text" class="form-control" name="phone" placeholder="Enter Phone">
+                                @error('phone')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+							</div>
+						</label>
+
+
 						<label role="presentation" class="input--populated">
 							<span class="input-label show" aria-hidden="true" id="ae_label_select_desc1">Password
 								<span class="input-label-required">- Required</span>

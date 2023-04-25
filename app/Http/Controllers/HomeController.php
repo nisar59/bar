@@ -34,12 +34,17 @@ class HomeController extends Controller
 
         $bookings=TableBookings::where('payment_status',1);
 
-        $total_bookings=$bookings->count();
+        $total_bookings=clone $bookings;
+        $active_bookings=clone $bookings;
+        $served_bookings=clone $bookings;
 
-        $active_bookings=$bookings->where('status',0)->count();
-        $served_bookings=$bookings->where('status',1)->count();
+        $total_bookings=$total_bookings->count();
 
-        return view('home',compact('total_bookings', 'active_bookings', 'served_bookings'));
+        $active_bookings=$active_bookings->where('status',0)->count();
+        $served_bookings=$served_bookings->where('status',1)->count();
+
+        $recent_bookings=$bookings->where('status',0)->orderBy('id', 'desc')->take(10)->get();
+        return view('home',compact('total_bookings', 'active_bookings', 'served_bookings','recent_bookings'));
     }
 
 

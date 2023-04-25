@@ -24,12 +24,12 @@ $total=0;
                                             <thead class="text-center">
                                                 <th class="text-center">Sitting</th>
                                                 <th class="text-center">Table</th>
-                                                <th class="text-center">Price</th>
+                                                <th class="text-center">Total</th>
                                                 <th class="text-center">Status</th>
                                                 <th class="text-center">Action</th>
                                             </thead>
                                             <tbody>
-                                                @foreach($data as $table)
+                                                @forelse($data as $table)
 
                                                 <tr>
                                                     <td>
@@ -43,7 +43,7 @@ $total=0;
                                                         @endif                                                        
                                                     </td>
 
-                                                    <td>{{number_format($table->amount)}}</td>
+                                                    <td>£ {{number_format($table->amount)}}</td>
                                                     <td>
                                                         @if($table->status==0)
                                                             <span class="btn m-0 btn-success">Active</span>
@@ -55,7 +55,9 @@ $total=0;
                                                         <a class="btn btn-info m-0 show-details" href="javascript:void(0)" data-href="{{url('table-bookings/user-show/'.$table->id)}}"><i class="fa fa-eye"></i></a>
                                                     </td>
                                                 </tr>
-                                                @endforeach
+                                                @empty
+                                                <tr><td class="text-center" colspan="5">No booking</td></tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>

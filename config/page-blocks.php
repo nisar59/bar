@@ -103,9 +103,9 @@ return (object) $blocks = [
 
 
 
-  'products_showcase' => [
-    'name' => 'products_showcase',
-    'sample' => 'products_showcase.png',
+  'show_case' => [
+    'name' => 'show_case',
+    'sample' => 'show_case.png',
     'data' => [
       'heading'=>['name'=>'heading','type'=>'text'],
       'products'=>['name'=>'product_showcase','type'=>'table']

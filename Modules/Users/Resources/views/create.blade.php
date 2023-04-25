@@ -25,14 +25,18 @@ Users
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <label>Name</label>
               <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Name">
             </div>            
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <label>Email</label>
               <input type="email" class="form-control" value="{{old('email')}}" name="email" placeholder="Email">
             </div>
+            <div class="form-group col-md-4">
+              <label>Phone</label>
+              <input type="phone" class="form-control" value="{{old('phone')}}" name="phone" placeholder="Phone">
+            </div>            
           </div>
           <div class="row">
             <div class="form-group col-md-6">

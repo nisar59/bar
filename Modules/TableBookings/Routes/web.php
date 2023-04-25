@@ -17,7 +17,7 @@ Route::prefix('table-bookings')->group(function() {
     Route::post('/create/', 'TableBookingsController@store');
     Route::get('/checkout/{id}', 'TableBookingsController@checkout');
     Route::get('/checkout/success/{id}', 'TableBookingsController@postsuccess');
-    Route::get('/success', 'TableBookingsController@success');
+    Route::get('/success/{id}', 'TableBookingsController@success');
     Route::get('user-show/{id}', 'TableBookingsController@usershow');
 
 });

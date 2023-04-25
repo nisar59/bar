@@ -1,7 +1,7 @@
-<header class="site-header">
+<header class="site-header site-header-mobi--collapse">
       <a href="#main-content" class="skip">Skip to main content</a>
       <div class="site-header-desktop">
-        <div class="site-header-desktop-primary site-header-desktop-primary--floatable" data-header-sticky>
+        <div class="site-header-desktop-primary site-header-desktop-primary--floatable site-header-desktop-primary--collapsed">
           <div class="container">
             <div class="site-logo">
               <a class="site-logo__btn" href="{{url('/')}}">

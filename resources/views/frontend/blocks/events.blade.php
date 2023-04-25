@@ -8,14 +8,14 @@ $data=json_decode($data);
 	<div class="row">
 		@if(WeeklyEvents()->count()>0)
 		@foreach(WeeklyEvents() as $wevent)
-		<div class="col-md-4 text-center">
+		<div class="col-md-4 text-center m-2">
 			<img src="{{asset('images/w-events/'.$wevent->image)}}" class="w-100" alt="">
-			<p class="mt-2">{{$wevent->description}}</p>
+			<p class="mt-2">{!! $wevent->description !!}</p>
 		</div>
 		@endforeach
 		@endif
 	</div>
-	<div class="container bg-success p-5">
+	<div class="container p-5" style="background-color: #333;">
 		<div class="row m-0 justify-content-center">
 			<div class="col-md-12">
 				@if(isset($data->description)) {!!$data->description!!} @endif
@@ -31,7 +31,7 @@ $data=json_decode($data);
 				@endphp
 			<div class="col-10 mb-3">
 				@if($month_year!=$old_m_y)
-				<h2 class="text-dark fw-bold">{{$month_year}}</h2>
+				<h2 class="text-white fw-bold">{{$month_year}}</h2>
 				@php($old_m_y=$month_year)
 				@endif
 				<div class="row m-0 bg-dark">

@@ -22,8 +22,8 @@ Table Bookings
         <div class="row">
           <h4 class="col-md-6">Table Bookings</h4>
           <div class="col-md-6 text-end">
-            <a href="{{url('admin/faqs/create')}}" class="btn btn-success">+</a>
-          </div>
+<!--             <a href="{{url('admin/faqs/create')}}" class="btn btn-success">+</a>
+ -->          </div>
         </div>
       </div>
       <div class="card-body">

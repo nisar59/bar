@@ -29,8 +29,13 @@
         player.api("play");
       });
 
-      
-      $(window).scroll(function(){
+
+        $(".site-header").addClass("site-header-mobi--collapse");
+        $(".site-header-desktop-primary").addClass("site-header-desktop-primary--collapsed");
+
+
+
+/*      $(window).scroll(function(){
         if( $(window).scrollTop() > 30 ) {
         $(".site-header").addClass("site-header-mobi--collapse");
         $(".site-header-desktop-primary").addClass("site-header-desktop-primary--collapsed");
@@ -39,7 +44,7 @@
         $(".site-header-desktop-primary").removeClass("site-header-desktop-primary--collapsed");
         }
 
-      });
+      });*/
 
       function VideoSize() {
        var w = $(window).width();

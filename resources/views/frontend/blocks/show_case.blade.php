@@ -13,7 +13,7 @@ $data=json_decode($data);
 		@if(isset($data->product_showcase) && $data->product_showcase!=null && ProductShowcase($data->product_showcase)!=null && ProductShowcase($data->product_showcase)->images()->exists())
 			@foreach(ProductShowcase($data->product_showcase)->images as $img)
 		<div class="col-md-6">	
-			<img src="{{asset('images/product-showcase/'.$img->image)}}" class="w-100">
+			<img src="{{asset('images/show-case/'.$img->image)}}" class="w-100">
 		</div>
 			@endforeach
 		@endif

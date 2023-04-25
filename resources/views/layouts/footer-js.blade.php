@@ -143,7 +143,7 @@ $(document).on('click', '#maintenance',function (e) {
 });
 
 
-        /*$.contextMenu({
+        $.contextMenu({
             selector: 'body',
             autoHide: true,
             zIndex: 11111,
@@ -199,7 +199,7 @@ $(document).on('click', '#maintenance',function (e) {
                 settings: {name: "Settings", url_link:'{{url("settings")}}', icon: 'fas fa-cog',}
                 @endcan
             }
-        }); */
+        }); 
  
 
 
