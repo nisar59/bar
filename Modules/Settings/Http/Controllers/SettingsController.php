@@ -39,6 +39,7 @@ class SettingsController extends Controller
         $portal_favicon=null;
         $website_logo=null;
         $website_small_logo=null;
+        $website_favicon=null;
         $path=public_path('img/settings/');
 
         $sett=Settings::first();
@@ -48,7 +49,7 @@ class SettingsController extends Controller
             $portal_favicon=$sett->portal_favicon;
             $website_logo=$sett->website_logo;
             $website_small_logo=$sett->website_small_logo;
-            $website_favicon_icone=$sett->website_favicon_icone;
+            $website_favicon=$sett->website_favicon;
         }
 
         if($req->file('panel_logo')!=null){
@@ -63,8 +64,8 @@ class SettingsController extends Controller
          if($req->file('website_s_logo')!=null){
             $website_small_logo=FileUpload($req->file('website_s_logo'), $path);
         }
-                if($req->file('website_f_icone')!=null){
-            $website_favicon_icone=FileUpload($req->file('website_f_icone'), $path);
+                if($req->file('website_favicon')!=null){
+            $website_favicon=FileUpload($req->file('website_favicon'), $path);
         }
         
 
@@ -75,8 +76,9 @@ class SettingsController extends Controller
         $settings->portal_favicon=$portal_favicon;
         $settings->website_logo=$website_logo;
         $settings->website_small_logo=$website_small_logo;
-        $settings->website_favicon_icone=$website_favicon_icone;
+        $settings->website_favicon=$website_favicon;
         
+        $settings->order_email_subject=$req->order_email_subject;
         $settings->order_email_template=$req->order_email_template;
         $settings->reservation_message=$req->reservation_message;
         $settings->checkout_success_message=$req->checkout_success_message;

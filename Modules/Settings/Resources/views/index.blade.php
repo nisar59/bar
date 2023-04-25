@@ -102,15 +102,22 @@ $favicon=url('public/img/settings/'.$sett->portal_favicon);
                   </div>
                   <div class="row">
                     <div class="form-group col-md-6 mt-2">
-                      <label>Website Favicon Icone(16x16)</label>
-                      <input type="file" class="form-control" name="website_f_icone" id="">
-                      <span><b>{{$sett->website_favicon_icone}}</b></span>
+                      <label>Website Favicon(16x16)</label>
+                      <input type="file" class="form-control" name="website_favicon" id="">
+                      <span><b>{{$sett->website_favicon}}</b></span>
                     </div>
                     
                   </div>
                 </div>
                 <div class="tab-pane p-3" id="templates" role="tabpanel">
                   <div class="row">
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="">Order Email Subject</label>
+                        <input name="order_email_subject" value="{{$sett->order_email_subject}}" placeholder="Order Email Subject" class="form-control">
+                      </div>
+                    </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="">Order Email</label>

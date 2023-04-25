@@ -63,4 +63,11 @@ class FrontendController extends Controller
     {
         //
     }
+
+
+
+    public function send()
+    {
+        // code...
+    }
 }

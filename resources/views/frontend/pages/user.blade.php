@@ -1,6 +1,6 @@
 @extends('include.master')
 @section('title')
-Home | Dante NYC
+Home
 @endsection
 @section('content')
 @php

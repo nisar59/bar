@@ -1,6 +1,6 @@
 @extends('include.master')
 @section('title')
-Home | Dante NYC
+{{$page->title}}
 @endsection
   @section('content')
   

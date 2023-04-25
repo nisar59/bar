@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('send-mail', 'FrontendController@send');
 Route::get('user-login', 'Auth\LoginController@userloginform');
 Route::get('user-register', 'Auth\RegisterController@userregisterform');
 //Ferontend Controller Routes
