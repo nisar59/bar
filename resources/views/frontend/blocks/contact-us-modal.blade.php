@@ -6,6 +6,7 @@
 				<h5 class="modal-title text-dark" id="contact-us-label">Contact us</h5>
 			</div>
 			<form action="{{url('contact-us/send')}}" method="post">
+				@csrf
 				<div class="modal-body">
 					<div class="mb-3">
 						<label for="email" class="col-form-label text-dark">Email</label>
@@ -17,7 +18,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="message" class="col-form-label text-dark">Message</label>
-						<textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+						<textarea name="message" id="message" class="form-control" rows="10" placeholder="Message"></textarea>
 					</div>					
 				</div>
 				<div class="modal-footer">

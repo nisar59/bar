@@ -1,10 +1,10 @@
 <section id="menus" aria-label="menus-section" class="content revealable revealed">
-      <div class="tabs">
+      <div class="tabs container-sm border-0">
         <ul class="nav nav-tabs" role="tablist">
           @if(Caffe()->count()>0)
             @foreach(Caffe() as $key=> $caffe)
           <li class="nav-item" role="presentation">
-            <a class="btn btn-tabs  @if($key==0) active @endif" id="{{$caffe->title}}-tab" data-bs-toggle="tab" data-bs-target="#{{$caffe->title}}" role="tab" aria-controls="{{$caffe->title}}" aria-selected="true">{{$caffe->title}}</a>
+            <a class="btn btn-tabs  @if($key==0) active @endif" id="menu{{$caffe->id}}-tab" data-bs-toggle="tab" data-bs-target="#menu{{$caffe->id}}" role="tab" aria-controls="menu{{$caffe->id}}" aria-selected="true">{{$caffe->title}}</a>
           </li>
             @endforeach
           @endif
@@ -15,7 +15,7 @@
         <div class="tab-content">
             @if(Caffe()->count()>0)
             @foreach(Caffe() as $key=> $caffe)
-          <section class="tab-pane fade @if($key==0) show active @endif" id="{{$caffe->title}}" role="tabpanel" aria-labelledby="{{$caffe->title}}-tab">
+          <section class="tab-pane fade @if($key==0) show active @endif" id="menu{{$caffe->id}}" role="tabpanel" aria-labelledby="menu{{$caffe->id}}-tab">
             @if($caffe->description!=null)
             <div class="menu-description container-sm">
               <p>{{$caffe->description}}</p>

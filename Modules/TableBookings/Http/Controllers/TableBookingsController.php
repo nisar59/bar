@@ -10,8 +10,10 @@ use Modules\TableBookings\Entities\TableBookings;
 use Modules\SittingStructure\Entities\StructureTables;
 use Modules\Sittings\Entities\SittingTables;
 use Modules\Sittings\Entities\Sittings;
+use App\Mail\UserTableBooking;
 use DataTables;
 use Throwable;
+use Mail;
 use Auth;
 use DB;
 use Carbon\Carbon;
@@ -234,6 +236,9 @@ class TableBookingsController extends Controller
             $book_table->payment_status=1;
             $book_table->save();
         DB::commit();
+
+        Mail::to(Settings()->portal_email)->send(new UserTableBooking($book_table));
+
          return redirect('table-bookings/success/'.$id);
          } catch(Exception $e){
             DB::rollback();

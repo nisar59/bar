@@ -13,7 +13,7 @@ $data=json_decode($data);
   </div>
   <div class="row mt-5">
     <div class="col-md-6">
-      <iframe class="w-100" src="@if(isset($data->video_url)) {{$data->video_url}} @endif"></iframe>
+      <iframe class="w-100 h-100" src="@if(isset($data->video_url)) {{$data->video_url}} @endif"></iframe>
     </div>
     <div class="col-md-6">
       @if(isset($data->kiosk_opening_hours)) {!!$data->kiosk_opening_hours!!} @endif

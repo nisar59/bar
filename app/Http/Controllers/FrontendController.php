@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Pages\Entities\Pages;
 use Modules\TableBookings\Entities\TableBookings;
+use App\Mail\ContactUs;
+use Throwable;
+use Mail;
 use Auth;
 use App;
 class FrontendController extends Controller
@@ -66,8 +69,17 @@ class FrontendController extends Controller
 
 
 
-    public function send()
+    public function contactus(Request $req)
     {
-        // code...
+        try {
+            Mail::to(Settings()->portal_email)->send(new ContactUs($req));
+
+            return redirect()->back()->with('success', 'Mail is sent successfully');
+
+        } catch (Exception $e) {
+            return redirect()->back()->with('success', 'Something went wrong with this error: '.$e->getMessage());
+        } catch (Throwable $e) {
+            return redirect()->back()->with('success', 'Something went wrong with this error: '.$e->getMessage());
+        }
     }
 }

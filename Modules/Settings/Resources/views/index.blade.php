@@ -118,9 +118,11 @@ $favicon=url('public/img/settings/'.$sett->portal_favicon);
                         <input name="order_email_subject" value="{{$sett->order_email_subject}}" placeholder="Order Email Subject" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-3">
                       <div class="form-group">
-                        <label for="">Order Email</label>
+                        <label for="">Order Email <span class="fs-6 fw-normal">(use below tags)</span></label>
+                        <pre>{name}  {phone}  {email}  {booking-date}  {sitting}  {table}  {sitting-price} {extras}  {total}
+                        </pre>
                         <textarea name="order_email_template" class="form-control editor">{{$sett->order_email_template}}</textarea>
                       </div>
                     </div>

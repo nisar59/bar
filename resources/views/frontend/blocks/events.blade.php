@@ -8,8 +8,8 @@ $data=json_decode($data);
 	<div class="row">
 		@if(WeeklyEvents()->count()>0)
 		@foreach(WeeklyEvents() as $wevent)
-		<div class="col-md-4 text-center m-2">
-			<img src="{{asset('images/w-events/'.$wevent->image)}}" class="w-100" alt="">
+		<div class="col-md-4 text-center p-2">
+			<img src="{{asset('images/w-events/'.$wevent->image)}}" class="w-100 h-75" alt="">
 			<p class="mt-2">{!! $wevent->description !!}</p>
 		</div>
 		@endforeach
@@ -44,7 +44,7 @@ $data=json_decode($data);
 				</div>
 				<div class="row bg-white m-0 p-2 text-start text-dark">
 					<div class="col-3">
-						<img src="{{asset('images/events/'.$event->image)}}" class="w-100" alt="">
+						<img src="{{asset('images/events/'.$event->image)}}" class="w-100 h-100 rounded" alt="">
 					</div>
 					<div class="col-6">
 						<h3 class="text-dark fw-bold">{{$event->title}}</h3>

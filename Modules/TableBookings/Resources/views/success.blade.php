@@ -41,8 +41,8 @@ Home | Dante NYC
 									<p class="m-1 fw-bold">Phone: <span class="fw-normal">{{@UserDetail($data->user_id)->phone}}</span></p>
 								</div>
 								<div class="col-5 text-start">
-									<p class="m-1 fw-bold">Date: <span class="fw-normal">{{Carbon\Carbon::parse(@$data->booking_date)->format('D d-M-Y')}}</span></p>
-									<p class="m-1 fw-bold">Sitting: <span class="fw-normal">{{@Carbon\Carbon::parse($data->sitting->time_from)->format('h:i A')}}</span></p>
+									<p class="m-1 fw-bold">Date: <span class="fw-normal">{{@Carbon\Carbon::parse(@$data->booking_date)->format('D d-M-Y')}}</span></p>
+									<p class="m-1 fw-bold">Sitting: <span class="fw-normal">{{@Carbon\Carbon::parse(@$data->sitting->time_from)->format('h:i A')}}</span></p>
 									<p class="m-1 fw-bold">Table: <span class="fw-normal">Guests {{@$data->table->table->guests}} ({{@$data->table->table->name}})</span></p>
 									<p class="m-1 fw-bold">Sitting Price: <span class="fw-normal">£ {{@number_format($data->table->price)}}</span></p>
 								</div>
@@ -76,7 +76,7 @@ Home | Dante NYC
 									</table>
 								</div>
 								<div class="col-12 text-end">
-									<h3 class="text-dark fw-bold">Total: <span class="fw-normal">£ {{number_format($data->amount)}}</span></h3>
+									<h3 class="text-dark fw-bold">Total: <span class="fw-normal">£ {{@number_format($data->amount)}}</span></h3>
 									<h3 class="text-dark fw-bold">Status: <span class="fw-normal text-success">Paid</span></h3>
 								</div>
 
